@@ -27,4 +27,49 @@ public AbonadosVO() {
         this.pinAbonados = pinAbonados;
         codAbonados++;
     }
+    
+     public  int getCodAbonado() {
+        return codAbonados;
+    }
+
+    public  void setCodAbonado(int codAbonado) {
+        this.codAbonados = codAbonado;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public int getPinAbonados() {
+        return pinAbonados;
+    }
+
+    public void setPinAbonados(int pinAbonados) {
+        this.pinAbonados = pinAbonados;
+    }
+
+    @Override
+    public String toString() {
+        return "AbonadosVO{" + "DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", pinAbonados=" + pinAbonados + '}';
+    }
 }
