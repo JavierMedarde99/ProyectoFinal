@@ -18,4 +18,5 @@ public interface IAbonados {
     int insertPersona (List<AbonadosVO> lista) throws SQLException;
      int deletePersona (AbonadosVO p) throws SQLException;
     int deletePersona() throws SQLException;
+    int updatePersona (int codAbonados, AbonadosVO nuevosDatos) throws SQLException;
 }
