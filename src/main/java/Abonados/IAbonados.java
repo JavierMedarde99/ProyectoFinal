@@ -5,10 +5,13 @@
  */
 package Abonados;
 
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author javi
  */
 public interface IAbonados {
-    
+    List<AbonadosVO> getAll() throws SQLException;
 }
