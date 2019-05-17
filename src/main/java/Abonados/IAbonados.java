@@ -14,4 +14,8 @@ import java.util.List;
  */
 public interface IAbonados {
     List<AbonadosVO> getAll() throws SQLException;
+    int insertPersona (AbonadosVO persona) throws SQLException;
+    
+   
+    int insertPersona (List<AbonadosVO> lista) throws SQLException;
 }
