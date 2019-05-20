@@ -56,13 +56,43 @@ public class AbonadosDAO implements IAbonados{
         return lista;
     }
      @Override
-    public AbonadosVO findByPk(String codAbo) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public AbonadosVO findByPk(String DNI) throws SQLException {
+         ResultSet res = null;
+        AbonadosVO abonados = new AbonadosVO();
+
+        String sql = "select * from abonados where DNI=?";
+
+        try (PreparedStatement prest = con.prepareStatement(sql)) {
+            // Preparamos la sentencia parametrizada
+            prest.setString(4, DNI);
+
+            // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
+            res = prest.executeQuery();
+
+            // Nos posicionamos en el primer registro del Resultset. Sólo debe haber una fila
+            // si existe esa pk
+            if (res.first()) {
+                // Recogemos los datos de la persona, guardamos en un objeto
+                
+                abonados.setNombre(res.getString("nombre"));
+                abonados.setApellidos(res.getString("apellidos"));
+                abonados.setDNI(res.getString("DNI"));
+                abonados.setPinAbonados(res.getInt("pinAbonados"));
+                abonados.setPinAbonados(res.getInt("pinAbonados"));
+                abonados.setTarjetaCredito(res.getString("tarjetaCredito"));
+                abonados.setEmail(res.getString("email"));
+                abonados.setTipoAbonados(res.getInt("tipoAbonado"));
+              abonados.setMatricula(res.getString("matricula"));
+                return abonados;
+            }
+
+            return null;
+        }
     }
     @Override
     public int insertAbonados(AbonadosVO abonados) throws SQLException {
         int numFilas = 0;
-        String sql = "insert into abonados values (?,?,?,?,?)";
+        String sql = "insert into abonados values (?,?,?,?,?,?,?,?,?,?)";
 
         if (findByPk(abonados.getDNI()) != null) {
             // Existe un registro con esa pk
@@ -84,7 +114,7 @@ public class AbonadosDAO implements IAbonados{
                 prest.setInt(7,abonados.getTipoAbonados());
                 prest.setString(8,abonados.getMatricula());
                 prest.setTimestamp(9,abonados.getFechaInicioAbono());
-                prest.setInt(10,abonados.getPinAbonados());
+                prest.setTimestamp(10,abonados.getFechaFinAbono());
 
                 numFilas = prest.executeUpdate();
             }
