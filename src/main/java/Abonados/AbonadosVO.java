@@ -5,6 +5,7 @@
  */
 package Abonados;
 
+import java.time.LocalDate;
 import vehiculos.VehiculoVO;
 
 /**
@@ -12,8 +13,8 @@ import vehiculos.VehiculoVO;
  * @author javi
  */
 public class AbonadosVO {
-     private int codAbonados=0;//clave primaria
-    private String DNI;
+
+    private String DNI; //Clave primaria
     private String nombre;
     private String apellidos;
     private int pinAbonados;
@@ -21,10 +22,13 @@ public class AbonadosVO {
     private String email;
     private int tipoAbonados;
     private String matricula;//clave foreanea
+    private LocalDate fechaInicioAbono;
+    private LocalDate fechaFinAbono;
+    
 public AbonadosVO() {
     }
 
-    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula) {
+    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula, LocalDate fechaInicioAbono) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -33,16 +37,7 @@ public AbonadosVO() {
         this.email = email;
         this.tipoAbonados = tipoAbonados;
         this.matricula = matricula;
-    }
-
-    
-
-    public int getCodAbonados() {
-        return codAbonados;
-    }
-
-    public void setCodAbonados(int codAbonados) {
-        this.codAbonados = codAbonados;
+        this.fechaInicioAbono = fechaInicioAbono;
     }
 
     public String getDNI() {
@@ -109,13 +104,25 @@ public AbonadosVO() {
         this.matricula = matricula;
     }
 
-    @Override
-    public String toString() {
-        return "AbonadosVO{" + "codAbonados=" + codAbonados + ", DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", pinAbonados=" + pinAbonados + ", tarjetaCredito=" + tarjetaCredito + ", email=" + email + ", tipoAbonados=" + tipoAbonados + ", matricula=" + matricula + '}';
+    public LocalDate getFechaInicioAbono() {
+        return fechaInicioAbono;
     }
 
-  
+    public void setFechaInicioAbono(LocalDate fechaInicioAbono) {
+        this.fechaInicioAbono = fechaInicioAbono;
+    }
 
-    
+    public LocalDate getFechaFinAbono() {
+        return fechaFinAbono;
+    }
+
+    public void setFechaFinAbono(LocalDate fechaFinAbono) {
+        this.fechaFinAbono = fechaFinAbono;
+    }
+
+    @Override
+    public String toString() {
+        return "AbonadosVO{" + ", DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", pinAbonados=" + pinAbonados + ", tarjetaCredito=" + tarjetaCredito + ", email=" + email + ", tipoAbonados=" + tipoAbonados + ", matricula=" + matricula + ", fechaInicioAbono=" + fechaInicioAbono + ", fechaFinAbono=" + fechaFinAbono + '}';
+    }
     
 }
