@@ -168,8 +168,36 @@ public class AbonadosDAO implements IAbonados{
     }
 
     @Override
-    public int updateAbonados(int codAbonados, AbonadosVO nuevosDatos) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int updateAbonados(String DNI, AbonadosVO nuevosDatos) throws SQLException {
+        int numFilas = 0;
+        String sql = "update abonados set nombre = ?, apellido = ?,DNI=?,pinAbonados=?,"
+                + "tarjetaCredito=?,email=?,tipoAbonados=?, matricula=?,"
+                + "fechaInicioAbono=?, fechaFinAbono=?   where DNI=?";
+
+        if (findByPk(DNI) == null) {
+            // La persona a actualizar no existe
+            return numFilas;
+        } else {
+            // Instanciamos el objeto PreparedStatement para inserción
+            // de datos. Sentencia parametrizada
+            try (PreparedStatement prest = con.prepareStatement(sql)) {
+
+                // Establecemos los parámetros de la sentencia
+                prest.setString(1, nuevosDatos.getNombre());
+                prest.setString(2, nuevosDatos.getApellidos());
+                prest.setString(3, nuevosDatos.getDNI());
+                prest.setInt(4, nuevosDatos.getPinAbonados());
+                prest.setString(5, nuevosDatos.getTarjetaCredito());
+                prest.setString(6, nuevosDatos.getEmail());
+                prest.setInt(7, nuevosDatos.getTipoAbonados());
+                prest.setString(8, nuevosDatos.getMatricula());
+                prest.setTimestamp(9, nuevosDatos.getFechaInicioAbono());
+                prest.setTimestamp(10, nuevosDatos.getFechaFinAbono());
+
+                numFilas = prest.executeUpdate();
+            }
+            return numFilas;
+        }
     }
 
     
