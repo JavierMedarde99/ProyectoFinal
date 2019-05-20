@@ -9,7 +9,6 @@ tipoVehiculo int(3),
 CONSTRAINT PK_vehiculos PRIMARY KEY (matricula)
 );
 create table if not exists abonados(
-codAbonados int,
 nombre varchar(20),
 apellidos varchar(50),
 DNI char(9),
@@ -20,7 +19,7 @@ tipoAbonado int(3),
 matricula char(8),
 fechaInicioAbono date,
 fechaFinAbono date,
-CONSTRAINT PK_abonados PRIMARY KEY (codAbonados),
+CONSTRAINT PK_abonados PRIMARY KEY (DNI),
 CONSTRAINT FK_AbonadosVehiculos FOREIGN KEY (matricula)
     REFERENCES vehiculos(matricula)
 on delete no action on update cascade
@@ -30,7 +29,7 @@ create table if not exists plazas(
 codPlazas int,
 numPlazas int,
 matricula char(8),
-estado int,
+estado boolean,
 CONSTRAINT PK_plazas PRIMARY KEY (codPlazas),
 CONSTRAINT FK_plazasMatricula FOREIGN KEY (matricula)
     REFERENCES vehiculos(matricula)
@@ -43,8 +42,8 @@ matricula char(8),
 pin int(6),
 precioFin int,
 precioPorMin int,
-tiempoEntrada date,
-tiempoSalida date,
+tiempoEntrada datetime,
+tiempoSalida datetime,
 CONSTRAINT PK_tiket PRIMARY KEY (codPlazas,matricula),
 CONSTRAINT FK_matricula_tiket FOREIGN KEY (matricula)
     REFERENCES vehiculos(matricula)
