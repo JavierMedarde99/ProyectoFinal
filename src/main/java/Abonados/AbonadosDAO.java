@@ -33,7 +33,7 @@ public class AbonadosDAO implements IAbonados{
         // ya que no necesitamos parametrizar la sentencia SQL
         try (Statement st = con.createStatement()) {
             // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
-            ResultSet res = st.executeQuery("select * from persona");
+            ResultSet res = st.executeQuery("select * from abonados");
             // Ahora construimos la lista, recorriendo el ResultSet y mapeando los datos
             while (res.next()) {
                 AbonadosVO p = new AbonadosVO();
@@ -64,7 +64,7 @@ public class AbonadosDAO implements IAbonados{
 
         try (PreparedStatement prest = con.prepareStatement(sql)) {
             // Preparamos la sentencia parametrizada
-            prest.setString(4, DNI);
+            prest.setString(3, DNI);
 
             // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
             res = prest.executeQuery();
@@ -137,13 +137,13 @@ public class AbonadosDAO implements IAbonados{
     public int deleteAbonados(AbonadosVO abonados) throws SQLException {
        int numFilas = 0;
 
-        String sql = "delete from persona where pk = ?";
+        String sql = "delete from abonados where DNI = ?";
 
         // Sentencia parametrizada
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setString(4, abonados.getDNI());
+            prest.setString(3, abonados.getDNI());
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
         }
@@ -152,7 +152,19 @@ public class AbonadosDAO implements IAbonados{
    
     @Override
     public int deleteAbonados() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String sql = "delete from abonaos";
+
+        int nfilas = 0;
+
+        // Preparamos el borrado de datos  mediante un Statement
+        // No hay parámetros en la sentencia SQL
+        try (Statement st = con.createStatement()) {
+            // Ejecución de la sentencia
+            nfilas = st.executeUpdate(sql);
+        }
+
+        // El borrado se realizó con éxito, devolvemos filas afectadas
+        return nfilas;
     }
 
     @Override
