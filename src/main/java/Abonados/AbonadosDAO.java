@@ -134,8 +134,20 @@ public class AbonadosDAO implements IAbonados{
     }
 
     @Override
-    public int deleteAbonados(AbonadosVO p) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int deleteAbonados(AbonadosVO abonados) throws SQLException {
+       int numFilas = 0;
+
+        String sql = "delete from persona where pk = ?";
+
+        // Sentencia parametrizada
+        try (PreparedStatement prest = con.prepareStatement(sql)) {
+
+            // Establecemos los parámetros de la sentencia
+            prest.setString(4, abonados.getDNI());
+            // Ejecutamos la sentencia
+            numFilas = prest.executeUpdate();
+        }
+        return numFilas;
     }
    
     @Override
