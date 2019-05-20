@@ -14,10 +14,10 @@ import java.util.List;
  */
 public interface IAbonados {
     List<AbonadosVO> getAll() throws SQLException;
-    AbonadosVO findByPk(String codAbo) throws SQLException;
+    AbonadosVO findByPk(String DNI) throws SQLException;
     int insertAbonados (AbonadosVO persona) throws SQLException;
     int insertAbonados  (List<AbonadosVO> lista) throws SQLException;
      int deleteAbonados  (AbonadosVO p) throws SQLException;
     int deleteAbonados () throws SQLException;
-    int updateAbonados  (int codAbonados, AbonadosVO nuevosDatos) throws SQLException;
+    int updateAbonados  (String DNI, AbonadosVO nuevosDatos) throws SQLException;
 }
