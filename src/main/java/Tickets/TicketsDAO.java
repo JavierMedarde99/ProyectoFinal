@@ -7,6 +7,7 @@ package Tickets;
 
 import Conexion.Conexion;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -50,7 +51,39 @@ private Connection con = null;
     }
          return lista;
     }
+ @Override
+    public TicketsVO findByPk(String matricula,int codPlazas) throws SQLException {
+          ResultSet res = null;
+        TicketsVO tickets = new TicketsVO();
 
+        String sql = "select * from tikets where matricula=? and codPlazas=?";
+
+        try (PreparedStatement prest = con.prepareStatement(sql)) {
+            // Preparamos la sentencia parametrizada
+            prest.setString(2, matricula);
+             prest.setInt(1, codPlazas);
+
+            // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
+            res = prest.executeQuery();
+
+            // Nos posicionamos en el primer registro del Resultset. Sólo debe haber una fila
+            // si existe esa pk
+            if (res.first()) {
+                // Recogemos los datos de la persona, guardamos en un objeto
+                
+                tickets.setCodPlazas(res.getInt("codPlazas"));
+                tickets.setMatricula(res.getString("matricula"));
+                tickets.setPin(res.getInt("pin"));
+                tickets.setPrecioFin(res.getDouble("precioFin"));
+                tickets.setPrecioMin(res.getDouble("precioPorMin"));
+                tickets.setTiempoFin(res.getTimestamp("tiempoSalida"));
+                tickets.setTiempoInicio(res.getTimestamp("tiempoEntrada"));
+                return tickets;
+            }
+
+            return null;
+        }
+    }
     @Override
     public int insertPersona(TicketsVO ticket) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -75,5 +108,7 @@ private Connection con = null;
     public int updatePersona(int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
     
 }
