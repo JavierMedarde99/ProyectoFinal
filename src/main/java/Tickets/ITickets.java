@@ -15,10 +15,10 @@ import java.util.List;
  */
 public interface ITickets {
         List<TicketsVO> getAll() throws SQLException;
-    int insertPersona (TicketsVO ticket) throws SQLException;
+    int insertTickets (TicketsVO ticket) throws SQLException;
      TicketsVO findByPk(String matricula,int codPlazas) throws SQLException;
-    int insertPersona (List<TicketsVO> lista) throws SQLException;
-     int deletePersona (TicketsVO ticket) throws SQLException;
-    int deletePersona() throws SQLException;
-    int updatePersona (int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException;
+    int insertTickets (List<TicketsVO> lista) throws SQLException;
+     int deleteTickets (TicketsVO ticket) throws SQLException;
+    int deleteTickets() throws SQLException;
+    int updateTickets (int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException;
 }

@@ -85,27 +85,55 @@ private Connection con = null;
         }
     }
     @Override
-    public int insertPersona(TicketsVO ticket) throws SQLException {
+    public int insertTickets(TicketsVO ticket) throws SQLException {
+        int numFilas = 0;
+        String sql = "insert into abonados values (?,?,?,?,?,?,?,?,?,?)";
+
+        if (findByPk(ticket.getMatricula(),ticket.getCodPlazas()) != null) {
+            // Existe un registro con esa pk
+            // No se hace la inserción
+            return numFilas;
+        } else {
+            // Instanciamos el objeto PreparedStatement para inserción
+            // de datos. Sentencia parametrizada
+            try (PreparedStatement prest = con.prepareStatement(sql)) {
+
+                // Establecemos los parámetros de la sentencia
+                
+                prest.setString(1,abonados.getNombre());
+                prest.setString(2,abonados.getApellidos());
+                prest.setString(3, abonados.getDNI());
+                prest.setInt(4,abonados.getPinAbonados());
+                prest.setString(5,abonados.getTarjetaCredito());
+                prest.setString(6,abonados.getEmail());
+                prest.setInt(7,abonados.getTipoAbonados());
+                prest.setString(8,abonados.getMatricula());
+                prest.setTimestamp(9,abonados.getFechaInicioAbono());
+                prest.setTimestamp(10,abonados.getFechaFinAbono());
+
+                numFilas = prest.executeUpdate();
+            }
+            return numFilas;
+        }
+    }
+
+    @Override
+    public int insertTickets(List<TicketsVO> lista) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int insertPersona(List<TicketsVO> lista) throws SQLException {
+    public int deleteTickets(TicketsVO ticket) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int deletePersona(TicketsVO ticket) throws SQLException {
+    public int deleteTickets() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int deletePersona() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int updatePersona(int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException {
+    public int updateTickets(int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
