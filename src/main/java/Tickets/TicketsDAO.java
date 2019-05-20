@@ -163,7 +163,32 @@ private Connection con = null;
 
     @Override
     public int updateTickets(int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         int numFilas = 0;
+        String sql = "update tikets set codPlazas = ?, matricula = ?,pin=?,precioFin=?,"
+                + "precioPorMin=?,tiempoEntrada=?,tiempoSalida=?"
+                + " where matricula=? and codplazas=?";
+
+        if (findByPk(matricula,codPlazas) == null) {
+            // La persona a actualizar no existe
+            return numFilas;
+        } else {
+            // Instanciamos el objeto PreparedStatement para inserción
+            // de datos. Sentencia parametrizada
+            try (PreparedStatement prest = con.prepareStatement(sql)) {
+
+                // Establecemos los parámetros de la sentencia
+                prest.setString(2,nuevosDatos.getMatricula());
+                prest.setInt(1,nuevosDatos.getCodPlazas());
+                prest.setInt(3, nuevosDatos.getPin());
+                prest.setDouble(4,nuevosDatos.getPrecioFin());
+                prest.setDouble(5,nuevosDatos.getPrecioMin());
+                prest.setTimestamp(6,nuevosDatos.getTiempoInicio());
+                prest.setTimestamp(7,nuevosDatos.getTiempoInicio());
+                
+                numFilas = prest.executeUpdate();
+            }
+            return numFilas;
+        }
     }
 
    
