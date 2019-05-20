@@ -5,6 +5,8 @@
  */
 package Abonados;
 
+import vehiculos.VehiculoVO;
+
 /**
  *
  * @author javi
@@ -18,11 +20,11 @@ public class AbonadosVO {
     private String tarjetaCredito;
     private String email;
     private int tipoAbonados;
-    private String matricula;//clave foreanea
+    private VehiculoVO matricula;//clave foreanea
 public AbonadosVO() {
     }
 
-    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula) {
+    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, VehiculoVO matricula) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -32,6 +34,8 @@ public AbonadosVO() {
         this.tipoAbonados = tipoAbonados;
         this.matricula = matricula;
     }
+
+    
 
     public int getCodAbonados() {
         return codAbonados;
@@ -97,11 +101,11 @@ public AbonadosVO() {
         this.tipoAbonados = tipoAbonados;
     }
 
-    public String getMatricula() {
+    public VehiculoVO getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(VehiculoVO matricula) {
         this.matricula = matricula;
     }
 
@@ -110,5 +114,8 @@ public AbonadosVO() {
         return "AbonadosVO{" + "codAbonados=" + codAbonados + ", DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", pinAbonados=" + pinAbonados + ", tarjetaCredito=" + tarjetaCredito + ", email=" + email + ", tipoAbonados=" + tipoAbonados + ", matricula=" + matricula + '}';
     }
 
+  
+
+    
     
 }
