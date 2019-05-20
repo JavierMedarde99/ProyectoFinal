@@ -124,7 +124,13 @@ public class AbonadosDAO implements IAbonados{
 
     @Override
     public int insertAbonados(List<AbonadosVO> lista) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      int numFilas = 0;
+
+        for (AbonadosVO tmp : lista) {
+            numFilas += insertAbonados(tmp);
+        }
+
+        return numFilas;
     }
 
     @Override
