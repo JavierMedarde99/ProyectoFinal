@@ -5,10 +5,19 @@
  */
 package Tickets;
 
+
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author javi
  */
 public interface ITickets {
-       
+        List<TicketsVO> getAll() throws SQLException;
+    int insertPersona (TicketsVO persona) throws SQLException;
+    int insertPersona (List<TicketsVO> lista) throws SQLException;
+     int deletePersona (TicketsVO p) throws SQLException;
+    int deletePersona() throws SQLException;
+    int updatePersona (int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException;
 }
