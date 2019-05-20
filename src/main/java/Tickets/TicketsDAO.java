@@ -87,7 +87,7 @@ private Connection con = null;
     @Override
     public int insertTickets(TicketsVO ticket) throws SQLException {
         int numFilas = 0;
-        String sql = "insert into abonados values (?,?,?,?,?,?,?)";
+        String sql = "insert into tikets values (?,?,?,?,?,?,?)";
 
         if (findByPk(ticket.getMatricula(),ticket.getCodPlazas()) != null) {
             // Existe un registro con esa pk
@@ -128,7 +128,20 @@ private Connection con = null;
 
     @Override
     public int deleteTickets(TicketsVO ticket) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int numFilas = 0;
+
+        String sql = "delete from tikets where matricula = ? and codAbonados=?";
+
+        // Sentencia parametrizada
+        try (PreparedStatement prest = con.prepareStatement(sql)) {
+
+            // Establecemos los parámetros de la sentencia
+             prest.setInt(1, ticket.getCodPlazas());
+            prest.setString(2, ticket.getMatricula());
+            // Ejecutamos la sentencia
+            numFilas = prest.executeUpdate();
+        }
+        return numFilas;
     }
 
     @Override
