@@ -45,7 +45,7 @@ public class AbonadosDAO implements IAbonados{
                 p.setTarjetaCredito(res.getString("tarjetaCredito"));
                 p.setEmail(res.getString("email"));
                 p.setTipoAbonados(res.getInt("tipoAbonado"));
-                //Preguntar clase VehiculosVO 
+              p.setMatricula(res.getString("matricula"));
                
                 //Añadimos el objeto a la lista
                 lista.add(p);
