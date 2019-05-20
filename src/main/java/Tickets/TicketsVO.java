@@ -5,6 +5,10 @@
  */
 package Tickets;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 /**
  *
  * @author javie
@@ -13,13 +17,17 @@ public class TicketsVO {
     private int codPlazas;
     private String matricula;
     private int pin;
-    private int precio;
+    private Double precioFin;
+    private Double precioMin; //Depende del vehiculo
+    private LocalDateTime tiempoInicio;
+    private LocalDateTime tiempoFin;
 
-    public TicketsVO(int codPlazas, String matricula, int pin, int precio) {
+    public TicketsVO(int codPlazas, String matricula, int pin, Double precioFin) {
         this.codPlazas = codPlazas;
         this.matricula = matricula;
         this.pin = pin;
-        this.precio = precio;
+        this.precioFin = precioFin;
+        this.tiempoInicio=LocalDateTime.now();
     }
 
     public int getCodPlazas() {
@@ -46,20 +54,41 @@ public class TicketsVO {
         this.pin = pin;
     }
 
-    public int getPrecio() {
-        return precio;
+    public Double getPrecioFin() {
+        return precioFin;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public void setPrecioFin(Double precioFin) {
+        this.precioFin = precioFin;
+    }
+
+    public Double getPrecioMin() {
+        return precioMin;
+    }
+
+    public void setPrecioMin(Double precioMin) {
+        this.precioMin = precioMin;
+    }
+
+    public LocalDateTime getTiempoInicio() {
+        return tiempoInicio;
+    }
+
+    public void setTiempoInicio(LocalDateTime tiempoInicio) {
+        this.tiempoInicio = tiempoInicio;
+    }
+
+    public LocalDateTime getTiempoFin() {
+        return tiempoFin;
+    }
+
+    public void setTiempoFin(LocalDateTime tiempoFin) {
+        this.tiempoFin = tiempoFin;
     }
 
     @Override
     public String toString() {
-        return "TicketsVO{" + "codPlazas=" + codPlazas + ", matricula=" + matricula + ", pin=" + pin + ", precio=" + precio + '}';
+        return "TicketsVO{" + "codPlazas=" + codPlazas + ", matricula=" + matricula + ", pin=" + pin + ", precioFin=" + precioFin + ", precioMin=" + precioMin + ", tiempoInicio=" + tiempoInicio + ", tiempoFin=" + tiempoFin + '}';
     }
-    
-    
-    
-    
+
 }
