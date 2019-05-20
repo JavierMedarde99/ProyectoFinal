@@ -37,7 +37,7 @@ public class AbonadosDAO implements IAbonados{
             while (res.next()) {
                 AbonadosVO p = new AbonadosVO();
                 // Recogemos los datos de la persona, guardamos en un objeto
-                p.setCodAbonados(res.getInt("codAbonados"));
+               
                 p.setNombre(res.getString("nombre"));
                 p.setApellidos(res.getString("apelidos"));
                 p.setDNI(res.getString("DNI"));
@@ -45,7 +45,7 @@ public class AbonadosDAO implements IAbonados{
                 p.setTarjetaCredito(res.getString("tarjetaCredito"));
                 p.setEmail(res.getString("email"));
                 p.setTipoAbonados(res.getInt("tipoAbonado"));
-                p.setMatricula(res.getString("Matricula"));
+                //Preguntar clase VehiculosVO 
                
                 //Añadimos el objeto a la lista
                 lista.add(p);
