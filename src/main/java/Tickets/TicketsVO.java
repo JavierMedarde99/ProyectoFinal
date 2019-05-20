@@ -31,6 +31,10 @@ public class TicketsVO {
         this.tiempoInicio=Timestamp.valueOf(LocalDateTime.now());
     }
 
+    TicketsVO() {
+        
+    }
+
     public int getCodPlazas() {
         return codPlazas;
     }
