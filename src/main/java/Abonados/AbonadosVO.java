@@ -20,11 +20,11 @@ public class AbonadosVO {
     private String tarjetaCredito;
     private String email;
     private int tipoAbonados;
-    private VehiculoVO matricula;//clave foreanea
+    private String matricula;//clave foreanea
 public AbonadosVO() {
     }
 
-    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, VehiculoVO matricula) {
+    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -101,11 +101,11 @@ public AbonadosVO() {
         this.tipoAbonados = tipoAbonados;
     }
 
-    public VehiculoVO getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(VehiculoVO matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
