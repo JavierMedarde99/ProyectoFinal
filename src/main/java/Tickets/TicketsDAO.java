@@ -87,7 +87,7 @@ private Connection con = null;
     @Override
     public int insertTickets(TicketsVO ticket) throws SQLException {
         int numFilas = 0;
-        String sql = "insert into abonados values (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into abonados values (?,?,?,?,?,?,?)";
 
         if (findByPk(ticket.getMatricula(),ticket.getCodPlazas()) != null) {
             // Existe un registro con esa pk
@@ -100,16 +100,14 @@ private Connection con = null;
 
                 // Establecemos los parámetros de la sentencia
                 
-                prest.setString(1,abonados.getNombre());
-                prest.setString(2,abonados.getApellidos());
-                prest.setString(3, abonados.getDNI());
-                prest.setInt(4,abonados.getPinAbonados());
-                prest.setString(5,abonados.getTarjetaCredito());
-                prest.setString(6,abonados.getEmail());
-                prest.setInt(7,abonados.getTipoAbonados());
-                prest.setString(8,abonados.getMatricula());
-                prest.setTimestamp(9,abonados.getFechaInicioAbono());
-                prest.setTimestamp(10,abonados.getFechaFinAbono());
+                prest.setString(2,ticket.getMatricula());
+                prest.setInt(1,ticket.getCodPlazas());
+                prest.setInt(3, ticket.getPin());
+                prest.setDouble(4,ticket.getPrecioFin());
+                prest.setDouble(5,ticket.getPrecioMin());
+                prest.setTimestamp(6,ticket.getTiempoInicio());
+                prest.setTimestamp(7,ticket.getTiempoInicio());
+                
 
                 numFilas = prest.executeUpdate();
             }
