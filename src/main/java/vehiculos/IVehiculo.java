@@ -27,6 +27,6 @@ public interface IVehiculo {
     
     int deleteVehiculo() throws SQLException;
     
-    int updateVehiculo(String vehiculo, PlazasVO nuevosDatos) throws SQLException;
+    int updateVehiculo(String vehiculo, VehiculoVO nuevosDatos) throws SQLException;
     
 }
