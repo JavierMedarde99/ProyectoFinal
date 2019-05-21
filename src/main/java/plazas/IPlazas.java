@@ -26,6 +26,6 @@ public interface IPlazas {
     
     int deletePlazas() throws SQLException;
     
-    int updatePLazas(int codPlazas, PlazasVO nuevosDatos) throws SQLException;
+    int updatePlazas(int codPlazas, PlazasVO nuevosDatos) throws SQLException;
     
 }
