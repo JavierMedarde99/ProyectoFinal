@@ -5,10 +5,27 @@
  */
 package plazas;
 
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author jriosaguilar
  */
-public class IPlazas {
+public interface IPlazas {
+    
+    List<PlazasVO> getAll() throws SQLException;
+    
+    int insertPlazas(PlazasVO plaza) throws SQLException;
+    
+    PlazasVO findByPk(int codPlazas) throws SQLException;
+    
+    int insertPlazas(List<PlazasVO> lista) throws SQLException;
+    
+    int deletePlazas(PlazasVO plaza) throws SQLException;
+    
+    int deletePlazas() throws SQLException;
+    
+    int updatePLazas(int codPlazas, PlazasVO nuevosDatos) throws SQLException;
     
 }
