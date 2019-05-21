@@ -9,13 +9,13 @@ tipoVehiculo int(3),
 CONSTRAINT PK_vehiculos PRIMARY KEY (matricula)
 );
 create table if not exists abonados(
+DNI char(9),
 nombre varchar(20),
 apellidos varchar(50),
-DNI char(9),
 pinAbonados int(6),
 tarjetaCredito varchar(15),
 email varchar(30),
-tipoAbonado int(3),
+tipoAbonado int(1),
 matricula char(8),
 fechaInicioAbono date,
 fechaFinAbono date,
