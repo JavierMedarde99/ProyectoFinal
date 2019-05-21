@@ -18,11 +18,11 @@ public class PlazasVO {
     private static int codigoPlaza=1; //Clave primaria
     private final static int NUMEROPLAZAS=45;
     private String matricula; //Se usa matricula del vehiculo como clave foranea
-    private int estado;
+    private boolean estado;
     
     //Métodos
     //Constructor parametrizado
-    public PlazasVO(String matricula, int estado) {
+    public PlazasVO(String matricula, boolean estado) {
         this.matricula = matricula;
         this.estado = estado;
         codigoPlaza++;
@@ -50,11 +50,11 @@ public class PlazasVO {
         this.matricula = matricula;
     }
 
-    public int getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
