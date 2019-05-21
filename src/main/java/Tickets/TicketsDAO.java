@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +43,8 @@ private Connection con = null;
                 p.setPin(res.getInt("pin"));
                 p.setPrecioFin(res.getDouble("precioFin"));
                 p.setPrecioMin(res.getDouble("precioPorMin"));
-                p.setTiempoFin(res.getTimestamp("tiempoSalida"));
-                p.setTiempoInicio(res.getTimestamp("tiempoEntrada"));
+                p.setTiempoFin(res.getTimestamp("tiempoSalida").toLocalDateTime());
+                p.setTiempoInicio(res.getTimestamp("tiempoEntrada").toLocalDateTime());
                
                 //Añadimos el objeto a la lista
                 lista.add(p);
@@ -76,8 +77,8 @@ private Connection con = null;
                 tickets.setPin(res.getInt("pin"));
                 tickets.setPrecioFin(res.getDouble("precioFin"));
                 tickets.setPrecioMin(res.getDouble("precioPorMin"));
-                tickets.setTiempoFin(res.getTimestamp("tiempoSalida"));
-                tickets.setTiempoInicio(res.getTimestamp("tiempoEntrada"));
+                tickets.setTiempoFin(res.getTimestamp("tiempoSalida").toLocalDateTime());
+                tickets.setTiempoInicio(res.getTimestamp("tiempoEntrada").toLocalDateTime());
                 return tickets;
             }
 
@@ -105,8 +106,8 @@ private Connection con = null;
                 prest.setInt(3, ticket.getPin());
                 prest.setDouble(4,ticket.getPrecioFin());
                 prest.setDouble(5,ticket.getPrecioMin());
-                prest.setTimestamp(6,ticket.getTiempoInicio());
-                prest.setTimestamp(7,ticket.getTiempoInicio());
+                prest.setTimestamp(6,Timestamp.valueOf(ticket.getTiempoInicio()));
+                prest.setTimestamp(7,Timestamp.valueOf(ticket.getTiempoInicio()));
                 
 
                 numFilas = prest.executeUpdate();
@@ -182,8 +183,8 @@ private Connection con = null;
                 prest.setInt(3, nuevosDatos.getPin());
                 prest.setDouble(4,nuevosDatos.getPrecioFin());
                 prest.setDouble(5,nuevosDatos.getPrecioMin());
-                prest.setTimestamp(6,nuevosDatos.getTiempoInicio());
-                prest.setTimestamp(7,nuevosDatos.getTiempoInicio());
+                prest.setTimestamp(6,Timestamp.valueOf(nuevosDatos.getTiempoInicio()));
+                prest.setTimestamp(7,Timestamp.valueOf(nuevosDatos.getTiempoInicio()));
                 
                 numFilas = prest.executeUpdate();
             }

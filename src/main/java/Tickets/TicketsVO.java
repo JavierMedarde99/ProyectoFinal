@@ -6,9 +6,9 @@
 package Tickets;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 
 /**
  *
@@ -20,15 +20,15 @@ public class TicketsVO {
     private int pin;
     private Double precioFin;
     private Double precioMin; //Depende del vehiculo
-    private Timestamp tiempoInicio;
-    private Timestamp tiempoFin;
+    private LocalDateTime tiempoInicio;
+    private LocalDateTime tiempoFin;
 
     public TicketsVO(int codPlazas, String matricula, int pin, Double precioFin) {
         this.codPlazas = codPlazas;
         this.matricula = matricula;
         this.pin = pin;
         this.precioFin = precioFin;
-        this.tiempoInicio=Timestamp.valueOf(LocalDateTime.now());
+        this.tiempoInicio=LocalDateTime.now();
     }
 
     TicketsVO() {
@@ -75,19 +75,19 @@ public class TicketsVO {
         this.precioMin = precioMin;
     }
 
-    public Timestamp getTiempoInicio() {
+    public LocalDateTime getTiempoInicio() {
         return tiempoInicio;
     }
 
-    public void setTiempoInicio(Timestamp tiempoInicio) {
+    public void setTiempoInicio(LocalDateTime tiempoInicio) {
         this.tiempoInicio = tiempoInicio;
     }
 
-    public Timestamp getTiempoFin() {
+    public LocalDateTime getTiempoFin() {
         return tiempoFin;
     }
 
-    public void setTiempoFin(Timestamp tiempoFin) {
+    public void setTiempoFin(LocalDateTime tiempoFin) {
         this.tiempoFin = tiempoFin;
     }
 
