@@ -25,10 +25,12 @@ public class PlazasVO {
     public PlazasVO(String matricula, int estado) {
         this.matricula = matricula;
         this.estado = estado;
+        codigoPlaza++;
     }
 
     //Constructor por defecto
     public PlazasVO() {
+        codigoPlaza++;
     }
 
     //Getters y setters
