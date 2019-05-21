@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +49,8 @@ public class AbonadosDAO implements IAbonados{
                 p.setEmail(res.getString("email"));
                 p.setTipoAbonados(res.getInt("tipoAbonado"));
               p.setMatricula(res.getString("matricula"));
-               
+               p.setFechaInicioAbono(res.getTimestamp("fechaInicioAbono").toLocalDateTime());
+              p.setFechaFinAbono(res.getTimestamp("fechaFinAbono").toLocalDateTime());
                 //Añadimos el objeto a la lista
                 lista.add(p);
             }
@@ -78,11 +81,12 @@ public class AbonadosDAO implements IAbonados{
                 abonados.setApellidos(res.getString("apellidos"));
                 abonados.setDNI(res.getString("DNI"));
                 abonados.setPinAbonados(res.getInt("pinAbonados"));
-                abonados.setPinAbonados(res.getInt("pinAbonados"));
                 abonados.setTarjetaCredito(res.getString("tarjetaCredito"));
                 abonados.setEmail(res.getString("email"));
                 abonados.setTipoAbonados(res.getInt("tipoAbonado"));
               abonados.setMatricula(res.getString("matricula"));
+              abonados.setFechaInicioAbono(res.getTimestamp("fechaInicioAbono").toLocalDateTime());
+              abonados.setFechaFinAbono(res.getTimestamp("fechaFinAbono").toLocalDateTime());
                 return abonados;
             }
 
@@ -113,8 +117,8 @@ public class AbonadosDAO implements IAbonados{
                 prest.setString(6,abonados.getEmail());
                 prest.setInt(7,abonados.getTipoAbonados());
                 prest.setString(8,abonados.getMatricula());
-                prest.setTimestamp(9,abonados.getFechaInicioAbono());
-                prest.setTimestamp(10,abonados.getFechaFinAbono());
+                prest.setTimestamp(9,Timestamp.valueOf(abonados.getFechaInicioAbono()));
+                prest.setTimestamp(10,Timestamp.valueOf(abonados.getFechaFinAbono()));
 
                 numFilas = prest.executeUpdate();
             }
@@ -191,8 +195,8 @@ public class AbonadosDAO implements IAbonados{
                 prest.setString(6, nuevosDatos.getEmail());
                 prest.setInt(7, nuevosDatos.getTipoAbonados());
                 prest.setString(8, nuevosDatos.getMatricula());
-                prest.setTimestamp(9, nuevosDatos.getFechaInicioAbono());
-                prest.setTimestamp(10, nuevosDatos.getFechaFinAbono());
+                prest.setTimestamp(9, Timestamp.valueOf(nuevosDatos.getFechaInicioAbono()));
+                prest.setTimestamp(10,Timestamp.valueOf( nuevosDatos.getFechaFinAbono()));
 
                 numFilas = prest.executeUpdate();
             }

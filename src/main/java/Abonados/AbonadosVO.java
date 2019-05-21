@@ -7,6 +7,7 @@ package Abonados;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import vehiculos.VehiculoVO;
 
 /**
@@ -23,13 +24,13 @@ public class AbonadosVO {
     private String email;
     private int tipoAbonados;
     private String matricula;//clave foreanea
-    private Timestamp fechaInicioAbono;
-    private Timestamp fechaFinAbono;
+    private LocalDateTime fechaInicioAbono;
+    private LocalDateTime fechaFinAbono;
     
 public AbonadosVO() {
     }
 
-    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula, Timestamp fechaInicioAbono) {
+    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula, LocalDateTime fechaInicioAbono) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -105,19 +106,19 @@ public AbonadosVO() {
         this.matricula = matricula;
     }
 
-    public Timestamp getFechaInicioAbono() {
+    public LocalDateTime getFechaInicioAbono() {
         return fechaInicioAbono;
     }
 
-    public void setFechaInicioAbono(Timestamp fechaInicioAbono) {
+    public void setFechaInicioAbono(LocalDateTime fechaInicioAbono) {
         this.fechaInicioAbono = fechaInicioAbono;
     }
 
-    public Timestamp getFechaFinAbono() {
+    public LocalDateTime getFechaFinAbono() {
         return fechaFinAbono;
     }
 
-    public void setFechaFinAbono(Timestamp fechaFinAbono) {
+    public void setFechaFinAbono(LocalDateTime fechaFinAbono) {
         this.fechaFinAbono = fechaFinAbono;
     }
 
