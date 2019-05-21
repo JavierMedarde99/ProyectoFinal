@@ -154,7 +154,7 @@ public class PlazasDAO implements IPlazas{
     @Override
     public int updatePlazas(int codPlazas, PlazasVO nuevosDatos) throws SQLException {
          int numFilas = 0;
-        String sql = "update plazas set codPlazas = ?, numPlazas = ?, matricula=?, estado=?,"
+        String sql = "update plazas set numPlazas = ?, matricula=?, estado=?,"
                 + " where codplazas=?";
 
         if (findByPk(codPlazas) == null) {

@@ -165,7 +165,7 @@ private Connection con = null;
     @Override
     public int updateTickets(int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException {
          int numFilas = 0;
-        String sql = "update tikets set codPlazas = ?, matricula = ?,pin=?,precioFin=?,"
+        String sql = "update tikets set pin=?,precioFin=?,"
                 + "precioPorMin=?,tiempoEntrada=?,tiempoSalida=?"
                 + " where matricula=? and codplazas=?";
 

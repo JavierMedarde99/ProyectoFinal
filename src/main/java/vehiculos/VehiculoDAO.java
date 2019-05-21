@@ -154,7 +154,7 @@ public class VehiculoDAO implements IVehiculo{
     @Override
     public int updateVehiculo(String matricula, VehiculoVO nuevosDatos) throws SQLException {
          int numFilas = 0;
-        String sql = "update vehiculos set matricula = ?, tipoVehiculo=?"
+        String sql = "update vehiculos set tipoVehiculo=?"
                 + " where matricula=?";
 
         if (findByPk(matricula) == null) {

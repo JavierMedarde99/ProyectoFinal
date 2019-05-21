@@ -175,7 +175,7 @@ public class AbonadosDAO implements IAbonados {
     @Override
     public int updateAbonados(String DNI, AbonadosVO nuevosDatos) throws SQLException {
         int numFilas = 0;
-        String sql = "update abonados set nombre = ?, apellido = ?,DNI=?,pinAbonados=?,"
+        String sql = "update abonados set nombre = ?, apellido = ?,pinAbonados=?,"
                 + "tarjetaCredito=?,email=?,tipoAbonados=?, matricula=?,"
                 + "fechaInicioAbono=?, fechaFinAbono=?   where DNI=?";
 
