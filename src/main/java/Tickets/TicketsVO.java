@@ -6,8 +6,10 @@
 package Tickets;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 /**
@@ -20,16 +22,22 @@ public class TicketsVO {
     private int pin;
     private Double precioFin;
     private Double precioMin; //Depende del vehiculo
-    private LocalDateTime tiempoInicio;
-    private LocalDateTime tiempoFin;
+    private LocalDate fechaInicio;
+    private LocalTime tiempoInicio;
+     private LocalDate fechaFin;
+    private LocalTime tiempoFin;
 
-    public TicketsVO(int codPlazas, String matricula, int pin, Double precioFin) {
+    public TicketsVO(int codPlazas, String matricula, int pin, Double precioFin, Double precioMin, LocalDate fechaInicio, LocalTime tiempoInicio) {
         this.codPlazas = codPlazas;
         this.matricula = matricula;
         this.pin = pin;
         this.precioFin = precioFin;
-        this.tiempoInicio=LocalDateTime.now();
+        this.precioMin = precioMin;
+        this.fechaInicio = fechaInicio;
+        this.tiempoInicio = tiempoInicio;
     }
+
+    
 
     TicketsVO() {
         
@@ -75,25 +83,41 @@ public class TicketsVO {
         this.precioMin = precioMin;
     }
 
-    public LocalDateTime getTiempoInicio() {
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalTime getTiempoInicio() {
         return tiempoInicio;
     }
 
-    public void setTiempoInicio(LocalDateTime tiempoInicio) {
-        this.tiempoInicio = tiempoInicio;
+    public LocalDate getFechaFin() {
+        return fechaFin;
     }
 
-    public LocalDateTime getTiempoFin() {
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public LocalTime getTiempoFin() {
         return tiempoFin;
     }
 
-    public void setTiempoFin(LocalDateTime tiempoFin) {
+    public void setTiempoFin(LocalTime tiempoFin) {
         this.tiempoFin = tiempoFin;
+    }
+
+    public void setTiempoInicio(LocalTime tiempoInicio) {
+        this.tiempoInicio = tiempoInicio;
     }
 
     @Override
     public String toString() {
-        return "TicketsVO{" + "codPlazas=" + codPlazas + ", matricula=" + matricula + ", pin=" + pin + ", precioFin=" + precioFin + ", precioMin=" + precioMin + ", tiempoInicio=" + tiempoInicio + ", tiempoFin=" + tiempoFin + '}';
+        return "TicketsVO{" + "codPlazas=" + codPlazas + ", matricula=" + matricula + ", pin=" + pin + ", precioFin=" + precioFin + ", precioMin=" + precioMin + ", fechaInicio=" + fechaInicio + ", tiempoInicio=" + tiempoInicio + ", fechaFin=" + fechaFin + ", tiempoFin=" + tiempoFin + '}';
     }
 
 }
