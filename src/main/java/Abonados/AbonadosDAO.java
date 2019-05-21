@@ -110,9 +110,9 @@ public class AbonadosDAO implements IAbonados {
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(1, abonados.getNombre());
-                prest.setString(2, abonados.getApellidos());
-                prest.setString(3, abonados.getDNI());
+                prest.setString(1, abonados.getDNI());
+                prest.setString(2, abonados.getNombre());
+                prest.setString(3, abonados.getApellidos());
                 prest.setInt(4, abonados.getPinAbonados());
                 prest.setString(5, abonados.getTarjetaCredito());
                 prest.setString(6, abonados.getEmail());
@@ -148,7 +148,7 @@ public class AbonadosDAO implements IAbonados {
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setString(3, abonados.getDNI());
+            prest.setString(1, abonados.getDNI());
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
         }
@@ -188,9 +188,9 @@ public class AbonadosDAO implements IAbonados {
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(1, nuevosDatos.getNombre());
-                prest.setString(2, nuevosDatos.getApellidos());
-                prest.setString(3, nuevosDatos.getDNI());
+                prest.setString(1, nuevosDatos.getDNI());
+                prest.setString(2, nuevosDatos.getNombre());
+                prest.setString(3, nuevosDatos.getApellidos());
                 prest.setInt(4, nuevosDatos.getPinAbonados());
                 prest.setString(5, nuevosDatos.getTarjetaCredito());
                 prest.setString(6, nuevosDatos.getEmail());
