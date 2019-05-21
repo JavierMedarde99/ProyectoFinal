@@ -27,11 +27,13 @@ public class PlazasVO {
         this.matricula = matricula;
         this.estado = estado;
         this.codigoPlaza=contador;
+        contador++;
     }
 
     //Constructor por defecto
     public PlazasVO() {
         this.codigoPlaza=contador;
+        contador++;
     }
 
     //Getters y setters
