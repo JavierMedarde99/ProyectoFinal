@@ -16,14 +16,12 @@ public class VehiculoVO {
     //Atributos
     private String matricula;
     private Integer tipoVehiculo;
-    private AbonadosVO dueño;
     
     //Métodos
     //Constructor parametrizado
-    public VehiculoVO(String matricula, Integer tipoVehiculo, AbonadosVO dueño) {
+    public VehiculoVO(String matricula, Integer tipoVehiculo) {
         this.matricula = matricula;
         this.tipoVehiculo = tipoVehiculo;
-        this.dueño = dueño;
     }
 
     //Constructor por defecto
@@ -47,19 +45,11 @@ public class VehiculoVO {
     public void setTipoVehiculo(Integer tipoVehiculo) {
         this.tipoVehiculo = tipoVehiculo;
     }
-
-    public AbonadosVO getDueño() {
-        return dueño;
-    }
-
-    public void setDueño(AbonadosVO dueño) {
-        this.dueño = dueño;
-    }
     
     //toString
     @Override
     public String toString() {
-        return "VehiculoVO{" + "matricula=" + matricula + ", tipoVehiculo=" + tipoVehiculo + ", due\u00f1o=" + dueño + '}';
+        return "VehiculoVO{" + "matricula=" + matricula + ", tipoVehiculo=" + tipoVehiculo + '}';
     }
     
 }
