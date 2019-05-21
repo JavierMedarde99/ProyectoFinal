@@ -7,11 +7,14 @@ package Tickets;
 
 import Conexion.Conexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +46,11 @@ private Connection con = null;
                 p.setPin(res.getInt("pin"));
                 p.setPrecioFin(res.getDouble("precioFin"));
                 p.setPrecioMin(res.getDouble("precioPorMin"));
-                p.setTiempoFin(res.getTimestamp("tiempoSalida").toLocalDateTime());
-                p.setTiempoInicio(res.getTimestamp("tiempoEntrada").toLocalDateTime());
+                p.setTiempoInicio(res.getTime("tiempoEntrada").toLocalTime());
+                p.setFechaInicio(res.getDate("fechaEntrada").toLocalDate());
+                 p.setTiempoFin(res.getTime("tiempoSalida").toLocalTime());
+                p.setFechaFin(res.getDate("fechaSalida").toLocalDate());
+                //p.setTiempoInicio(res.getTimestamp("tiempoEntrada").toLocalDateTime());
                
                 //Añadimos el objeto a la lista
                 lista.add(p);
@@ -77,8 +83,10 @@ private Connection con = null;
                 tickets.setPin(res.getInt("pin"));
                 tickets.setPrecioFin(res.getDouble("precioFin"));
                 tickets.setPrecioMin(res.getDouble("precioPorMin"));
-                tickets.setTiempoFin(res.getTimestamp("tiempoSalida").toLocalDateTime());
-                tickets.setTiempoInicio(res.getTimestamp("tiempoEntrada").toLocalDateTime());
+                tickets.setTiempoInicio(res.getTime("tiempoEntrada").toLocalTime());
+                tickets.setFechaInicio(res.getDate("fechaEntrada").toLocalDate());
+                tickets.setTiempoFin(res.getTime("tiempoSalida").toLocalTime());
+                tickets.setFechaFin(res.getDate("fechaSalida").toLocalDate());
                 return tickets;
             }
 
@@ -106,9 +114,10 @@ private Connection con = null;
                 prest.setInt(3, ticket.getPin());
                 prest.setDouble(4,ticket.getPrecioFin());
                 prest.setDouble(5,ticket.getPrecioMin());
-                prest.setTimestamp(6,Timestamp.valueOf(ticket.getTiempoInicio()));
-                prest.setTimestamp(7,Timestamp.valueOf(ticket.getTiempoInicio()));
-                
+                prest.setTime(6,Time.valueOf(ticket.getTiempoInicio()));
+                prest.setDate(7,Date.valueOf(ticket.getFechaInicio()));
+                prest.setTime(8,Time.valueOf(ticket.getTiempoFin()));
+                prest.setDate(9,Date.valueOf(ticket.getFechaFin()));
 
                 numFilas = prest.executeUpdate();
             }
@@ -183,8 +192,10 @@ private Connection con = null;
                 prest.setInt(3, nuevosDatos.getPin());
                 prest.setDouble(4,nuevosDatos.getPrecioFin());
                 prest.setDouble(5,nuevosDatos.getPrecioMin());
-                prest.setTimestamp(6,Timestamp.valueOf(nuevosDatos.getTiempoInicio()));
-                prest.setTimestamp(7,Timestamp.valueOf(nuevosDatos.getTiempoInicio()));
+                prest.setTime(6,Time.valueOf(nuevosDatos.getTiempoInicio()));
+                prest.setDate(7,Date.valueOf(nuevosDatos.getFechaInicio()));
+                prest.setTime(8,Time.valueOf(nuevosDatos.getTiempoFin()));
+                prest.setDate(9,Date.valueOf(nuevosDatos.getFechaFin()));
                 
                 numFilas = prest.executeUpdate();
             }
