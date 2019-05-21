@@ -42,8 +42,10 @@ matricula char(8),
 pin int(6),
 precioFin int,
 precioPorMin int,
-tiempoEntrada datetime,
-tiempoSalida datetime,
+fechaEntrada date,
+tiempoEntrada time,
+fechaSalida date,
+tiempoSalida time,
 CONSTRAINT PK_tiket PRIMARY KEY (codPlazas,matricula),
 CONSTRAINT FK_matricula_tiket FOREIGN KEY (matricula)
     REFERENCES vehiculos(matricula)
