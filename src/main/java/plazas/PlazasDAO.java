@@ -166,10 +166,10 @@ public class PlazasDAO implements IPlazas{
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia                
-                prest.setInt(1,nuevosDatos.getCodigoPlaza());
-                prest.setInt(2,45);
-                prest.setString(3, nuevosDatos.getMatricula());
-                prest.setBoolean(4,nuevosDatos.getEstado());
+                prest.setInt(4,nuevosDatos.getCodigoPlaza());
+                prest.setInt(1,45);
+                prest.setString(2, nuevosDatos.getMatricula());
+                prest.setBoolean(3,nuevosDatos.getEstado());
                 
                 numFilas = prest.executeUpdate();
             }

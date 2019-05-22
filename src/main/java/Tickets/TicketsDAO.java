@@ -187,15 +187,15 @@ private Connection con = null;
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(2,nuevosDatos.getMatricula());
-                prest.setInt(1,nuevosDatos.getCodPlazas());
-                prest.setInt(3, nuevosDatos.getPin());
-                prest.setDouble(4,nuevosDatos.getPrecioFin());
-                prest.setDouble(5,nuevosDatos.getPrecioMin());
-                prest.setTime(6,Time.valueOf(nuevosDatos.getTiempoInicio()));
-                prest.setDate(7,Date.valueOf(nuevosDatos.getFechaInicio()));
-                prest.setTime(8,Time.valueOf(nuevosDatos.getTiempoFin()));
-                prest.setDate(9,Date.valueOf(nuevosDatos.getFechaFin()));
+                prest.setString(8,nuevosDatos.getMatricula());
+                prest.setInt(9,nuevosDatos.getCodPlazas());
+                prest.setInt(1, nuevosDatos.getPin());
+                prest.setDouble(2,nuevosDatos.getPrecioFin());
+                prest.setDouble(3,nuevosDatos.getPrecioMin());
+                prest.setTime(4,Time.valueOf(nuevosDatos.getTiempoInicio()));
+                prest.setDate(5,Date.valueOf(nuevosDatos.getFechaInicio()));
+                prest.setTime(6,Time.valueOf(nuevosDatos.getTiempoFin()));
+                prest.setDate(7,Date.valueOf(nuevosDatos.getFechaFin()));
                 
                 numFilas = prest.executeUpdate();
             }

@@ -188,16 +188,16 @@ public class AbonadosDAO implements IAbonados {
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(1, nuevosDatos.getDNI());
-                prest.setString(2, nuevosDatos.getNombre());
-                prest.setString(3, nuevosDatos.getApellidos());
-                prest.setInt(4, nuevosDatos.getPinAbonados());
-                prest.setString(5, nuevosDatos.getTarjetaCredito());
-                prest.setString(6, nuevosDatos.getEmail());
-                prest.setInt(7, nuevosDatos.getTipoAbonados());
-                prest.setString(8, nuevosDatos.getMatricula());
-                prest.setTimestamp(9, Timestamp.valueOf(nuevosDatos.getFechaInicioAbono()));
-                prest.setTimestamp(10, Timestamp.valueOf(nuevosDatos.getFechaFinAbono()));
+                prest.setString(10, nuevosDatos.getDNI());
+                prest.setString(1, nuevosDatos.getNombre());
+                prest.setString(2, nuevosDatos.getApellidos());
+                prest.setInt(3, nuevosDatos.getPinAbonados());
+                prest.setString(4, nuevosDatos.getTarjetaCredito());
+                prest.setString(5, nuevosDatos.getEmail());
+                prest.setInt(6, nuevosDatos.getTipoAbonados());
+                prest.setString(7, nuevosDatos.getMatricula());
+                prest.setTimestamp(8, Timestamp.valueOf(nuevosDatos.getFechaInicioAbono()));
+                prest.setTimestamp(9, Timestamp.valueOf(nuevosDatos.getFechaFinAbono()));
 
                 numFilas = prest.executeUpdate();
             }
