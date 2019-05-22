@@ -24,13 +24,13 @@ public class AbonadosVO {
     private String email;
     private int tipoAbonados;
     private String matricula;//clave foreanea
-    private LocalDateTime fechaInicioAbono;
-    private LocalDateTime fechaFinAbono;
+    private LocalDate fechaInicioAbono;
+    private LocalDate fechaFinAbono;
     
 public AbonadosVO() {
     }
 
-    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula, LocalDateTime fechaInicioAbono) {
+    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula, LocalDate fechaInicioAbono) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -106,19 +106,19 @@ public AbonadosVO() {
         this.matricula = matricula;
     }
 
-    public LocalDateTime getFechaInicioAbono() {
+    public LocalDate getFechaInicioAbono() {
         return fechaInicioAbono;
     }
 
-    public void setFechaInicioAbono(LocalDateTime fechaInicioAbono) {
+    public void setFechaInicioAbono(LocalDate fechaInicioAbono) {
         this.fechaInicioAbono = fechaInicioAbono;
     }
 
-    public LocalDateTime getFechaFinAbono() {
+    public LocalDate getFechaFinAbono() {
         return fechaFinAbono;
     }
 
-    public void setFechaFinAbono(LocalDateTime fechaFinAbono) {
+    public void setFechaFinAbono(LocalDate fechaFinAbono) {
         this.fechaFinAbono = fechaFinAbono;
     }
 
