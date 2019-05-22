@@ -68,7 +68,7 @@ public class ParkingCliente {
                     } while (Elecion3 == 0);
                     break;
                 case 3:
-                    listaAbonados.add(MetodosCliente.datos());
+                    listaAbonados.add(MetodosAbonados.insertarDatos());
                     break;
                 default:
                     Elecion1 = 0;
