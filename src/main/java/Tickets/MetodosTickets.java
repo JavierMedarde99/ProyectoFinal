@@ -17,6 +17,10 @@ import vehiculos.VehiculoVO;
  */
 public class MetodosTickets {
     
+    public static final Double TARIFA_TURISMO=0.12;
+    public static final Double TARIFA_MOTOCICLETA=0.08;
+    public static final Double TARIFA_CARAVANA=0.45;
+    
     public static long retirarTicket(LocalTime tiempoInicio, LocalDate fechaInicio){
         LocalDateTime horaEntrada=LocalDateTime.of(fechaInicio, tiempoInicio);
         return ChronoUnit.MINUTES.between(horaEntrada, LocalDateTime.now());
@@ -25,11 +29,11 @@ public class MetodosTickets {
     public static Double calcularPrecioMinuto(VehiculoVO vehiculo){
         switch (vehiculo.getTipoVehiculo()) {
             case 1:
-                return 0.12;
+                return TARIFA_TURISMO;
             case 2:
-                return 0.008;
+                return TARIFA_MOTOCICLETA;
             case 3:
-                return 0.45;
+                return TARIFA_CARAVANA;
             default:
                 System.out.println("El tipo de vehiculo es erroneo");
         }
