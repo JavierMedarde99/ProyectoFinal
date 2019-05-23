@@ -158,7 +158,7 @@ public class AbonadosDAO implements IAbonados {
 
     @Override
     public int deleteAbonados() throws SQLException {
-        String sql = "delete from abonaos";
+        String sql = "delete from abonados";
 
         int nfilas = 0;
 
