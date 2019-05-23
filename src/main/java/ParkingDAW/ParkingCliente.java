@@ -22,7 +22,7 @@ public class ParkingCliente {
         Scanner teclado = new Scanner(System.in);
         do {
             System.out.println("1.Si es abonado de nuestro Parking");
-            System.out.println("2.No soy abonado y deseo insertar mi vehiculo");
+            System.out.println("2.No soy abonado y deseo insertar o retirar mi vehiculo");
             System.out.println("3.No soy abonado y deseo serlo");
             Elecion1 = teclado.nextInt();
             
