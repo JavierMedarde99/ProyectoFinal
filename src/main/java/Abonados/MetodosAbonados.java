@@ -118,7 +118,7 @@ public class MetodosAbonados {
     }
     
     public int numTotalPlazas() {
-        Scanner teclado = new Scanner(System.in);
+        
         return(PlazasVO.NUMEROPLAZAS_CARAVANA +PlazasVO.NUMEROPLAZAS_MOTOCICLETA
         + PlazasVO.NUMEROPLAZAS_TURISMO);
             
