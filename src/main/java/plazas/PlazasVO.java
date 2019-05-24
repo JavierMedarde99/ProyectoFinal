@@ -16,7 +16,9 @@ public class PlazasVO {
     
     //Atributos
     private int codigoPlaza; //Clave primaria
-    public final static int NUMEROPLAZAS=45;
+    public final static int NUMEROPLAZAS_TURISMO=15;
+    public final static int NUMEROPLAZAS_MOTOCICLETA=15;
+    public final static int NUMEROPLAZAS_CARAVANA=15;
     private String matricula; //Se usa matricula del vehiculo como clave foranea
     private boolean estado;
     private static int contador=1;
