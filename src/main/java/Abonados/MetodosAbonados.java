@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import plazas.PlazasVO;
 import vehiculos.VehiculoVO;
 
 /**
@@ -114,6 +115,13 @@ public class MetodosAbonados {
             }
         }while(TipoVehiculos==0);
         return new VehiculoVO(matricula,TipoVehiculos);
+    }
+    
+    public int numTotalPlazas() {
+        Scanner teclado = new Scanner(System.in);
+        return(PlazasVO.NUMEROPLAZAS_CARAVANA +PlazasVO.NUMEROPLAZAS_MOTOCICLETA
+        + PlazasVO.NUMEROPLAZAS_TURISMO);
+            
     }
     
 }
