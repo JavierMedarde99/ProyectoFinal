@@ -32,7 +32,7 @@ public class MetodosAbonados {
         Scanner teclado = new Scanner(System.in);
         Random rnd = new Random();
         
-        int Pin = rnd.nextInt(111111-999999);
+        int Pin = rnd.nextInt(111111-999999 + 1)+ 111110;
         
         System.out.println("DNI:");
         String DNI=teclado.next();
