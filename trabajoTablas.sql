@@ -55,4 +55,53 @@ CONSTRAINT FK_plazas_tiket FOREIGN KEY (codPlazas)
     on delete no action on update cascade
 );
 
+insert into plazas
+(codPlazas,matricula,estado)
+values
+(101,null,false),
+(102,null,false),
+(103,null,false),
+(104,null,false),
+(105,null,false),
+(106,null,false),
+(107,null,false),
+(108,null,false),
+(109,null,false),
+(110,null,false),
+(111,null,false),
+(112,null,false),
+(113,null,false),
+(114,null,false),
+(115,null,false),
+(201,null,false),
+(202,null,false),
+(203,null,false),
+(204,null,false),
+(205,null,false),
+(206,null,false),
+(207,null,false),
+(208,null,false),
+(209,null,false),
+(210,null,false),
+(211,null,false),
+(212,null,false),
+(213,null,false),
+(214,null,false),
+(215,null,false),
+(301,null,false),
+(302,null,false),
+(303,null,false),
+(304,null,false),
+(305,null,false),
+(306,null,false),
+(307,null,false),
+(308,null,false),
+(309,null,false),
+(310,null,false),
+(311,null,false),
+(312,null,false),
+(313,null,false),
+(314,null,false),
+(315,null,false)
+
 
