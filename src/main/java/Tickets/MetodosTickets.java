@@ -5,10 +5,13 @@
  */
 package Tickets;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Random;
+import java.util.Scanner;
 import vehiculos.VehiculoVO;
 
 /**
@@ -38,6 +41,30 @@ public class MetodosTickets {
                 System.out.println("El tipo de vehiculo es erroneo");
         }
         return 0.0;  
+    }
+    
+    public static void crearTicket(String matricula, int plaza, int tipo) throws SQLException{
+        Scanner teclado=new Scanner(System.in);
+        Random rnd = new Random();
+        
+        int pin = rnd.nextInt(111111-999999 + 1)+ 111110;
+        
+        Double precioMin=1.0;
+        if(tipo==1){
+            precioMin=TARIFA_TURISMO;
+        }else if(tipo==2){
+            precioMin=TARIFA_MOTOCICLETA;
+        }else if(tipo==3){
+            precioMin=TARIFA_CARAVANA;
+        }
+        
+        LocalDate fechaInicio=LocalDate.now();
+        LocalTime tiempoInicio=LocalTime.now();
+        
+        TicketsVO t=new TicketsVO(plaza, matricula, pin, 0.0, precioMin, fechaInicio, tiempoInicio);
+        
+        TicketsDAO t1=new TicketsDAO();
+        t1.insertTickets(t);
     }
     
 }
