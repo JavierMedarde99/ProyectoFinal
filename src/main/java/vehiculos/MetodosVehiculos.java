@@ -5,7 +5,10 @@
  */
 package vehiculos;
 
+import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import plazas.PlazasVO;
 
 /**
@@ -14,7 +17,7 @@ import plazas.PlazasVO;
  */
 public class MetodosVehiculos {
     public static VehiculoVO datosVehiculos(){
-        
+         VehiculoDAO daoVehiculo = new VehiculoDAO();
        
         int TipoVehiculos;
         String matricula;
@@ -30,37 +33,24 @@ public class MetodosVehiculos {
             TipoVehiculos=teclado.nextInt();
             switch (TipoVehiculos) {
                 case 1:
-                    if(PlazasVO.NUMEROPLAZAS_TURISMO==0){
-                        TipoVehiculos=0;
-                        System.out.println("No hay plazas libres de turismos");
-                        break;
-                    }else{
                     TipoVehiculos=1;
                     break;
-                    }
-
-                case 2:
-                     if(PlazasVO.NUMEROPLAZAS_MOTOCICLETA==0){
-                        TipoVehiculos=0;
-                        System.out.println("No hay plazas libres de motocicletas");
-                        break;
-                    }else{
+                case 2:                     
                     TipoVehiculos=2;
-                    break;
-                     }
-                case 3:
-                     if(PlazasVO.NUMEROPLAZAS_CARAVANA==0){
-                        TipoVehiculos=0;
-                        System.out.println("No hay plazas libres de caravanas");
-                        break;
-                    }else{
+                    break;                     
+                case 3:                 
                     TipoVehiculos=3;
                     break;
-                     }
                 default:
                     TipoVehiculos=0;
             }
         }while(TipoVehiculos==0);
-        return new VehiculoVO(matricula,TipoVehiculos);
+        VehiculoVO vehiculo=new VehiculoVO(matricula,TipoVehiculos);
+        try {
+            daoVehiculo.insertVehiculo(vehiculo);
+        } catch (SQLException ex) {
+            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return vehiculo;
     }
 }
