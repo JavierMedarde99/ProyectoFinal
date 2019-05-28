@@ -28,8 +28,8 @@ public class PlazasDAO implements IPlazas{
     }
     
     @Override
-    public List<PlazasVO> getAll() throws SQLException {
-        List<PlazasVO> lista = new ArrayList<>();
+    public ArrayList<PlazasVO> getAll() throws SQLException {
+        ArrayList<PlazasVO> lista = new ArrayList<>();
 
         // Preparamos la consulta de datos mediante un objeto Statement
         // ya que no necesitamos parametrizar la sentencia SQL
