@@ -6,9 +6,11 @@
 package vehiculos;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import plazas.PlazasDAO;
 import plazas.PlazasVO;
 
 /**
@@ -62,6 +64,68 @@ public class MetodosVehiculos {
             daoVehiculo.deleteVehiculo(vehiculo);
         } catch (SQLException ex) {
             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void depositarVehiculo(String matricula, int tipo) throws SQLException{
+        PlazasDAO p=new PlazasDAO();
+        ArrayList<PlazasVO> listaPlazas=new ArrayList<>();
+        ArrayList<PlazasVO> listaPlazasLibres=new ArrayList<>();
+        ArrayList<PlazasVO> listaTurismo=new ArrayList<>();
+        ArrayList<PlazasVO> listaMotocicleta=new ArrayList<>();
+        ArrayList<PlazasVO> listaCaravana=new ArrayList<>();
+        listaPlazas=p.getAll();
+        
+        for (PlazasVO tmp : listaPlazas) {
+            if(tmp.getEstado()==2){
+                listaPlazasLibres.add(tmp);
+            }
+        }
+        
+        System.out.println("Plazas libres: ");
+        listaPlazasLibres.forEach(System.out::println);
+        
+        switch (tipo) {
+            case 1:
+                for (PlazasVO tmp : listaPlazasLibres) {
+                    if(tmp.getCodigoPlaza()>100 && tmp.getCodigoPlaza()<=115){
+                        listaTurismo.add(tmp);
+                    }
+                }
+                
+                if(!listaTurismo.isEmpty()){
+                    System.out.println("Plaza: "+listaTurismo.get(0));
+                    p.updatePlazas(listaTurismo.get(0).getCodigoPlaza(), new PlazasVO(matricula,1));
+                }
+                break;
+                
+            case 2:
+                for (PlazasVO tmp : listaPlazasLibres) {
+                    if(tmp.getCodigoPlaza()>200 && tmp.getCodigoPlaza()<=215){
+                        listaMotocicleta.add(tmp);
+                    }
+                }
+                
+                if(!listaTurismo.isEmpty()){
+                    System.out.println("Plaza: "+listaMotocicleta.get(0));
+                    p.updatePlazas(listaMotocicleta.get(0).getCodigoPlaza(), new PlazasVO(matricula,1));
+                }
+                break;
+                
+            case 3:
+                for (PlazasVO tmp : listaPlazasLibres) {
+                    if(tmp.getCodigoPlaza()>300 && tmp.getCodigoPlaza()<=315){
+                        listaCaravana.add(tmp);
+                    }
+                }
+                
+                if(!listaTurismo.isEmpty()){
+                    System.out.println("Plaza: "+listaCaravana.get(0));
+                    p.updatePlazas(listaCaravana.get(0).getCodigoPlaza(), new PlazasVO(matricula,1));
+                }
+                break;
+            default:
+                System.out.println("Tipo de vehículo incorrecto");
         }
     }
 }
