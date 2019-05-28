@@ -5,10 +5,14 @@
  */
 package ParkingDAW;
 
+import Abonados.AbonadosDAO;
 import Abonados.AbonadosVO;
 import Abonados.MetodosAbonados;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import vehiculos.VehiculoDAO;
+import vehiculos.VehiculoVO;
 
 /**
  *
@@ -16,69 +20,75 @@ import java.util.Scanner;
  */
 public class ParkingCliente {
 
-    public static void main(String[] args) {
-        int Eleccion1, Eleccion2, Eleccion3, Eleccion4;
+    public static void main(String[] args) throws SQLException {
+        int Eleccion1, Eleccion2, Eleccion3, Eleccion4, repetir;
+        AbonadosDAO a1=new AbonadosDAO();
+        VehiculoDAO v1=new VehiculoDAO();
         ArrayList<AbonadosVO> listaAbonados = new ArrayList<>();
         Scanner teclado = new Scanner(System.in);
         do {
             System.out.println("1. Cliente");
-            System.out.println("2. Admin");
+            System.out.println("2. Administrador");
 
             Eleccion1 = teclado.nextInt();
             switch (Eleccion1) {
 
                 case 1:
-                    System.out.println("1. Si soy abonado de nuestro Parking");
-                    System.out.println("2.No soy abonado y deseo insertar o retirar mi vehiculo");
-                    System.out.println("3.No soy abonado y deseo serlo");
-                    Eleccion2 = teclado.nextInt();
-                    switch (Eleccion2) {
-                        case 1:
-                            System.out.println("Introduce tu dni");
-                            teclado.nextLine();
-                            String dni = teclado.nextLine();
+                    do{
+                        System.out.println("1. Depositar vehículo");
+                        System.out.println("2. Retirar vehículo");
+                        System.out.println("3. Añadir abonado");
+                        System.out.println("4. Retirar abonado");
+                        Eleccion2 = teclado.nextInt();
+                        switch (Eleccion2) {
 
-                            if (MetodosAbonados.comprobarAbonado(listaAbonados, dni)) {
-                                do {
-                                    System.out.println("1.Deseo insertar mi vehiculo");
-                                    System.out.println("2.Deseo retirar mi vehiculo");
-                                    Eleccion3 = teclado.nextInt();
+                            case 1:
+                                do{
+                                    System.out.println("¿Es usted abonado?");
+                                    System.out.println("1. Sí");
+                                    System.out.println("2. No");
+                                    Eleccion3=teclado.nextInt();
                                     switch (Eleccion3) {
                                         case 1:
 
                                             break;
                                         case 2:
+                                        default:
+                                            System.out.println("Introduce una opción válida");
+                                            Eleccion3=0;
+                                            break;
+                                    } 
+                                }while(Eleccion3==0);
+
+                            case 2:
+                                do{
+                                    System.out.println("¿Es usted abonado?");
+                                    System.out.println("1. Sí");
+                                    System.out.println("2. No");
+                                    Eleccion3=teclado.nextInt();
+                                    switch (Eleccion3) {
+                                        case 1:
 
                                             break;
+                                        case 2:
                                         default:
-                                            Eleccion3 = 0;
-                                    }
-                                } while (Eleccion3 == 0);
-                            }
-                            break;
-                        case 2:
-                            do {
-                                System.out.println("1.Deseo insertar mi vehiculo");
-                                System.out.println("2.Deseo retirar mi vehiculo");
-                                Eleccion4 = teclado.nextInt();
-                                switch (Eleccion4) {
-                                    case 1:
+                                            System.out.println("Introduce una opción válida");
+                                            Eleccion3=0;
+                                            break;
+                                    } 
+                                }while(Eleccion3==0);
 
-                                        break;
-                                    case 2:
+                            case 3:
+                                break;
 
-                                        break;
-                                    default:
-                                        Eleccion4 = 0;
-                                }
-                            } while (Eleccion4 == 0);
-                            break;
-                        case 3:
-                            listaAbonados.add(MetodosAbonados.insertarDatos());
-                            break;
-                        default:
-                            Eleccion2 = 0;
-                    }
+                            case 4:
+                                break;
+
+                            default:
+                                System.out.println("Introduce una opción válida");
+                                Eleccion2=0;
+                        }
+                    }while(Eleccion2==0);
                 case 2:
                     do{
                         System.out.println("1. Ver estado del parking");
@@ -100,10 +110,23 @@ public class ParkingCliente {
 
                                 break;
                             default:
+                                System.out.println("Introduce una opción válida");
                                 Eleccion2=0;
                         }
                     }while(Eleccion2==0);
+                default:
+                    System.out.println("Introduce una opción válida");
+                    Eleccion1=0;
             }
-        } while (Eleccion1 == 0);
+            repetir=1;
+            if(Eleccion1!=0){
+                repetir=teclado.nextInt();
+                do{
+                    System.out.println("¿Quieres realizar otra acción?");
+                    System.out.println("1. Sí");
+                    System.out.println("2. No");
+                }while(repetir!=1 || repetir!=0);
+            }
+        } while (Eleccion1 == 0 || repetir==1);
     }
 }
