@@ -41,7 +41,7 @@ public class PlazasDAO implements IPlazas{
                 PlazasVO p = new PlazasVO();
                 
                 // Recogemos los datos de la plaza, guardamos en un objeto
-                p.setEstado(res.getBoolean("columna"));
+                p.setEstado(res.getInt("columna"));
                 p.setMatricula(res.getString("matricula"));
                
                 //Añadimos el objeto a la lista
@@ -70,7 +70,7 @@ public class PlazasDAO implements IPlazas{
             if (res.first()) {
                 // Recogemos los datos de la plaza, guardamos en un objeto
                 
-                plazas.setEstado(res.getBoolean("columna"));
+                plazas.setEstado(res.getInt("columna"));
                 plazas.setMatricula(res.getString("matricula"));
                 return plazas;
             }
@@ -169,7 +169,7 @@ public class PlazasDAO implements IPlazas{
                 prest.setInt(4,nuevosDatos.getCodigoPlaza());
                 prest.setInt(1,45);
                 prest.setString(2, nuevosDatos.getMatricula());
-                prest.setBoolean(3,nuevosDatos.getEstado());
+                prest.setInt(3,nuevosDatos.getEstado());
                 
                 numFilas = prest.executeUpdate();
             }
