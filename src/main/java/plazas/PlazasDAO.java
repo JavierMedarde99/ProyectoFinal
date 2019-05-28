@@ -79,7 +79,7 @@ public class PlazasDAO implements IPlazas{
         }
     }
     
-    @Override
+   /* @Override
     public int insertPlazas(PlazasVO plazas) throws SQLException {
         int numFilas = 0;
         String sql = "insert into plazas values (?,?,?,?)";
@@ -150,7 +150,7 @@ public class PlazasDAO implements IPlazas{
         // El borrado se realizó con éxito, devolvemos filas afectadas
         return nfilas;
     }
-
+*/
     @Override
     public int updatePlazas(int codPlazas, PlazasVO nuevosDatos) throws SQLException {
          int numFilas = 0;
