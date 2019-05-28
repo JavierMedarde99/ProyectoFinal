@@ -20,7 +20,7 @@ public class PlazasVO {
     public final static int NUMEROPLAZAS_MOTOCICLETA=15;
     public final static int NUMEROPLAZAS_CARAVANA=15;
     private String matricula; //Se usa matricula del vehiculo como clave foranea
-    private int estado;
+    private int estado; //1-Ocupada   2-Libre   3-Ocupada abonado   4-Libre abonado
     private static int contador=1;
     
     //Métodos
