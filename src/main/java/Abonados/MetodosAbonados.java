@@ -5,10 +5,13 @@
  */
 package Abonados;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import plazas.PlazasVO;
 
 /**
@@ -27,7 +30,9 @@ public class MetodosAbonados {
         return false;
     }
     
-    public static AbonadosVO insertarDatos(){
+    public static AbonadosVO insertarDatos() {
+        AbonadosDAO daoAbonados = new AbonadosDAO();
+        
         Scanner teclado = new Scanner(System.in);
         Random rnd = new Random();
         
@@ -80,8 +85,13 @@ public class MetodosAbonados {
         
         System.out.println("matricula de su coche:");
         String Matricula=teclado.next();
-        
-        return new AbonadosVO(DNI,Nombre,Apellidos,Pin,Tarjeta,Email,TipoAbonado,Matricula,LocalDate.now());
+        AbonadosVO abonado=new AbonadosVO(DNI,Nombre,Apellidos,Pin,Tarjeta,Email,TipoAbonado,Matricula,LocalDate.now());
+        try {
+            daoAbonados.insertAbonados(abonado);
+        } catch (SQLException ex) {
+            Logger.getLogger(MetodosAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return abonado;
     }
     
     
