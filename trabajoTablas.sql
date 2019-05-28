@@ -29,7 +29,7 @@ create table if not exists plazas(
 codPlazas int,
 numPlazas int,
 matricula char(8),
-estado boolean,
+estado int,
 CONSTRAINT PK_plazas PRIMARY KEY (codPlazas),
 CONSTRAINT FK_plazasMatricula FOREIGN KEY (matricula)
     REFERENCES vehiculos(matricula)
