@@ -96,7 +96,7 @@ private Connection con = null;
     @Override
     public int insertTickets(TicketsVO ticket) throws SQLException {
         int numFilas = 0;
-        String sql = "insert into tikets values (?,?,?,?,?,?,?)";
+        String sql = "insert into tikets values (?,?,?,?,?,?,?,?,?)";
 
         if (findByPk(ticket.getMatricula(),ticket.getCodPlazas()) != null) {
             // Existe un registro con esa pk
@@ -175,7 +175,8 @@ private Connection con = null;
     public int updateTickets(int codPlazas, String matricula, TicketsVO nuevosDatos) throws SQLException {
          int numFilas = 0;
         String sql = "update tikets set pin=?,precioFin=?,"
-                + "precioPorMin=?,tiempoEntrada=?,tiempoSalida=?"
+                + "precioPorMin=?,fechaEntrada=?,tiempoEntrada=?, "
+                + "fechaSalida=?,tiempoSalida=?"
                 + " where matricula=? and codplazas=?";
 
         if (findByPk(matricula,codPlazas) == null) {
@@ -192,10 +193,10 @@ private Connection con = null;
                 prest.setInt(1, nuevosDatos.getPin());
                 prest.setDouble(2,nuevosDatos.getPrecioFin());
                 prest.setDouble(3,nuevosDatos.getPrecioMin());
-                prest.setTime(4,Time.valueOf(nuevosDatos.getTiempoInicio()));
-                prest.setDate(5,Date.valueOf(nuevosDatos.getFechaInicio()));
-                prest.setTime(6,Time.valueOf(nuevosDatos.getTiempoFin()));
-                prest.setDate(7,Date.valueOf(nuevosDatos.getFechaFin()));
+                prest.setTime(5,Time.valueOf(nuevosDatos.getTiempoInicio()));
+                prest.setDate(4,Date.valueOf(nuevosDatos.getFechaInicio()));
+                prest.setTime(7,Time.valueOf(nuevosDatos.getTiempoFin()));
+                prest.setDate(6,Date.valueOf(nuevosDatos.getFechaFin()));
                 
                 numFilas = prest.executeUpdate();
             }
