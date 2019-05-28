@@ -15,9 +15,10 @@ import plazas.PlazasVO;
  *
  * @author javi
  */
-public class MetodosVehiculos {
+public class MetodosVehiculos { 
+    
     public static VehiculoVO datosVehiculos(){
-         VehiculoDAO daoVehiculo = new VehiculoDAO();
+        VehiculoDAO daoVehiculo = new VehiculoDAO();
        
         int TipoVehiculos;
         String matricula;
@@ -52,5 +53,15 @@ public class MetodosVehiculos {
             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return vehiculo;
+    }
+    
+    public static void EliminarVehiculo(String matricula){
+        try {
+            VehiculoDAO daoVehiculo = new VehiculoDAO();
+            VehiculoVO vehiculo =daoVehiculo.findByPk(matricula);
+            daoVehiculo.deleteVehiculo(vehiculo);
+        } catch (SQLException ex) {
+            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
