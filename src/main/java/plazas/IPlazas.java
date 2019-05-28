@@ -6,6 +6,7 @@
 package plazas;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface IPlazas {
     
-    List<PlazasVO> getAll() throws SQLException;
+    ArrayList<PlazasVO> getAll() throws SQLException;
     
     // int insertPlazas(PlazasVO plaza) throws SQLException;
     
