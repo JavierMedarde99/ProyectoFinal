@@ -11,6 +11,7 @@ import Abonados.MetodosAbonados;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import vehiculos.MetodosVehiculos;
 import vehiculos.VehiculoDAO;
 import vehiculos.VehiculoVO;
 
@@ -52,7 +53,20 @@ public class ParkingCliente {
                                         case 1:
 
                                             break;
+                                            
                                         case 2:
+                                            System.out.println("Introduce una matrícula");
+                                            teclado.nextLine();
+                                            String matricula=teclado.nextLine();
+                                            System.out.println("Introduce un tipo de vehículo");
+                                            System.out.println("1. Turismo");
+                                            System.out.println("2. Motocicleta");
+                                            System.out.println("3. Caravana");
+                                            int tipo=teclado.nextInt();
+                                            MetodosVehiculos.depositarVehiculo(matricula, tipo);
+                                            
+                                            break;
+                                            
                                         default:
                                             System.out.println("Introduce una opción válida");
                                             Eleccion3=0;
