@@ -5,6 +5,7 @@
  */
 package vehiculos;
 
+import Tickets.MetodosTickets;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -96,6 +97,7 @@ public class MetodosVehiculos {
                 if(!listaTurismo.isEmpty()){
                     System.out.println("Plaza: "+listaTurismo.get(0));
                     p.updatePlazas(listaTurismo.get(0).getCodigoPlaza(), new PlazasVO(matricula,1));
+                    MetodosTickets.crearTicket(matricula, listaTurismo.get(0).getCodigoPlaza(), tipo);
                 }
                 break;
                 
@@ -106,9 +108,11 @@ public class MetodosVehiculos {
                     }
                 }
                 
-                if(!listaTurismo.isEmpty()){
+                if(!listaMotocicleta.isEmpty()){
                     System.out.println("Plaza: "+listaMotocicleta.get(0));
                     p.updatePlazas(listaMotocicleta.get(0).getCodigoPlaza(), new PlazasVO(matricula,1));
+                    MetodosTickets.crearTicket(matricula, listaMotocicleta.get(0).getCodigoPlaza(), tipo);
+                    
                 }
                 break;
                 
@@ -119,9 +123,10 @@ public class MetodosVehiculos {
                     }
                 }
                 
-                if(!listaTurismo.isEmpty()){
+                if(!listaCaravana.isEmpty()){
                     System.out.println("Plaza: "+listaCaravana.get(0));
                     p.updatePlazas(listaCaravana.get(0).getCodigoPlaza(), new PlazasVO(matricula,1));
+                    MetodosTickets.crearTicket(matricula, listaCaravana.get(0).getCodigoPlaza(), tipo);
                 }
                 break;
             default:
