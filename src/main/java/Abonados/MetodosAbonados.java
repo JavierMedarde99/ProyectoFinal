@@ -86,6 +86,8 @@ public class MetodosAbonados {
     }
     
     public static VehiculoVO datosVehiculos(){
+        
+       
         int TipoVehiculos;
         String matricula;
         Scanner teclado = new Scanner(System.in);
@@ -100,16 +102,33 @@ public class MetodosAbonados {
             TipoVehiculos=teclado.nextInt();
             switch (TipoVehiculos) {
                 case 1:
+                    if(PlazasVO.NUMEROPLAZAS_TURISMO==0){
+                        TipoVehiculos=0;
+                        System.out.println("No hay plazas libres de turismos");
+                        break;
+                    }else{
                     TipoVehiculos=1;
                     break;
+                    }
 
                 case 2:
+                     if(PlazasVO.NUMEROPLAZAS_MOTOCICLETA==0){
+                        TipoVehiculos=0;
+                        System.out.println("No hay plazas libres de motocicletas");
+                        break;
+                    }else{
                     TipoVehiculos=2;
                     break;
-
+                     }
                 case 3:
+                     if(PlazasVO.NUMEROPLAZAS_CARAVANA==0){
+                        TipoVehiculos=0;
+                        System.out.println("No hay plazas libres de caravanas");
+                        break;
+                    }else{
                     TipoVehiculos=3;
                     break;
+                     }
                 default:
                     TipoVehiculos=0;
             }
