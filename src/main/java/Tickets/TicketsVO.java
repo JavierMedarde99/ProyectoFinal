@@ -37,6 +37,18 @@ public class TicketsVO {
         this.tiempoInicio = tiempoInicio;
     }
 
+    public TicketsVO(int codPlazas, String matricula, int pin, Double precioFin, Double precioMin, LocalDate fechaInicio, LocalTime tiempoInicio, LocalDate fechaFin, LocalTime tiempoFin) {
+        this.codPlazas = codPlazas;
+        this.matricula = matricula;
+        this.pin = pin;
+        this.precioFin = precioFin;
+        this.precioMin = precioMin;
+        this.fechaInicio = fechaInicio;
+        this.tiempoInicio = tiempoInicio;
+        this.fechaFin = fechaFin;
+        this.tiempoFin = tiempoFin;
+    }
+
     
 
     public TicketsVO() {
