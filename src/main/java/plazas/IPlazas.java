@@ -21,6 +21,8 @@ public interface IPlazas {
     
     PlazasVO findByPk(int codPlazas) throws SQLException;
     
+    PlazasVO findByFk(String matricula) throws SQLException;
+    
     // int insertPlazas(List<PlazasVO> lista) throws SQLException;
     
     // int deletePlazas(PlazasVO plaza) throws SQLException;
