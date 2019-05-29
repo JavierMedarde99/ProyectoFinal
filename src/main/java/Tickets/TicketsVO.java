@@ -39,7 +39,7 @@ public class TicketsVO {
 
     
 
-    TicketsVO() {
+    public TicketsVO() {
         
     }
 
