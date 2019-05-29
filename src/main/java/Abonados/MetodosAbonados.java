@@ -21,11 +21,11 @@ import plazas.PlazasVO;
 public class MetodosAbonados {
     
     //Método para comprobar si el abonado está dentro de la lista de abonados
-    public static boolean comprobarAbonado(ArrayList<AbonadosVO> abonados, String dni){
-        for (AbonadosVO tmp : abonados) {
-            if(tmp.getDNI().equalsIgnoreCase(dni)){
-                return true;
-            }       
+    public static boolean comprobarAbonado(String dni) throws SQLException{
+        AbonadosDAO a1=new AbonadosDAO();
+        AbonadosVO a2=new AbonadosVO();
+        if(a1.findByPk(dni)!=null){
+            return true;
         }
         return false;
     }
