@@ -27,13 +27,13 @@ public class ParkingCliente {
         VehiculoDAO v1=new VehiculoDAO();
         ArrayList<AbonadosVO> listaAbonados = new ArrayList<>();
         Scanner teclado = new Scanner(System.in);
+        
         do {
             System.out.println("1. Cliente");
             System.out.println("2. Administrador");
-
             Eleccion1 = teclado.nextInt();
+            
             switch (Eleccion1) {
-
                 case 1:
                     do{
                         System.out.println("1. Depositar vehículo");
@@ -41,17 +41,28 @@ public class ParkingCliente {
                         System.out.println("3. Añadir abonado");
                         System.out.println("4. Retirar abonado");
                         Eleccion2 = teclado.nextInt();
+                        
                         switch (Eleccion2) {
-
                             case 1:
                                 do{
                                     System.out.println("¿Es usted abonado?");
                                     System.out.println("1. Sí");
                                     System.out.println("2. No");
                                     Eleccion3=teclado.nextInt();
+                                    
                                     switch (Eleccion3) {
                                         case 1:
-
+                                            System.out.println("Introduce tu dni: ");
+                                            teclado.nextLine();
+                                            String dni=teclado.nextLine();
+                                            
+                                            if(MetodosAbonados.comprobarAbonado(dni)==true){
+                                                System.out.println("Introduce la matricula del vehículo: ");
+                                                String matricula=teclado.nextLine();
+                                                System.out.println("Introduce el pin para retirar el vehículo: ");
+                                                int pin=teclado.nextInt();
+                                                MetodosVehiculos.depositarVehiculoAbonado(dni, matricula, pin);
+                                            };
                                             break;
                                             
                                         case 2:
@@ -64,7 +75,6 @@ public class ParkingCliente {
                                             System.out.println("3. Caravana");
                                             int tipo=teclado.nextInt();
                                             MetodosVehiculos.depositarVehiculo(matricula, tipo);
-                                            
                                             break;
                                             
                                         default:
@@ -84,7 +94,11 @@ public class ParkingCliente {
                                         case 1:
 
                                             break;
+                                            
                                         case 2:
+                                            
+                                            break;
+                                            
                                         default:
                                             System.out.println("Introduce una opción válida");
                                             Eleccion3=0;
