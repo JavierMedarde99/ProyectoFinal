@@ -99,7 +99,11 @@ public class ParkingCliente {
                                             dni=teclado.nextLine();
                                             
                                             if(MetodosAbonados.comprobarAbonado(dni)==true){
-                                                
+                                                System.out.println("Introduce la matrícula del vehículo: ");
+                                                matricula=teclado.nextLine();
+                                                System.out.println("Introduce el pin: ");
+                                                pin=teclado.nextInt();
+                                                MetodosVehiculos.retirarVehiculoAbonado(dni, matricula, pin);
                                             }
                                             break;
                                             
