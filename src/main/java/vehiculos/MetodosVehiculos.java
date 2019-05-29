@@ -8,9 +8,16 @@ package vehiculos;
 import Abonados.AbonadosDAO;
 import Abonados.AbonadosVO;
 import Tickets.MetodosTickets;
+import Tickets.TicketsDAO;
+import Tickets.TicketsVO;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import plazas.PlazasDAO;
@@ -150,5 +157,32 @@ public class MetodosVehiculos {
                 p1.updatePlazas(p2.getCodigoPlaza(), new PlazasVO(matricula, 3));
             }
         }
+    }
+    
+    public static void retirarVehiculo(String matricula, int codPlaza, int pin) throws SQLException{
+        PlazasDAO p1=new PlazasDAO();
+        PlazasVO p2=new PlazasVO();
+        TicketsDAO t1=new TicketsDAO();
+        TicketsVO t2=new TicketsVO();
+        VehiculoDAO v1=new VehiculoDAO();
+        VehiculoVO v2=new VehiculoVO();
+        
+        if(p2.getCodigoPlaza()==codPlaza && p2.getMatricula().equalsIgnoreCase(matricula) && p1.findByPk(codPlaza)!=null){
+            p2=p1.findByPk(codPlaza);
+            if(t1.findByPk(matricula, codPlaza)!=null){
+                t2=t1.findByPk(matricula, codPlaza);
+                if(t2.getPin()==pin){
+                    v2=v1.findByPk(matricula);
+                    Double precioMin=MetodosTickets.calcularPrecioMinuto(v2);
+                    long tiempo=MetodosTickets.retirarTicket(t2.getTiempoInicio(), t2.getFechaInicio());
+                    t1.updateTickets(codPlaza, matricula, new TicketsVO(codPlaza, matricula, pin, precioMin*tiempo, precioMin, t2.getFechaInicio(), t2.getTiempoInicio(), LocalDate.now(), LocalTime.now()));
+                    p1.updatePlazas(codPlaza, new PlazasVO(null, 2));
+                }   
+            }
+        }
+    }
+    
+    public static void retirarVehiculoAbonado(){
+        
     }
 }
