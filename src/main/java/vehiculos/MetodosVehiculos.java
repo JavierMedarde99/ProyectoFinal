@@ -176,13 +176,23 @@ public class MetodosVehiculos {
                     Double precioMin=MetodosTickets.calcularPrecioMinuto(v2);
                     long tiempo=MetodosTickets.retirarTicket(t2.getTiempoInicio(), t2.getFechaInicio());
                     t1.updateTickets(codPlaza, matricula, new TicketsVO(codPlaza, matricula, pin, precioMin*tiempo, precioMin, t2.getFechaInicio(), t2.getTiempoInicio(), LocalDate.now(), LocalTime.now()));
-                    p1.updatePlazas(codPlaza, new PlazasVO(null, 2));
+                    p1.updatePlazas(codPlaza, new PlazasVO("", 2));
                 }   
             }
         }
     }
     
-    public static void retirarVehiculoAbonado(){
+    public static void retirarVehiculoAbonado(String dni, String matricula, int pin) throws SQLException{
+        PlazasDAO p1=new PlazasDAO();
+        PlazasVO p2=new PlazasVO();
+        AbonadosDAO a1=new AbonadosDAO();
+        AbonadosVO a2=new AbonadosVO();
+        
+        a2=a1.findByPk(dni);
+        
+        if(p1.findByFk(matricula)!=null && a2.getMatricula().equalsIgnoreCase(matricula) && pin==a2.getPinAbonados()){
+            p1.updatePlazas(p2.getCodigoPlaza(), new PlazasVO(p2.getMatricula(), 4));
+        }
         
     }
 }
