@@ -79,6 +79,34 @@ public class PlazasDAO implements IPlazas{
         }
     }
     
+    @Override
+    public PlazasVO findByFk(String matricula) throws SQLException {
+        ResultSet res = null;
+        PlazasVO plazas = new PlazasVO();
+
+        String sql = "select * from plazas where matricula=?";
+
+        try (PreparedStatement prest = con.prepareStatement(sql)) {
+            // Preparamos la sentencia parametrizada
+            prest.setString(1, matricula);
+
+            // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
+            res = prest.executeQuery();
+
+            // Nos posicionamos en el primer registro del Resultset. Sólo debe haber una fila
+            // si existe esa pk
+            if (res.first()) {
+                // Recogemos los datos de la plaza, guardamos en un objeto
+                
+                plazas.setEstado(res.getInt("columna"));
+                plazas.setMatricula(res.getString("matricula"));
+                return plazas;
+            }
+
+            return null;
+        }
+    }
+    
    /* @Override
     public int insertPlazas(PlazasVO plazas) throws SQLException {
         int numFilas = 0;
