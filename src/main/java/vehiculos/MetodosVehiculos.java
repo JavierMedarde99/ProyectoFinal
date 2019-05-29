@@ -5,6 +5,8 @@
  */
 package vehiculos;
 
+import Abonados.AbonadosDAO;
+import Abonados.AbonadosVO;
 import Tickets.MetodosTickets;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -131,6 +133,22 @@ public class MetodosVehiculos {
                 break;
             default:
                 System.out.println("Tipo de vehículo incorrecto");
+        }
+    }
+    
+    public static void depositarVehiculoAbonado(String dni, String matricula, int pin) throws SQLException{
+        AbonadosDAO a1=new AbonadosDAO();
+        AbonadosVO a2=new AbonadosVO();
+        PlazasDAO p1=new PlazasDAO();
+        PlazasVO p2=new PlazasVO();
+        
+        a2=a1.findByPk(dni);
+        
+        if(matricula.equalsIgnoreCase(a2.getMatricula()) && pin==a2.getPinAbonados()){
+            if(p1.findByFk(matricula)!=null){
+                p2=p1.findByFk(matricula);
+                p1.updatePlazas(p2.getCodigoPlaza(), new PlazasVO(matricula, 3));
+            }
         }
     }
 }
