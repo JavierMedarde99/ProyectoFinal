@@ -8,6 +8,7 @@ package ParkingDAW;
 import Abonados.AbonadosDAO;
 import Abonados.AbonadosVO;
 import Abonados.MetodosAbonados;
+import Tickets.MetodosTickets;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,7 +23,8 @@ import vehiculos.VehiculoVO;
 public class ParkingCliente {
 
     public static void main(String[] args) throws SQLException {
-        int Eleccion1, Eleccion2, Eleccion3, Eleccion4, repetir;
+        int Eleccion1, Eleccion2, Eleccion3, Eleccion4, repetir, tipo, codPlaza, pin;
+        String dni, matricula;
         AbonadosDAO a1=new AbonadosDAO();
         VehiculoDAO v1=new VehiculoDAO();
         ArrayList<AbonadosVO> listaAbonados = new ArrayList<>();
@@ -54,13 +56,13 @@ public class ParkingCliente {
                                         case 1:
                                             System.out.println("Introduce tu dni: ");
                                             teclado.nextLine();
-                                            String dni=teclado.nextLine();
+                                            dni=teclado.nextLine();
                                             
                                             if(MetodosAbonados.comprobarAbonado(dni)==true){
                                                 System.out.println("Introduce la matricula del vehículo: ");
-                                                String matricula=teclado.nextLine();
+                                                matricula=teclado.nextLine();
                                                 System.out.println("Introduce el pin para retirar el vehículo: ");
-                                                int pin=teclado.nextInt();
+                                                pin=teclado.nextInt();
                                                 MetodosVehiculos.depositarVehiculoAbonado(dni, matricula, pin);
                                             };
                                             break;
@@ -68,12 +70,12 @@ public class ParkingCliente {
                                         case 2:
                                             System.out.println("Introduce una matrícula");
                                             teclado.nextLine();
-                                            String matricula=teclado.nextLine();
+                                            matricula=teclado.nextLine();
                                             System.out.println("Introduce un tipo de vehículo");
                                             System.out.println("1. Turismo");
                                             System.out.println("2. Motocicleta");
                                             System.out.println("3. Caravana");
-                                            int tipo=teclado.nextInt();
+                                            tipo=teclado.nextInt();
                                             MetodosVehiculos.depositarVehiculo(matricula, tipo);
                                             break;
                                             
@@ -92,11 +94,25 @@ public class ParkingCliente {
                                     Eleccion3=teclado.nextInt();
                                     switch (Eleccion3) {
                                         case 1:
-
+                                            System.out.println("Introduce tu dni: ");
+                                            teclado.nextLine();
+                                            dni=teclado.nextLine();
+                                            
+                                            if(MetodosAbonados.comprobarAbonado(dni)==true){
+                                                
+                                            }
                                             break;
                                             
                                         case 2:
+                                            System.out.println("Introduce tu dni: ");
+                                            teclado.nextLine();
+                                            dni=teclado.nextLine();
+                                            System.out.println("Introduce el código de la plaza: ");
+                                            codPlaza=teclado.nextInt();
+                                            System.out.println("Introduce pin: ");
+                                            pin=teclado.nextInt();
                                             
+                                            MetodosVehiculos.retirarVehiculo(dni, codPlaza, pin);
                                             break;
                                             
                                         default:
@@ -146,15 +162,6 @@ public class ParkingCliente {
                     System.out.println("Introduce una opción válida");
                     Eleccion1=0;
             }
-            repetir=1;
-            if(Eleccion1!=0){
-                repetir=teclado.nextInt();
-                do{
-                    System.out.println("¿Quieres realizar otra acción?");
-                    System.out.println("1. Sí");
-                    System.out.println("2. No");
-                }while(repetir!=1 || repetir!=0);
-            }
-        } while (Eleccion1 == 0 || repetir==1);
+        } while (Eleccion1 == 0);
     }
 }
