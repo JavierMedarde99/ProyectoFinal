@@ -29,8 +29,8 @@ private Connection con = null;
         con = Conexion.getInstance();
     }
     @Override
-    public List<TicketsVO> getAll() throws SQLException {
-        List<TicketsVO> lista = new ArrayList<>();
+    public ArrayList<TicketsVO> getAll() throws SQLException {
+        ArrayList<TicketsVO> lista = new ArrayList<>();
 
         // Preparamos la consulta de datos mediante un objeto Statement
         // ya que no necesitamos parametrizar la sentencia SQL
