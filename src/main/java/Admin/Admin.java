@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -162,6 +163,20 @@ public class Admin {
             }
         } 
         return caducaEsteMes;
+    }
+    
+    public static ArrayList<AbonadosVO> caduca10Dias() throws SQLException{
+        AbonadosDAO a1=new AbonadosDAO();
+        ArrayList<AbonadosVO> listaAbonados=new ArrayList<>();
+        ArrayList<AbonadosVO> caduca10Dias = new ArrayList<>();
+        
+        listaAbonados=a1.getAll();
+        for (AbonadosVO tmp : listaAbonados) {
+            if(tmp.getFechaFinAbono().getDayOfYear()>LocalDate.now().getDayOfYear() && tmp.getFechaFinAbono().getDayOfYear()>LocalDate.now().plusDays(10).getDayOfYear()){
+                caduca10Dias.add(tmp);
+            }
+        } 
+        return caduca10Dias;
     }
 }
  
