@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import plazas.PlazasDAO;
 import plazas.PlazasVO;
 
@@ -104,6 +107,37 @@ public class Admin {
                     System.out.println("Codigo incorrecto");
             }
         }
+    }
+    
+    public static void actualizardatos(AbonadosVO abonado){
+        Scanner teclado = new Scanner(System.in);
+        AbonadosDAO A1=new AbonadosDAO();
+        int tipoAbonados;
+        do{
+        System.out.println("Tipo de abono que desa actualizar");
+        tipoAbonados = teclado.nextInt();
+        switch (tipoAbonados) {
+            case 1:
+               abonado.getFechaFinAbono().plusMonths(1);
+                break;
+            case 2:
+               abonado.getFechaFinAbono().plusMonths(3);
+                break;
+            case 3:
+                 abonado.getFechaFinAbono().plusMonths(4);
+                break;
+            case 4:
+                 abonado.getFechaFinAbono().plusYears(1);
+                break;
+        }
+        }while(tipoAbonados<5 && tipoAbonados>0);
+        
+        try {
+            A1.updateAbonados(abonado.getDNI(), abonado);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }
  
