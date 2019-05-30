@@ -139,5 +139,15 @@ public class Admin {
         }
         
     }
+    
+    public static void eliminarAbonado(AbonadosVO abonado){
+        AbonadosDAO A1=new AbonadosDAO();
+        AbonadosVO eliminacion = new AbonadosVO(abonado.getDNI(),null,null,0,abonado.getTarjetaCredito(),null,5,abonado.getMatricula(),abonado.getFechaInicioAbono());
+        try {
+            A1.updateAbonados(abonado.getDNI(), eliminacion);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
  
