@@ -24,11 +24,12 @@ import plazas.PlazasVO;
  */
 public class Admin {
 
-    public static void PrecioEntreDosFechas(LocalDate fecha1 ,LocalDate fecha2,LocalTime tiempo1,LocalTime tiempo2){
+    public static void PrecioEntreDosFechas(LocalDate fecha1 ,LocalDate fecha2,LocalTime tiempo1,LocalTime tiempo2) throws SQLException{
         TicketsDAO p1=new TicketsDAO();
         ArrayList<TicketsVO> listaTickets=new ArrayList<>();
         Double precio=0.0;
         int contador=0;
+        listaTickets=p1.getAll();
         for (TicketsVO tmp : listaTickets) {
             if(tmp.getFechaInicio().isAfter(fecha1) && tmp.getFechaFin().isAfter(fecha2) && tmp.getTiempoInicio().isBefore(tiempo1) && tmp.getTiempoFin().isAfter(tiempo2)){
                 contador++;
