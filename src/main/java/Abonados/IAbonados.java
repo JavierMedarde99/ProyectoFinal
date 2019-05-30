@@ -6,6 +6,7 @@
 package Abonados;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * @author javi
  */
 public interface IAbonados {
-    List<AbonadosVO> getAll() throws SQLException;
+    ArrayList<AbonadosVO> getAll() throws SQLException;
     AbonadosVO findByPk(String DNI) throws SQLException;
     int insertAbonados (AbonadosVO persona) throws SQLException;
     int insertAbonados  (List<AbonadosVO> lista) throws SQLException;
