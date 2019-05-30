@@ -142,7 +142,7 @@ public class Admin {
     
     public static void eliminarAbonado(AbonadosVO abonado){
         AbonadosDAO A1=new AbonadosDAO();
-        AbonadosVO eliminacion = new AbonadosVO(abonado.getDNI(),null,null,0,abonado.getTarjetaCredito(),null,5,abonado.getMatricula(),abonado.getFechaInicioAbono());
+        AbonadosVO eliminacion = new AbonadosVO(abonado.getDNI(),"","",abonado.getTipoAbonados(),abonado.getTarjetaCredito(),"",5,abonado.getMatricula(),abonado.getFechaInicioAbono());
         try {
             A1.updateAbonados(abonado.getDNI(), eliminacion);
         } catch (SQLException ex) {
@@ -150,12 +150,16 @@ public class Admin {
         }
     }
     
-    public static ArrayList<AbonadosVO> mesQueCaduca(int mes, ArrayList<AbonadosVO> abonados){
+    public static ArrayList<AbonadosVO> mesQueCaduca(int mes) throws SQLException{
+        AbonadosDAO a1=new AbonadosDAO();
+        ArrayList<AbonadosVO> listaAbonados=new ArrayList<>();
         ArrayList<AbonadosVO> caducaEsteMes = new ArrayList<>();
-        for (AbonadosVO abonadostodo : abonados) {
+        
+        listaAbonados=a1.getAll();
+        for (AbonadosVO abonadostodo : listaAbonados) {
             if(mes==abonadostodo.getFechaFinAbono().getMonth().getValue() ){
-           caducaEsteMes.add(abonadostodo);
-        }
+                caducaEsteMes.add(abonadostodo);
+            }
         } 
         return caducaEsteMes;
     }
