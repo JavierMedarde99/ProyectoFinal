@@ -22,7 +22,7 @@ public class AbonadosVO {
     private int pinAbonados;
     private String tarjetaCredito;
     private String email;
-    private int tipoAbonados;
+    private int tipoAbonados; //1-Mensual 2-Trimestral 3-Semestral 4-Anual
     private String matricula;//clave foreanea
     private LocalDate fechaInicioAbono;
     private LocalDate fechaFinAbono;
