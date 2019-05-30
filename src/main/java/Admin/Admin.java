@@ -149,5 +149,15 @@ public class Admin {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static ArrayList<AbonadosVO> mesQueCaduca(int mes, ArrayList<AbonadosVO> abonados){
+        ArrayList<AbonadosVO> caducaEsteMes = new ArrayList<>();
+        for (AbonadosVO abonadostodo : abonados) {
+            if(mes==abonadostodo.getFechaFinAbono().getMonth().getValue() ){
+           caducaEsteMes.add(abonadostodo);
+        }
+        } 
+        return caducaEsteMes;
+    }
 }
  
