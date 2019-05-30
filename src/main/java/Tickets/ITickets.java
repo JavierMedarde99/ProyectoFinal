@@ -7,6 +7,7 @@ package Tickets;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @author javi
  */
 public interface ITickets {
-        List<TicketsVO> getAll() throws SQLException;
+        ArrayList<TicketsVO> getAll() throws SQLException;
     int insertTickets (TicketsVO ticket) throws SQLException;
      TicketsVO findByPk(String matricula,int codPlazas) throws SQLException;
     int insertTickets (List<TicketsVO> lista) throws SQLException;
