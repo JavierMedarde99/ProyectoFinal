@@ -40,6 +40,20 @@ public AbonadosVO() {
         this.tipoAbonados = tipoAbonados;
         this.matricula = matricula;
         this.fechaInicioAbono = fechaInicioAbono;
+        switch (tipoAbonados) {
+            case 1:
+                this.fechaFinAbono=fechaInicioAbono.plusMonths(1);
+                break;
+            case 2:
+                this.fechaFinAbono=fechaInicioAbono.plusMonths(3);
+                break;
+            case 3:
+                this.fechaFinAbono=fechaInicioAbono.plusMonths(4);
+                break;
+            case 4:
+                this.fechaFinAbono=fechaInicioAbono.plusYears(1);
+                break;
+        }
     }
 
     public String getDNI() {
