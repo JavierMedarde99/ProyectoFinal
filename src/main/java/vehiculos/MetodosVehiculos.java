@@ -10,6 +10,13 @@ import Abonados.AbonadosVO;
 import Tickets.MetodosTickets;
 import Tickets.TicketsDAO;
 import Tickets.TicketsVO;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -155,6 +162,7 @@ public class MetodosVehiculos {
             if(p1.findByFk(matricula)!=null){
                 p2=p1.findByFk(matricula);
                 p1.updatePlazas(p2.getCodigoPlaza(), new PlazasVO(matricula, 3));
+                escribirFicheroPin(a2);
             }
         }
     }
@@ -194,5 +202,19 @@ public class MetodosVehiculos {
             p1.updatePlazas(p2.getCodigoPlaza(), new PlazasVO(p2.getMatricula(), 4));
         }
         
+    }
+    
+    public static void escribirFicheroPin(AbonadosVO abonado){
+        // Fichero a crear. Ruta relativa a la carpeta raíz del proyecto
+	String fichero="pinAbonados/"+abonado.getDNI()+".txt";
+        
+        // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
+        // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
+        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))){
+            flujo.write(abonado.getPinAbonados());
+            flujo.flush();
+	} catch (IOException e) {
+            System.out.println(e.getMessage());
+	}
     }
 }
