@@ -17,6 +17,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -205,6 +208,15 @@ public class MetodosVehiculos {
     }
     
     public static void escribirFicheroPin(AbonadosVO abonado){
+        //Creamos el directorio
+            Path directory = Paths.get("./pinAbonados");
+            try {
+                Files.createDirectory(directory);
+            } catch (IOException e) {
+                System.out.println("Problema creando el directorio pinAbonados.");
+                System.out.println(e.toString());
+            }
+            
         // Fichero a crear. Ruta relativa a la carpeta raíz del proyecto
 	String fichero="pinAbonados/"+abonado.getDNI()+".txt";
         
