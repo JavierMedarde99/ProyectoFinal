@@ -30,8 +30,8 @@ public class AbonadosDAO implements IAbonados {
     }
 
     @Override
-    public List<AbonadosVO> getAll() throws SQLException {
-        List<AbonadosVO> lista = new ArrayList<>();
+    public ArrayList<AbonadosVO> getAll() throws SQLException {
+        ArrayList<AbonadosVO> lista = new ArrayList<>();
 
         // Preparamos la consulta de datos mediante un objeto Statement
         // ya que no necesitamos parametrizar la sentencia SQL
