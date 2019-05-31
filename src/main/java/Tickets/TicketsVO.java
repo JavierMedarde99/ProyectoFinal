@@ -19,7 +19,7 @@ import java.time.LocalTime;
 public class TicketsVO {
     private int codPlazas;
     private String matricula;
-    private int pin;
+    private String pin;
     private Double precioFin;
     private Double precioMin; //Depende del vehiculo
     private LocalDate fechaInicio;
@@ -27,7 +27,7 @@ public class TicketsVO {
      private LocalDate fechaFin;
     private LocalTime tiempoFin;
 
-    public TicketsVO(int codPlazas, String matricula, int pin, Double precioFin, Double precioMin, LocalDate fechaInicio, LocalTime tiempoInicio) {
+    public TicketsVO(int codPlazas, String matricula, String pin, Double precioFin, Double precioMin, LocalDate fechaInicio, LocalTime tiempoInicio) {
         this.codPlazas = codPlazas;
         this.matricula = matricula;
         this.pin = pin;
@@ -37,7 +37,7 @@ public class TicketsVO {
         this.tiempoInicio = tiempoInicio;
     }
 
-    public TicketsVO(int codPlazas, String matricula, int pin, Double precioFin, Double precioMin, LocalDate fechaInicio, LocalTime tiempoInicio, LocalDate fechaFin, LocalTime tiempoFin) {
+    public TicketsVO(int codPlazas, String matricula, String pin, Double precioFin, Double precioMin, LocalDate fechaInicio, LocalTime tiempoInicio, LocalDate fechaFin, LocalTime tiempoFin) {
         this.codPlazas = codPlazas;
         this.matricula = matricula;
         this.pin = pin;
@@ -71,11 +71,11 @@ public class TicketsVO {
         this.matricula = matricula;
     }
 
-    public int getPin() {
+    public String getPin() {
         return pin;
     }
 
-    public void setPin(int pin) {
+    public void setPin(String pin) {
         this.pin = pin;
     }
 
