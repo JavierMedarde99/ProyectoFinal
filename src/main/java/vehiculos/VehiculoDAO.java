@@ -126,7 +126,6 @@ public class VehiculoDAO implements IVehiculo{
 
             // Establecemos los parámetros de la sentencia
             prest.setString(1, vehiculo.getMatricula());
-            prest.setInt(2, vehiculo.getTipoVehiculo());
             
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
