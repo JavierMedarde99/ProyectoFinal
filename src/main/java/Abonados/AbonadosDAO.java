@@ -44,8 +44,8 @@ public class AbonadosDAO implements IAbonados {
                 // Recogemos los datos de la persona, guardamos en un objeto
                 p.setDNI(res.getString("DNI"));
                 p.setNombre(res.getString("nombre"));
-                p.setApellidos(res.getString("apelidos"));               
-                p.setPinAbonados(res.getInt("pinAbonados"));
+                p.setApellidos(res.getString("apellidos"));               
+                p.setPinAbonados(res.getString("pinAbonados"));
                 p.setTarjetaCredito(res.getString("tarjetaCredito"));
                 p.setEmail(res.getString("email"));
                 p.setTipoAbonados(res.getInt("tipoAbonado"));
@@ -82,7 +82,7 @@ public class AbonadosDAO implements IAbonados {
                 abonados.setNombre(res.getString("nombre"));
                 abonados.setApellidos(res.getString("apellidos"));
                 abonados.setDNI(res.getString("DNI"));
-                abonados.setPinAbonados(res.getInt("pinAbonados"));
+                abonados.setPinAbonados(res.getString("pinAbonados"));
                 abonados.setTarjetaCredito(res.getString("tarjetaCredito"));
                 abonados.setEmail(res.getString("email"));
                 abonados.setTipoAbonados(res.getInt("tipoAbonado"));
@@ -114,7 +114,7 @@ public class AbonadosDAO implements IAbonados {
                 prest.setString(1, abonados.getDNI());
                 prest.setString(2, abonados.getNombre());
                 prest.setString(3, abonados.getApellidos());
-                prest.setInt(4, abonados.getPinAbonados());
+                prest.setString(4, abonados.getPinAbonados());
                 prest.setString(5, abonados.getTarjetaCredito());
                 prest.setString(6, abonados.getEmail());
                 prest.setInt(7, abonados.getTipoAbonados());
@@ -176,8 +176,8 @@ public class AbonadosDAO implements IAbonados {
     @Override
     public int updateAbonados(String DNI, AbonadosVO nuevosDatos) throws SQLException {
         int numFilas = 0;
-        String sql = "update abonados set nombre = ?, apellido = ?,pinAbonados=?,"
-                + "tarjetaCredito=?,email=?,tipoAbonados=?, matricula=?,"
+        String sql = "update abonados set nombre = ?, apellidos = ?,pinAbonados=?,"
+                + "tarjetaCredito=?,email=?,tipoAbonado=?, matricula=?,"
                 + "fechaInicioAbono=?, fechaFinAbono=?   where DNI=?";
 
         if (findByPk(DNI) == null) {
@@ -192,7 +192,7 @@ public class AbonadosDAO implements IAbonados {
                 prest.setString(10, nuevosDatos.getDNI());
                 prest.setString(1, nuevosDatos.getNombre());
                 prest.setString(2, nuevosDatos.getApellidos());
-                prest.setInt(3, nuevosDatos.getPinAbonados());
+                prest.setString(3, nuevosDatos.getPinAbonados());
                 prest.setString(4, nuevosDatos.getTarjetaCredito());
                 prest.setString(5, nuevosDatos.getEmail());
                 prest.setInt(6, nuevosDatos.getTipoAbonados());
