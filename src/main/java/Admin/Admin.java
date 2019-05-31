@@ -86,7 +86,7 @@ public class Admin {
         
         listaPlazas=p1.getAll();
         for (PlazasVO tmp : listaPlazas) {
-            System.out.println(tmp.getCodigoPlaza());
+            System.out.print(tmp.getCodigoPlaza()+" - ");
             int estado=tmp.getEstado();
             switch (estado) {
                 case 1:
