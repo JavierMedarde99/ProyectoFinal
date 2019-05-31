@@ -23,6 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import plazas.PlazasDAO;
 import plazas.PlazasVO;
+import vehiculos.VehiculoDAO;
+import vehiculos.VehiculoVO;
 
 /**
  *
@@ -155,16 +157,26 @@ public class Admin {
         }
     }
     
-    private static void modificarAbonado() {
+    private static void modificarAbonado(String dni) throws SQLException {
         AbonadosDAO daoAbonados = new AbonadosDAO();
+        AbonadosVO a1=new AbonadosVO();
+        VehiculoDAO v1=new VehiculoDAO();
+        VehiculoVO v2=new VehiculoVO();
         
         Scanner teclado = new Scanner(System.in);
         Random rnd = new Random();
         
-        int Pin = rnd.nextInt(111111-999999 + 1)+ 111110;
+        a1=daoAbonados.findByPk(dni);
         
-        System.out.println("DNI:");
-        String DNI=teclado.next();
+        v2=v1.findByPk(a1.getMatricula());
+        String matriculaVieja=v2.getMatricula();
+        
+        String Pin="";
+        int numero;
+        for(int x=0;x<6;x++){
+            numero=rnd.nextInt(10);
+            Pin+=numero;
+        }
         
         System.out.println("Nombre:");
         String Nombre=teclado.next();
@@ -179,12 +191,11 @@ public class Admin {
         String Email=teclado.next();
         
         System.out.println("Que tipo de abonado quiere");
-        System.out.println("1.anual");
-        System.out.println("2.trimestral");
-        System.out.println("3.mensual");
-        System.out.println("4.semanal");
+        System.out.println("1. Mensual");
+        System.out.println("2. Trimestral");
+        System.out.println("3. Semestral");
+        System.out.println("4. Anual");
         int TipoAbonado;
-        
         do{
             TipoAbonado=teclado.nextInt();
             switch (TipoAbonado) {
@@ -208,11 +219,9 @@ public class Admin {
             }
         }while(TipoAbonado==0);
         
-        System.out.println("matricula de su coche:");
-        String Matricula=teclado.next();
-        AbonadosVO abonado=new AbonadosVO(DNI,Nombre,Apellidos,Pin,Tarjeta,Email,TipoAbonado,Matricula,LocalDate.now());
+        AbonadosVO abonado=new AbonadosVO(dni,Nombre,Apellidos,Pin,Tarjeta,Email,TipoAbonado,a1.getMatricula(),a1.getFechaInicioAbono());
         try {
-            daoAbonados.updateAbonados(DNI, abonado);
+            daoAbonados.updateAbonados(dni,abonado);
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -220,19 +229,19 @@ public class Admin {
     
     public static void actualizardatos(String dni) throws SQLException{
         Scanner teclado = new Scanner(System.in);
-        AbonadosDAO A1=new AbonadosDAO();
+        AbonadosDAO a1=new AbonadosDAO();
         AbonadosVO a2=new AbonadosVO();
-        a2=A1.findByPk(dni);
+        a2=a1.findByPk(dni);
         int tipoAbonados;
         
-        if(A1.findByPk(dni)!=null){
+        if(a1.findByPk(dni)!=null){
             System.out.println("¿Desea actualizar todos los datos personales o renovar el abono?");
             System.out.println("1- Actualizar todos los datos");
             System.out.println("2- Renovar el abono");
             int opcion=teclado.nextInt();
             switch (opcion) {
                 case 1:
-                    modificarAbonado();
+                    modificarAbonado(dni);
                     break;
                 case 2:
                     do{
@@ -263,7 +272,7 @@ public class Admin {
                     }while(tipoAbonados==0);
 
                     try {
-                        A1.updateAbonados(a2.getDNI(), a2);
+                        a1.updateAbonados(a2.getDNI(), a2);
                     } catch (SQLException ex) {
                         Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -273,12 +282,35 @@ public class Admin {
     }
     
     public static void eliminarAbonado(String dni) throws SQLException{
-        AbonadosDAO A1=new AbonadosDAO();
-        AbonadosVO eliminacion= new AbonadosVO();
+        AbonadosDAO a1=new AbonadosDAO();
+        AbonadosVO a2= new AbonadosVO();
+        VehiculoDAO v1=new VehiculoDAO();
+        VehiculoVO v2=new VehiculoVO();
+        PlazasDAO p1=new PlazasDAO();
+        PlazasVO p2=new PlazasVO();
+        
         try {
-            if(A1.findByPk(dni)!=null){
-                eliminacion=A1.findByPk(dni);
-                A1.updateAbonados(dni, eliminacion);
+            if(a1.findByPk(dni)!=null){
+                
+                a2=a1.findByPk(dni);
+                v2=v1.findByPk(a2.getMatricula());
+                p2=p1.findByFk(a2.getMatricula());
+                
+                PlazasVO nuevaPlaza=new PlazasVO();
+                nuevaPlaza.setEstado(2);
+                nuevaPlaza.setMatricula(null);
+                
+                a2.setDNI("------");
+                a2.setNombre("------");
+                a2.setApellidos("------");
+                a2.setEmail("------");
+                a2.setPinAbonados("------");
+                a2.setTarjetaCredito("------");
+                a2.setMatricula("------");
+                
+                a1.updateAbonados(dni, a2);
+                v1.deleteVehiculo(v2);
+                p1.updatePlazas(p2.getCodigoPlaza(), nuevaPlaza);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
