@@ -47,7 +47,12 @@ public class MetodosTickets {
         Scanner teclado=new Scanner(System.in);
         Random rnd = new Random();
         
-        int pin = rnd.nextInt(111111-999999 + 1)+ 111110;
+        String pin="";
+        int numero;
+        for(int x=0;x<6;x++){
+            numero=rnd.nextInt(10);
+            pin+=numero;
+        }
         
         Double precioMin=1.0;
         if(tipo==1){
