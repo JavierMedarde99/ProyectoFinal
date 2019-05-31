@@ -21,21 +21,16 @@ public class PlazasVO {
     public final static int NUMEROPLAZAS_CARAVANA=15;
     private String matricula; //Se usa matricula del vehiculo como clave foranea
     private int estado; //1-Ocupada   2-Libre   3-Ocupada abonado   4-Libre abonado
-    private static int contador=1;
     
     //Métodos
     //Constructor parametrizado
     public PlazasVO(String matricula, int estado) {
         this.matricula = matricula;
         this.estado = estado;
-        this.codigoPlaza=contador;
-        contador++;
-    }
+    } 
 
     //Constructor por defecto
     public PlazasVO() {
-        this.codigoPlaza=contador;
-        contador++;
     }
 
     //Getters y setters
