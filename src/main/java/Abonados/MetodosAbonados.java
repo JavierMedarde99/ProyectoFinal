@@ -30,7 +30,7 @@ public class MetodosAbonados {
         return false;
     }
     
-    public static AbonadosVO insertarDatos() {
+    public static void insertarDatos() {
         AbonadosDAO daoAbonados = new AbonadosDAO();
         
         Scanner teclado = new Scanner(System.in);
@@ -91,10 +91,7 @@ public class MetodosAbonados {
         } catch (SQLException ex) {
             Logger.getLogger(MetodosAbonados.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return abonado;
     }
-    
-   
     
     public int numTotalPlazas() {
         
