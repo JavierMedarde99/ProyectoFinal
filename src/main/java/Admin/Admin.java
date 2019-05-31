@@ -218,52 +218,57 @@ public class Admin {
         }
     }
     
-    public static void actualizardatos(AbonadosVO abonado){
+    public static void actualizardatos(String dni) throws SQLException{
         Scanner teclado = new Scanner(System.in);
         AbonadosDAO A1=new AbonadosDAO();
+        AbonadosVO a2=new AbonadosVO();
+        a2=A1.findByPk(dni);
         int tipoAbonados;
-        System.out.println("¿Desea actualizar todos los datos personales o renovar el abono?");
-        System.out.println("1- Actualizar todos los datos");
-        System.out.println("2- Renovar el abono");
-        int opcion=teclado.nextInt();
-        switch (opcion) {
-            case 1:
-                modificarAbonado();
-                break;
-            case 2:
-                do{
-                    System.out.println("Tipo de abono que desea actualizar");
-                    tipoAbonados = teclado.nextInt();
-                    switch (tipoAbonados) {
-                        case 1:
-                            abonado.getFechaFinAbono().plusMonths(1);
-                            break;
+        
+        if(A1.findByPk(dni)!=null){
+            System.out.println("¿Desea actualizar todos los datos personales o renovar el abono?");
+            System.out.println("1- Actualizar todos los datos");
+            System.out.println("2- Renovar el abono");
+            int opcion=teclado.nextInt();
+            switch (opcion) {
+                case 1:
+                    modificarAbonado();
+                    break;
+                case 2:
+                    do{
+                        System.out.println("Tipo de abono que desea actualizar");
+                        tipoAbonados = teclado.nextInt();
+                        switch (tipoAbonados) {
+                            case 1:
+                                a2.getFechaFinAbono().plusMonths(1);
+                                break;
 
-                        case 2:
-                            abonado.getFechaFinAbono().plusMonths(3);
-                            break;
+                            case 2:
+                                a2.getFechaFinAbono().plusMonths(3);
+                                break;
 
-                        case 3:
-                            abonado.getFechaFinAbono().plusMonths(4);
-                            break;
+                            case 3:
+                                a2.getFechaFinAbono().plusMonths(4);
+                                break;
 
-                        case 4:
-                            abonado.getFechaFinAbono().plusYears(1);
-                            break;
+                            case 4:
+                                a2.getFechaFinAbono().plusYears(1);
+                                break;
 
-                        default:
-                            System.out.println("Introduce un tipo de abonado correcto");
-                            tipoAbonados=0;
-                            break;
+                            default:
+                                System.out.println("Introduce un tipo de abonado correcto");
+                                tipoAbonados=0;
+                                break;
+                        }
+                    }while(tipoAbonados==0);
+
+                    try {
+                        A1.updateAbonados(a2.getDNI(), a2);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }while(tipoAbonados==0);
-
-                try {
-                    A1.updateAbonados(abonado.getDNI(), abonado);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
+                    break;
+            }
         }
     }
     
