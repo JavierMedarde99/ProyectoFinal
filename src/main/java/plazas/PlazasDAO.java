@@ -41,7 +41,8 @@ public class PlazasDAO implements IPlazas{
                 PlazasVO p = new PlazasVO();
                 
                 // Recogemos los datos de la plaza, guardamos en un objeto
-                p.setEstado(res.getInt("columna"));
+                p.setCodigoPlaza(res.getInt("codPlazas"));
+                p.setEstado(res.getInt("estado"));
                 p.setMatricula(res.getString("matricula"));
                
                 //Añadimos el objeto a la lista
@@ -70,7 +71,7 @@ public class PlazasDAO implements IPlazas{
             if (res.first()) {
                 // Recogemos los datos de la plaza, guardamos en un objeto
                 
-                plazas.setEstado(res.getInt("columna"));
+                plazas.setEstado(res.getInt("estado"));
                 plazas.setMatricula(res.getString("matricula"));
                 return plazas;
             }
@@ -98,7 +99,7 @@ public class PlazasDAO implements IPlazas{
             if (res.first()) {
                 // Recogemos los datos de la plaza, guardamos en un objeto
                 
-                plazas.setEstado(res.getInt("columna"));
+                plazas.setEstado(res.getInt("estado"));
                 plazas.setMatricula(res.getString("matricula"));
                 return plazas;
             }
@@ -182,23 +183,21 @@ public class PlazasDAO implements IPlazas{
     @Override
     public int updatePlazas(int codPlazas, PlazasVO nuevosDatos) throws SQLException {
          int numFilas = 0;
-        String sql = "update plazas set numPlazas = ?, matricula=?, estado=?,"
-                + " where codplazas=?";
+        String sql = "update plazas set matricula=?, estado=? "
+                + " where codPlazas=?";
 
         if (findByPk(codPlazas) == null) {
-            // La persona a actualizar no existe
+            // La plaza a actualizar no existe
             return numFilas;
         } else {
             // Instanciamos el objeto PreparedStatement para inserción
             // de datos. Sentencia parametrizada
             try (PreparedStatement prest = con.prepareStatement(sql)) {
-
-                // Establecemos los parámetros de la sentencia                
-                prest.setInt(4,nuevosDatos.getCodigoPlaza());
-                prest.setInt(1,45);
-                prest.setString(2, nuevosDatos.getMatricula());
-                prest.setInt(3,nuevosDatos.getEstado());
                 
+                // Establecemos los parámetros de la sentencia                
+                prest.setInt(3,nuevosDatos.getCodigoPlaza());
+                prest.setString(1, nuevosDatos.getMatricula());
+                prest.setInt(2,nuevosDatos.getEstado());
                 numFilas = prest.executeUpdate();
             }
             return numFilas;
