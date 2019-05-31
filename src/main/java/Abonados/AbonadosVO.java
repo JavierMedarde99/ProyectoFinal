@@ -19,7 +19,7 @@ public class AbonadosVO {
     private String DNI; //Clave primaria
     private String nombre;
     private String apellidos;
-    private int pinAbonados;
+    private String pinAbonados;
     private String tarjetaCredito;
     private String email;
     private int tipoAbonados; //1-Mensual 2-Trimestral 3-Semestral 4-Anual
@@ -30,7 +30,7 @@ public class AbonadosVO {
 public AbonadosVO() {
     }
 
-    public AbonadosVO(String DNI, String nombre, String apellidos, int pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula, LocalDate fechaInicioAbono) {
+    public AbonadosVO(String DNI, String nombre, String apellidos, String pinAbonados, String tarjetaCredito, String email, int tipoAbonados, String matricula, LocalDate fechaInicioAbono) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -80,11 +80,11 @@ public AbonadosVO() {
         this.apellidos = apellidos;
     }
 
-    public int getPinAbonados() {
+    public String getPinAbonados() {
         return pinAbonados;
     }
 
-    public void setPinAbonados(int pinAbonados) {
+    public void setPinAbonados(String pinAbonados) {
         this.pinAbonados = pinAbonados;
     }
 
