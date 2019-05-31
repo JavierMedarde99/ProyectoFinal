@@ -43,7 +43,7 @@ private Connection con = null;
                 // Recogemos los datos de la persona, guardamos en un objeto
                p.setCodPlazas(res.getInt("codPlazas"));
                 p.setMatricula(res.getString("matricula"));
-                p.setPin(res.getInt("pin"));
+                p.setPin(res.getString("pin"));
                 p.setPrecioFin(res.getDouble("precioFin"));
                 p.setPrecioMin(res.getDouble("precioPorMin"));
                 p.setTiempoInicio(res.getTime("tiempoEntrada").toLocalTime());
@@ -80,7 +80,7 @@ private Connection con = null;
                 
                 tickets.setCodPlazas(res.getInt("codPlazas"));
                 tickets.setMatricula(res.getString("matricula"));
-                tickets.setPin(res.getInt("pin"));
+                tickets.setPin(res.getString("pin"));
                 tickets.setPrecioFin(res.getDouble("precioFin"));
                 tickets.setPrecioMin(res.getDouble("precioPorMin"));
                 tickets.setTiempoInicio(res.getTime("tiempoEntrada").toLocalTime());
@@ -111,7 +111,7 @@ private Connection con = null;
                 
                 prest.setString(2,ticket.getMatricula());
                 prest.setInt(1,ticket.getCodPlazas());
-                prest.setInt(3, ticket.getPin());
+                prest.setString(3, ticket.getPin());
                 prest.setDouble(4,ticket.getPrecioFin());
                 prest.setDouble(5,ticket.getPrecioMin());
                 prest.setTime(6,Time.valueOf(ticket.getTiempoInicio()));
@@ -190,7 +190,7 @@ private Connection con = null;
                 // Establecemos los parámetros de la sentencia
                 prest.setString(8,nuevosDatos.getMatricula());
                 prest.setInt(9,nuevosDatos.getCodPlazas());
-                prest.setInt(1, nuevosDatos.getPin());
+                prest.setString(1, nuevosDatos.getPin());
                 prest.setDouble(2,nuevosDatos.getPrecioFin());
                 prest.setDouble(3,nuevosDatos.getPrecioMin());
                 prest.setTime(5,Time.valueOf(nuevosDatos.getTiempoInicio()));
