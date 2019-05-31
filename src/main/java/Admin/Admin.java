@@ -17,6 +17,7 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -154,42 +155,126 @@ public class Admin {
         }
     }
     
+    private static void modificarAbonado() {
+        AbonadosDAO daoAbonados = new AbonadosDAO();
+        
+        Scanner teclado = new Scanner(System.in);
+        Random rnd = new Random();
+        
+        int Pin = rnd.nextInt(111111-999999 + 1)+ 111110;
+        
+        System.out.println("DNI:");
+        String DNI=teclado.next();
+        
+        System.out.println("Nombre:");
+        String Nombre=teclado.next();
+        
+        System.out.println("Apellidos:");
+        String Apellidos=teclado.next();
+        
+        System.out.println("Tarjeta de credito:");
+        String Tarjeta=teclado.next();
+        
+        System.out.println("email:");
+        String Email=teclado.next();
+        
+        System.out.println("Que tipo de abonado quiere");
+        System.out.println("1.anual");
+        System.out.println("2.trimestral");
+        System.out.println("3.mensual");
+        System.out.println("4.semanal");
+        int TipoAbonado;
+        
+        do{
+            TipoAbonado=teclado.nextInt();
+            switch (TipoAbonado) {
+                case 1:
+                    TipoAbonado=1;
+                    break;
+
+                case 2:
+                    TipoAbonado=2;
+                    break;
+
+                case 3:
+                    TipoAbonado=3;
+                    break;
+
+                case 4:
+                    TipoAbonado=4;
+                    break;
+                default:
+                    TipoAbonado=0;
+            }
+        }while(TipoAbonado==0);
+        
+        System.out.println("matricula de su coche:");
+        String Matricula=teclado.next();
+        AbonadosVO abonado=new AbonadosVO(DNI,Nombre,Apellidos,Pin,Tarjeta,Email,TipoAbonado,Matricula,LocalDate.now());
+        try {
+            daoAbonados.updateAbonados(DNI, abonado);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public static void actualizardatos(AbonadosVO abonado){
         Scanner teclado = new Scanner(System.in);
         AbonadosDAO A1=new AbonadosDAO();
         int tipoAbonados;
-        do{
-        System.out.println("Tipo de abono que desa actualizar");
-        tipoAbonados = teclado.nextInt();
-        switch (tipoAbonados) {
+        System.out.println("¿Desea actualizar todos los datos personales o renovar el abono?");
+        System.out.println("1- Actualizar todos los datos");
+        System.out.println("2- Renovar el abono");
+        int opcion=teclado.nextInt();
+        switch (opcion) {
             case 1:
-               abonado.getFechaFinAbono().plusMonths(1);
+                modificarAbonado();
                 break;
             case 2:
-               abonado.getFechaFinAbono().plusMonths(3);
-                break;
-            case 3:
-                 abonado.getFechaFinAbono().plusMonths(4);
-                break;
-            case 4:
-                 abonado.getFechaFinAbono().plusYears(1);
+                do{
+                    System.out.println("Tipo de abono que desea actualizar");
+                    tipoAbonados = teclado.nextInt();
+                    switch (tipoAbonados) {
+                        case 1:
+                            abonado.getFechaFinAbono().plusMonths(1);
+                            break;
+
+                        case 2:
+                            abonado.getFechaFinAbono().plusMonths(3);
+                            break;
+
+                        case 3:
+                            abonado.getFechaFinAbono().plusMonths(4);
+                            break;
+
+                        case 4:
+                            abonado.getFechaFinAbono().plusYears(1);
+                            break;
+
+                        default:
+                            System.out.println("Introduce un tipo de abonado correcto");
+                            tipoAbonados=0;
+                            break;
+                    }
+                }while(tipoAbonados==0);
+
+                try {
+                    A1.updateAbonados(abonado.getDNI(), abonado);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
-        }while(tipoAbonados<5 && tipoAbonados>0);
-        
-        try {
-            A1.updateAbonados(abonado.getDNI(), abonado);
-        } catch (SQLException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }
     
-    public static void eliminarAbonado(AbonadosVO abonado){
+    public static void eliminarAbonado(String dni) throws SQLException{
         AbonadosDAO A1=new AbonadosDAO();
-        AbonadosVO eliminacion = new AbonadosVO(abonado.getDNI(),"","",abonado.getTipoAbonados(),abonado.getTarjetaCredito(),"",5,abonado.getMatricula(),abonado.getFechaInicioAbono());
+        AbonadosVO eliminacion= new AbonadosVO();
         try {
-            A1.updateAbonados(abonado.getDNI(), eliminacion);
+            if(A1.findByPk(dni)!=null){
+                eliminacion=A1.findByPk(dni);
+                A1.updateAbonados(dni, eliminacion);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
