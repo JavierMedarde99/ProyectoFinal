@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -78,6 +79,49 @@ public class Admin {
             }
         }
         System.out.println("Total recogido de abonos: "+precioTotal);
+    }
+    
+    public static void pedirFechas() throws SQLException{
+        int dia1, dia2, mes1, mes2, anio1, anio2, hora1, hora2, min1, min2;
+        Scanner teclado=new Scanner(System.in);
+        
+        System.out.println("Introduce el día de la primera fecha: ");
+        dia1=teclado.nextInt();
+                                                
+        System.out.println("Introduce el més de la primera fecha: ");
+        mes1=teclado.nextInt();
+                                                
+        System.out.println("Introduce el año de la primera fecha: ");
+        anio1=teclado.nextInt();
+                                                
+        System.out.println("Introduce la hora de la primera fecha: ");
+        hora1=teclado.nextInt();
+                                                
+        System.out.println("Introduce el minuto de la primera fecha: ");
+        min1=teclado.nextInt();
+        
+        LocalDate fecha1=LocalDate.of(anio1, mes1, dia1);
+        LocalTime tiempo1=LocalTime.of(hora1, min1);
+        
+        System.out.println("Introduce el día de la segunda fecha: ");
+        dia2=teclado.nextInt();
+                                                
+        System.out.println("Introduce el més de la segunda fecha: ");
+        mes2=teclado.nextInt();
+                                                
+        System.out.println("Introduce el año de la segunda fecha: ");
+        anio2=teclado.nextInt();
+                                                
+        System.out.println("Introduce la hora de la segunda fecha: ");
+        hora2=teclado.nextInt();
+                                                
+        System.out.println("Introduce el minuto de la segunda fecha: ");
+        min2=teclado.nextInt();
+        
+        LocalDate fecha2=LocalDate.of(anio2, mes2, dia2);
+        LocalTime tiempo2=LocalTime.of(hora2, min2);
+        
+        PrecioEntreDosFechas(fecha1, fecha2, tiempo1, tiempo2);
     }
     
     public static void estadoPlazas() throws SQLException{
