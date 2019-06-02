@@ -5,6 +5,8 @@
  */
 package Tickets;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
@@ -27,26 +29,17 @@ public class TicketsVO {
      private LocalDate fechaFin;
     private LocalTime tiempoFin;
 
-    public TicketsVO(int codPlazas, String matricula, String pin, Double precioFin, Double precioMin, LocalDate fechaInicio, LocalTime tiempoInicio) {
+    
+    public TicketsVO(int codPlazas, String matricula, String pin, Double precioFin, Double precioMin, Date fechaInicio, Time tiempoInicio, Date fechaFin, Time tiempoFin) {
         this.codPlazas = codPlazas;
         this.matricula = matricula;
         this.pin = pin;
         this.precioFin = precioFin;
         this.precioMin = precioMin;
-        this.fechaInicio = fechaInicio;
-        this.tiempoInicio = tiempoInicio;
-    }
-
-    public TicketsVO(int codPlazas, String matricula, String pin, Double precioFin, Double precioMin, LocalDate fechaInicio, LocalTime tiempoInicio, LocalDate fechaFin, LocalTime tiempoFin) {
-        this.codPlazas = codPlazas;
-        this.matricula = matricula;
-        this.pin = pin;
-        this.precioFin = precioFin;
-        this.precioMin = precioMin;
-        this.fechaInicio = fechaInicio;
-        this.tiempoInicio = tiempoInicio;
-        this.fechaFin = fechaFin;
-        this.tiempoFin = tiempoFin;
+        this.fechaInicio = fechaInicio.toLocalDate();
+        this.tiempoInicio = tiempoInicio.toLocalTime();
+        this.fechaFin = fechaFin.toLocalDate();
+        this.tiempoFin = tiempoFin.toLocalTime();
     }
 
     

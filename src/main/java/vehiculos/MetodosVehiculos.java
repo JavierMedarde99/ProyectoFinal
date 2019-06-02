@@ -20,7 +20,9 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -189,7 +191,7 @@ public class MetodosVehiculos {
     
     public static void depositarVehiculoAbonado(String dni, String matricula, String pin) throws SQLException{
         AbonadosDAO a1=new AbonadosDAO();
-        AbonadosVO a2=new AbonadosVO();
+        AbonadosVO a2=a1.findByPk(dni);
         PlazasDAO p1=new PlazasDAO();
         PlazasVO p2=new PlazasVO();
         
@@ -220,7 +222,7 @@ public class MetodosVehiculos {
                     v2=v1.findByPk(matricula);
                     Double precioMin=MetodosTickets.calcularPrecioMinuto(v2);
                     long tiempo=MetodosTickets.retirarTicket(t2.getTiempoInicio(), t2.getFechaInicio());
-                    t1.updateTickets(codPlaza, matricula, new TicketsVO(codPlaza, matricula, pin, precioMin*tiempo, precioMin, t2.getFechaInicio(), t2.getTiempoInicio(), LocalDate.now(), LocalTime.now()));
+                    t1.updateTickets(codPlaza, matricula, new TicketsVO(codPlaza, matricula, pin, precioMin*tiempo, precioMin, Date.valueOf(t2.getFechaInicio()), Time.valueOf(t2.getTiempoInicio()),Date.valueOf(LocalDate.now()),Time.valueOf(LocalTime.now())));
                     p1.updatePlazas(codPlaza, new PlazasVO("", 2));
                 }   
             }
@@ -267,7 +269,7 @@ public class MetodosVehiculos {
     public static void meterVehiculoNoAbonado(String matricula, int tipo){
          int cont=0;
         PlazasVO plazas = new PlazasVO(matricula,1);
-        
+        TicketsDAO daoticket = new TicketsDAO();
         PlazasDAO daoplaza = new PlazasDAO();
         ArrayList<PlazasVO> plazasArray = new ArrayList<>();
         
@@ -282,8 +284,14 @@ public class MetodosVehiculos {
                         case 1:
                             for(int j=101;j<116;j++){
                             if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
+                                try {
+                                    MetodosTickets.crearTicket(matricula, j, tipo);
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                         try {
                             daoplaza.updatePlazas(j, plazas);
+                           
                              cont++;
                         } catch (SQLException ex) {
                             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
@@ -295,10 +303,15 @@ public class MetodosVehiculos {
                              
                                for(int j=201;j<216;j++){
                             if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
-                               
-                            cont++;
+                                try {
+                                    MetodosTickets.crearTicket(matricula, j, tipo);
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            
                         try {
-                            daoplaza.updatePlazas(j, plazas);
+                            MetodosTickets.crearTicket(matricula, j, tipo);
+                           cont++;
                             
                         } catch (SQLException ex) {
                             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
@@ -307,10 +320,16 @@ public class MetodosVehiculos {
                                }
                             break;
                           case 3:
-                              for(int j=201;j<216;j++){
+                              for(int j=301;j<316;j++){
                             if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
+                                 try {
+                                    MetodosTickets.crearTicket(matricula, j, tipo);
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                         try {
                             daoplaza.updatePlazas(j, plazas);
+                           
                               cont++;
                         } catch (SQLException ex) {
                             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
@@ -326,9 +345,11 @@ public class MetodosVehiculos {
                            
                        
                     }
-           
+             public static void retirarVehiculoNoAbonado(String matricula, int plaza){
+
+}   
             }
-            
+        
         
         
     

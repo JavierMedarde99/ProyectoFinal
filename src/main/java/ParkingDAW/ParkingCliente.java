@@ -69,7 +69,7 @@ public class ParkingCliente {
                                                 pin = teclado.nextLine();
                                                 MetodosVehiculos.depositarVehiculoAbonado(dni, matricula, pin);
                                             }
-                                            ;
+                                            
                                             break;
 
                                         case 2:
@@ -113,7 +113,7 @@ public class ParkingCliente {
                                             break;
 
                                         case 2:
-                                            System.out.println("Introduce tu dni: ");
+                                            System.out.println("Introduce tu Matricula: ");
                                             teclado.nextLine();
                                             dni = teclado.nextLine();
                                             System.out.println("Introduce el código de la plaza: ");

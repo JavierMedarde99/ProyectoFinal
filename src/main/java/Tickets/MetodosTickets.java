@@ -5,7 +5,9 @@
  */
 package Tickets;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -63,10 +65,10 @@ public class MetodosTickets {
             precioMin=TARIFA_CARAVANA;
         }
         
-        LocalDate fechaInicio=LocalDate.now();
-        LocalTime tiempoInicio=LocalTime.now();
+        Date fechaInicio=Date.valueOf(LocalDate.now());
+        Time tiempoInicio=Time.valueOf(LocalTime.now());
         
-        TicketsVO t=new TicketsVO(plaza, matricula, pin, 0.0, precioMin, fechaInicio, tiempoInicio);
+        TicketsVO t=new TicketsVO(plaza, matricula, pin, 0.0, precioMin, fechaInicio, tiempoInicio,Date.valueOf(LocalDate.MIN),Time.valueOf(LocalTime.MIN));
         
         TicketsDAO t1=new TicketsDAO();
         t1.insertTickets(t);
