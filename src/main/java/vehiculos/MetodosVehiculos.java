@@ -263,4 +263,72 @@ public class MetodosVehiculos {
             System.out.println(e.getMessage());
 	}
     }
-}
+    
+    public static void meterVehiculoNoAbonado(String matricula, int tipo){
+         int cont=0;
+        PlazasVO plazas = new PlazasVO(matricula,1);
+        
+        PlazasDAO daoplaza = new PlazasDAO();
+        ArrayList<PlazasVO> plazasArray = new ArrayList<>();
+        
+            try {
+                plazasArray=daoplaza.getAll();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            for(int i=1;i<plazasArray.size();i++){
+                
+                    switch (tipo) {
+                        case 1:
+                            for(int j=101;j<116;j++){
+                            if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
+                        try {
+                            daoplaza.updatePlazas(j, plazas);
+                             cont++;
+                        } catch (SQLException ex) {
+                            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                            }
+                            }
+                          break;
+                          case 2:
+                             
+                               for(int j=201;j<216;j++){
+                            if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
+                               
+                            cont++;
+                        try {
+                            daoplaza.updatePlazas(j, plazas);
+                            
+                        } catch (SQLException ex) {
+                            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                            }  
+                               }
+                            break;
+                          case 3:
+                              for(int j=201;j<216;j++){
+                            if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
+                        try {
+                            daoplaza.updatePlazas(j, plazas);
+                              cont++;
+                        } catch (SQLException ex) {
+                            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                            }  
+                        }
+                              break;
+                           
+                                  default:
+                                      System.out.println("no hay plazas disponibles");
+                              }
+                    }
+                           
+                       
+                    }
+           
+            }
+            
+        
+        
+    

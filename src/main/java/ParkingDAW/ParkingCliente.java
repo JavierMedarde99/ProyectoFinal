@@ -81,7 +81,7 @@ public class ParkingCliente {
                                             System.out.println("2. Motocicleta");
                                             System.out.println("3. Caravana");
                                             tipo = teclado.nextInt();
-                                            MetodosVehiculos.depositarVehiculo(matricula, tipo);
+                                            MetodosVehiculos.meterVehiculoNoAbonado(matricula, tipo);
                                             break;
 
                                         default:
@@ -157,6 +157,7 @@ public class ParkingCliente {
                             default:
                                 System.out.println("Introduce una opción válida");
                                 Eleccion2 = 0;
+                                        
                         }
                     } while (Eleccion2 == 0);
                 case 2:
