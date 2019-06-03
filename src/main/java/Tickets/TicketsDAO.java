@@ -67,8 +67,8 @@ private Connection con = null;
 
         try (PreparedStatement prest = con.prepareStatement(sql)) {
             // Preparamos la sentencia parametrizada
-            prest.setString(2, matricula);
-             prest.setInt(1, codPlazas);
+            prest.setString(1, matricula);
+             prest.setInt(2, codPlazas);
 
             // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
             res = prest.executeQuery();
@@ -189,15 +189,16 @@ private Connection con = null;
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(8,nuevosDatos.getMatricula());
-                prest.setInt(9,nuevosDatos.getCodPlazas());
+                prest.setString(8,matricula);
+                prest.setInt(9,codPlazas);
                 prest.setString(1, nuevosDatos.getPin());
                 prest.setDouble(2,nuevosDatos.getPrecioFin());
                 prest.setDouble(3,nuevosDatos.getPrecioMin());
-                prest.setTime(5,Time.valueOf(nuevosDatos.getTiempoInicio()));
                 prest.setDate(4,Date.valueOf(nuevosDatos.getFechaInicio()));
+                prest.setTime(5,Time.valueOf(nuevosDatos.getTiempoInicio()));
+               prest.setDate(6,Date.valueOf(nuevosDatos.getFechaFin()));
                 prest.setTime(7,Time.valueOf(nuevosDatos.getTiempoFin()));
-                prest.setDate(6,Date.valueOf(nuevosDatos.getFechaFin()));
+                
                 
                 numFilas = prest.executeUpdate();
             }
