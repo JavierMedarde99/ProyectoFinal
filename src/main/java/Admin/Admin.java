@@ -307,7 +307,7 @@ public class Admin {
                 p2.setEstado(2);
                 p2.setMatricula(null);
                 
-                a2.setDNI("Retirado"+(contador++));
+                a2.setDNI("Ret."+(contador++));
                 a2.setNombre("------");
                 a2.setApellidos("------");
                 a2.setEmail("------");
