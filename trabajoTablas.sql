@@ -22,7 +22,7 @@ fechaFinAbono date,
 CONSTRAINT PK_abonados PRIMARY KEY (DNI),
 CONSTRAINT FK_AbonadosVehiculos FOREIGN KEY (matricula)
     REFERENCES vehiculos(matricula)
-on delete set null on update cascade
+on delete cascade on update cascade
 );
 
 create table if not exists plazas(
@@ -32,15 +32,15 @@ estado int,
 CONSTRAINT PK_plazas PRIMARY KEY (codPlazas),
 CONSTRAINT FK_PlazasVehiculos FOREIGN KEY (matricula)
     REFERENCES vehiculos(matricula)
-on delete set null on update cascade
+on delete cascade on update cascade
 );
 
 create table if not exists tikets(
 codPlazas int,
 matricula char(8),
 pin int(6),
-precioFin int,
-precioPorMin int,
+precioFin double,
+precioPorMin double,
 fechaEntrada date,
 tiempoEntrada time,
 fechaSalida date,
