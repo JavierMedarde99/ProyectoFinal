@@ -67,7 +67,7 @@ public class ParkingCliente {
                                                 matricula = teclado.nextLine();
                                                 System.out.println("Introduce el pin para retirar el vehículo: ");
                                                 pin = teclado.nextLine();
-                                                MetodosVehiculos.depositarVehiculoAbonado(dni, matricula, pin);
+                                                MetodosVehiculos.meterVehiculoAbonado(dni, matricula, pin);
                                             }
 
                                             break;

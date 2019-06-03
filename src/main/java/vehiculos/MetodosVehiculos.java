@@ -398,4 +398,29 @@ public class MetodosVehiculos {
             }
         }
     }
+    
+    public static void meterVehiculoAbonado(String dni, String matricula, String pin) {
+         PlazasDAO p1 = new PlazasDAO();
+        PlazasVO p2 = new PlazasVO(matricula,3);
+        PlazasVO p3 = new PlazasVO();
+        AbonadosDAO a1 = new AbonadosDAO();
+        AbonadosVO a2 = new AbonadosVO();
+        try {
+            a2 = a1.findByPk(dni);
+        } catch (SQLException ex) {
+            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            p3=p1.findByFk(matricula);
+        } catch (SQLException ex) {
+            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(a2.getMatricula().equalsIgnoreCase(matricula) && a2.getPinAbonados().equalsIgnoreCase(pin) && a2.getDNI().equalsIgnoreCase(dni)){
+             try {
+                 p1.updatePlazas(p3.getCodigoPlaza(), p2);
+             } catch (SQLException ex) {
+                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+    }
 }
