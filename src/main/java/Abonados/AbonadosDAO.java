@@ -176,7 +176,7 @@ public class AbonadosDAO implements IAbonados {
     @Override
     public int updateAbonados(String DNI, AbonadosVO nuevosDatos) throws SQLException {
         int numFilas = 0;
-        String sql = "update abonados set nombre = ?, apellidos = ?,pinAbonados=?,"
+        String sql = "update abonados set dni=?, nombre = ?, apellidos = ?,pinAbonados=?,"
                 + "tarjetaCredito=?,email=?,tipoAbonado=?,"
                 + "fechaInicioAbono=?, fechaFinAbono=?   where DNI=?";
 
@@ -189,17 +189,18 @@ public class AbonadosDAO implements IAbonados {
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(9, nuevosDatos.getDNI());
-                prest.setString(1, nuevosDatos.getNombre());
-                prest.setString(2, nuevosDatos.getApellidos());
-                prest.setString(3, nuevosDatos.getPinAbonados());
-                prest.setString(4, nuevosDatos.getTarjetaCredito());
-                prest.setString(5, nuevosDatos.getEmail());
-                prest.setInt(6, nuevosDatos.getTipoAbonados());
+                prest.setString(1, nuevosDatos.getDNI());
+                prest.setString(10, DNI);
+                prest.setString(2, nuevosDatos.getNombre());
+                prest.setString(3, nuevosDatos.getApellidos());
+                prest.setString(4, nuevosDatos.getPinAbonados());
+                prest.setString(5, nuevosDatos.getTarjetaCredito());
+                prest.setString(6, nuevosDatos.getEmail());
+                prest.setInt(7, nuevosDatos.getTipoAbonados());
                 /*prest.setString(7, nuevosDatos.getMatricula());
                 System.out.println(nuevosDatos.getMatricula());*/
-                prest.setDate(7, Date.valueOf(nuevosDatos.getFechaInicioAbono()));
-                prest.setDate(8, Date.valueOf(nuevosDatos.getFechaFinAbono()));
+                prest.setDate(8, Date.valueOf(nuevosDatos.getFechaInicioAbono()));
+                prest.setDate(9, Date.valueOf(nuevosDatos.getFechaFinAbono()));
 
                 numFilas = prest.executeUpdate();
             }
