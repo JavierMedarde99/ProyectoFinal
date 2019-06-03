@@ -99,6 +99,7 @@ public class PlazasDAO implements IPlazas{
             if (res.first()) {
                 // Recogemos los datos de la plaza, guardamos en un objeto
                 
+                plazas.setCodigoPlaza(res.getInt("codPlazas"));
                 plazas.setEstado(res.getInt("estado"));
                 plazas.setMatricula(res.getString("matricula"));
                 return plazas;
