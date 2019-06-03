@@ -29,7 +29,10 @@ create table if not exists plazas(
 codPlazas int,
 matricula char(8),
 estado int,
-CONSTRAINT PK_plazas PRIMARY KEY (codPlazas)
+CONSTRAINT PK_plazas PRIMARY KEY (codPlazas),
+CONSTRAINT FK_PlazasVehiculos FOREIGN KEY (matricula)
+    REFERENCES vehiculos(matricula)
+on delete cascade on update cascade
 );
 
 create table if not exists tikets(

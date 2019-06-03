@@ -17,7 +17,11 @@ public class Conexion {
     private static final String SERVIDOR = "jdbc:mysql://localhost/";
     private static final String NOMBRE_BASE_DATOS = "parkingDaw";
     private static final String USER = "root";
+<<<<<<< Updated upstream
     private static final String PASS = "jajavimed99";
+=======
+    private static final String PASS = "123456";
+>>>>>>> Stashed changes
 
     private static Connection instancia = null;
     
