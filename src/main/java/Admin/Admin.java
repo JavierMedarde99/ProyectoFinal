@@ -295,6 +295,7 @@ public class Admin {
         VehiculoVO v2=new VehiculoVO();
         PlazasDAO p1=new PlazasDAO();
         PlazasVO p2=new PlazasVO();
+        int contador=1;
         
         try {
             if(a1.findByPk(dni)!=null){
@@ -303,21 +304,20 @@ public class Admin {
                 v2=v1.findByPk(a2.getMatricula());
                 p2=p1.findByFk(a2.getMatricula());
                 
-                PlazasVO nuevaPlaza=new PlazasVO();
-                nuevaPlaza.setEstado(2);
-                nuevaPlaza.setMatricula(null);
+                p2.setEstado(2);
+                p2.setMatricula(null);
                 
-                a2.setDNI("------");
+                a2.setDNI("Retirado"+(contador++));
                 a2.setNombre("------");
                 a2.setApellidos("------");
                 a2.setEmail("------");
                 a2.setPinAbonados("------");
                 a2.setTarjetaCredito("------");
-                a2.setMatricula("------");
                 
                 a1.updateAbonados(dni, a2);
+                p1.updatePlazas(p2.getCodigoPlaza(), p2);
                 v1.deleteVehiculo(v2);
-                p1.updatePlazas(p2.getCodigoPlaza(), nuevaPlaza);
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
