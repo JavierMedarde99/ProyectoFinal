@@ -69,7 +69,7 @@ public class ParkingCliente {
                                                 pin = teclado.nextLine();
                                                 MetodosVehiculos.depositarVehiculoAbonado(dni, matricula, pin);
                                             }
-                                            
+
                                             break;
 
                                         case 2:
@@ -90,7 +90,7 @@ public class ParkingCliente {
                                             break;
                                     }
                                 } while (Eleccion3 == 0);
-
+break;
                             case 2:
                                 do {
                                     System.out.println("¿Es usted abonado?");
@@ -157,7 +157,7 @@ public class ParkingCliente {
                             default:
                                 System.out.println("Introduce una opción válida");
                                 Eleccion2 = 0;
-                                        
+
                         }
                     } while (Eleccion2 == 0);
                 case 2:
