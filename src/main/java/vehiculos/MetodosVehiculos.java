@@ -323,6 +323,13 @@ public class MetodosVehiculos {
                         } catch (SQLException ex) {
                             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        
+                        try {
+                                    System.out.println("hola");
+                                    daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }  
                                }
                             break;
@@ -342,6 +349,13 @@ public class MetodosVehiculos {
                         } catch (SQLException ex) {
                             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        
+                        try {
+                                    System.out.println("hola");
+                                    daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }  
                         }
                               break;
