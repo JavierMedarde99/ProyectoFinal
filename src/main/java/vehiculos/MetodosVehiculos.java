@@ -271,6 +271,7 @@ public class MetodosVehiculos {
         PlazasVO plazas = new PlazasVO(matricula,1);
         TicketsDAO daoticket = new TicketsDAO();
         PlazasDAO daoplaza = new PlazasDAO();
+        VehiculoDAO daovehiculo = new VehiculoDAO();
         ArrayList<PlazasVO> plazasArray = new ArrayList<>();
         
             try {
@@ -284,15 +285,15 @@ public class MetodosVehiculos {
                         case 1:
                             for(int j=101;j<116;j++){
                             if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
-                                try {
+                                /*try {
                                     MetodosTickets.crearTicket(matricula, j, tipo);
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                                }*/
                         try {
+                            daovehiculo.insertVehiculo(new VehiculoVO(matricula,tipo));
                             daoplaza.updatePlazas(j, plazas);
-                           
-                             cont++;
+                            cont++;
                         } catch (SQLException ex) {
                             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -303,14 +304,15 @@ public class MetodosVehiculos {
                              
                                for(int j=201;j<216;j++){
                             if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
-                                try {
+                               /* try {
                                     MetodosTickets.crearTicket(matricula, j, tipo);
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                            
+                            */
                         try {
-                            MetodosTickets.crearTicket(matricula, j, tipo);
+                            daovehiculo.insertVehiculo(new VehiculoVO(matricula,tipo));
+                            daoplaza.updatePlazas(j, plazas);
                            cont++;
                             
                         } catch (SQLException ex) {
@@ -322,12 +324,13 @@ public class MetodosVehiculos {
                           case 3:
                               for(int j=301;j<316;j++){
                             if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
-                                 try {
+                                 /*try {
                                     MetodosTickets.crearTicket(matricula, j, tipo);
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                                }*/
                         try {
+                            daovehiculo.insertVehiculo(new VehiculoVO(matricula,tipo));
                             daoplaza.updatePlazas(j, plazas);
                            
                               cont++;
