@@ -79,16 +79,6 @@ public class MetodosVehiculos {
         return vehiculo;
     }
 
-    public static void EliminarVehiculo(String matricula) {
-        try {
-            VehiculoDAO daoVehiculo = new VehiculoDAO();
-            VehiculoVO vehiculo = daoVehiculo.findByPk(matricula);
-            daoVehiculo.deleteVehiculo(vehiculo);
-        } catch (SQLException ex) {
-            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     public static boolean comprobarMatricula(String matricula) throws SQLException {
         PlazasDAO p1 = new PlazasDAO();
         ArrayList<PlazasVO> listaMatriculas = new ArrayList<>();
@@ -100,146 +90,6 @@ public class MetodosVehiculos {
             }
         }
         return false;
-    }
-
-    public static void depositarVehiculo(String matricula, int tipo) throws SQLException {
-        PlazasDAO p = new PlazasDAO();
-        ArrayList<PlazasVO> listaPlazas = new ArrayList<>();
-        ArrayList<PlazasVO> listaPlazasLibres = new ArrayList<>();
-        ArrayList<PlazasVO> listaTurismo = new ArrayList<>();
-        ArrayList<PlazasVO> listaMotocicleta = new ArrayList<>();
-        ArrayList<PlazasVO> listaCaravana = new ArrayList<>();
-        listaPlazas = p.getAll();
-
-        //if(comprobarMatricula(matricula)==false){
-        //Coge todas las plazas libres del parking
-        for (PlazasVO tmp : listaPlazas) {
-            if (tmp.getEstado() == 2) {
-                listaPlazasLibres.add(tmp);
-            }
-        }
-
-        //Muestra las plazas libres de turismo
-        System.out.println("Plazas de turismo libres: ");
-        for (PlazasVO tmp : listaPlazasLibres) {
-            if (tmp.getCodigoPlaza() > 100 && tmp.getCodigoPlaza() <= 115) {
-                listaTurismo.add(tmp);
-            }
-        }
-        listaTurismo.forEach(System.out::println);
-
-        //Muestra las plazas libres de motocicleta
-        System.out.println("Plazas de motocicleta libres: ");
-        for (PlazasVO tmp : listaPlazasLibres) {
-            if (tmp.getCodigoPlaza() > 200 && tmp.getCodigoPlaza() <= 215) {
-                listaMotocicleta.add(tmp);
-            }
-        }
-        listaMotocicleta.forEach(System.out::println);
-
-        //Muestra las plazas libres de caravanas
-        System.out.println("Plazas de caravana libres: ");
-        for (PlazasVO tmp : listaPlazasLibres) {
-            if (tmp.getCodigoPlaza() > 300 && tmp.getCodigoPlaza() <= 315) {
-                listaCaravana.add(tmp);
-            }
-        }
-        listaCaravana.forEach(System.out::println);
-
-        switch (tipo) {
-            case 1:
-                if (!listaTurismo.isEmpty()) {
-                    System.out.println("Plaza: " + listaTurismo.get(0));
-                    PlazasVO plazaLibre = listaTurismo.get(0);
-                    plazaLibre.setEstado(1);
-                    plazaLibre.setMatricula(matricula);
-                    p.updatePlazas(listaTurismo.get(0).getCodigoPlaza(), plazaLibre);
-                    MetodosTickets.crearTicket(matricula, listaTurismo.get(0).getCodigoPlaza(), tipo);
-                }
-                break;
-
-            case 2:
-                if (!listaMotocicleta.isEmpty()) {
-                    System.out.println("Plaza: " + listaMotocicleta.get(0));
-                    PlazasVO plazaLibre = listaMotocicleta.get(0);
-                    plazaLibre.setEstado(1);
-                    plazaLibre.setMatricula(matricula);
-                    p.updatePlazas(listaMotocicleta.get(0).getCodigoPlaza(), plazaLibre);
-                    MetodosTickets.crearTicket(matricula, listaMotocicleta.get(0).getCodigoPlaza(), tipo);
-
-                }
-                break;
-
-            case 3:
-                if (!listaCaravana.isEmpty()) {
-                    System.out.println("Plaza: " + listaCaravana.get(0));
-                    PlazasVO plazaLibre = listaCaravana.get(0);
-                    plazaLibre.setEstado(1);
-                    plazaLibre.setMatricula(matricula);
-                    p.updatePlazas(listaCaravana.get(0).getCodigoPlaza(), plazaLibre);
-                    MetodosTickets.crearTicket(matricula, listaCaravana.get(0).getCodigoPlaza(), tipo);
-                }
-                break;
-            default:
-                System.out.println("Tipo de vehículo incorrecto");
-        }
-        //}else{
-        System.out.println("La matricula ya existe");
-        //}
-    }
-
-    public static void depositarVehiculoAbonado(String dni, String matricula, String pin) throws SQLException {
-        AbonadosDAO a1 = new AbonadosDAO();
-        AbonadosVO a2 = a1.findByPk(dni);
-        PlazasDAO p1 = new PlazasDAO();
-        PlazasVO p2 = new PlazasVO();
-
-        a2 = a1.findByPk(dni);
-
-        if (matricula.equalsIgnoreCase(a2.getMatricula()) && pin == a2.getPinAbonados()) {
-            if (p1.findByFk(matricula) != null) {
-                p2 = p1.findByFk(matricula);
-                p1.updatePlazas(p2.getCodigoPlaza(), new PlazasVO(matricula, 3));
-                escribirFicheroPin(a2);
-            }
-        }
-    }
-
-    public static void retirarVehiculo(String matricula, int codPlaza, String pin) throws SQLException {
-        PlazasDAO p1 = new PlazasDAO();
-        PlazasVO p2 = new PlazasVO();
-        TicketsDAO t1 = new TicketsDAO();
-        TicketsVO t2 = new TicketsVO();
-        VehiculoDAO v1 = new VehiculoDAO();
-        VehiculoVO v2 = new VehiculoVO();
-
-        if (p2.getCodigoPlaza() == codPlaza && p2.getMatricula().equalsIgnoreCase(matricula) && p1.findByPk(codPlaza) != null) {
-            p2 = p1.findByPk(codPlaza);
-            if (t1.findByPk(matricula, codPlaza) != null) {
-                t2 = t1.findByPk(matricula, codPlaza);
-                if (t2.getPin().equalsIgnoreCase(pin)) {
-                    v2 = v1.findByPk(matricula);
-                    Double precioMin = MetodosTickets.calcularPrecioMinuto(v2);
-                    long tiempo = MetodosTickets.retirarTicket(t2.getTiempoInicio(), t2.getFechaInicio());
-                    t1.updateTickets(codPlaza, matricula, new TicketsVO(codPlaza, matricula, pin, precioMin * tiempo, precioMin, Date.valueOf(t2.getFechaInicio()), Time.valueOf(t2.getTiempoInicio()), Date.valueOf(LocalDate.now()), Time.valueOf(LocalTime.now())));
-                    p1.updatePlazas(codPlaza, new PlazasVO("", 2));
-                }
-            }
-        }
-    }
-
-    public static void retirarVehiculoAbonado(String dni, String matricula, String pin) throws SQLException {
-        PlazasDAO p1 = new PlazasDAO();
-        PlazasVO p2 = new PlazasVO();
-        AbonadosDAO a1 = new AbonadosDAO();
-        AbonadosVO a2 = new AbonadosVO();
-
-        a2 = a1.findByPk(dni);
-
-        if (p1.findByFk(matricula) != null && a2.getMatricula().equalsIgnoreCase(matricula) && a2.getPinAbonados().equalsIgnoreCase(pin)) {
-            p1.updatePlazas(p2.getCodigoPlaza(), new PlazasVO(p2.getMatricula(), 4));
-        }
-
     }
 
     public static void escribirFicheroPin(AbonadosVO abonado) {
@@ -350,7 +200,7 @@ public class MetodosVehiculos {
                             }
 
                             try {
-                                
+
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
@@ -374,14 +224,14 @@ public class MetodosVehiculos {
         VehiculoDAO v1 = new VehiculoDAO();
         VehiculoVO v2 = new VehiculoVO();
         try {
-            
+
             t2 = t1.findByPk(matricula, plaza);
         } catch (SQLException ex) {
             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
+
         if (t2.getCodPlazas() == plaza && t2.getMatricula().equalsIgnoreCase(matricula) && t2.getPin().equalsIgnoreCase(pin)) {
-           
+
             try {
                 p1.updatePlazas(plaza, p2);
             } catch (SQLException ex) {
@@ -398,10 +248,10 @@ public class MetodosVehiculos {
             }
         }
     }
-    
+
     public static void meterVehiculoAbonado(String dni, String matricula, String pin) {
-         PlazasDAO p1 = new PlazasDAO();
-        PlazasVO p2 = new PlazasVO(matricula,3);
+        PlazasDAO p1 = new PlazasDAO();
+        PlazasVO p2 = new PlazasVO(matricula, 3);
         PlazasVO p3 = new PlazasVO();
         AbonadosDAO a1 = new AbonadosDAO();
         AbonadosVO a2 = new AbonadosVO();
@@ -411,16 +261,41 @@ public class MetodosVehiculos {
             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            p3=p1.findByFk(matricula);
+            p3 = p1.findByFk(matricula);
         } catch (SQLException ex) {
             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(a2.getMatricula().equalsIgnoreCase(matricula) && a2.getPinAbonados().equalsIgnoreCase(pin) && a2.getDNI().equalsIgnoreCase(dni)){
-             try {
-                 p1.updatePlazas(p3.getCodigoPlaza(), p2);
-             } catch (SQLException ex) {
-                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-             }
+        if (a2.getMatricula().equalsIgnoreCase(matricula) && a2.getPinAbonados().equalsIgnoreCase(pin) && a2.getDNI().equalsIgnoreCase(dni)) {
+            try {
+                p1.updatePlazas(p3.getCodigoPlaza(), p2);
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public static void sacarVehiculoAbonado(String dni, String matricula, String pin) {
+        PlazasDAO p1 = new PlazasDAO();
+        PlazasVO p2 = new PlazasVO(matricula, 3);
+        PlazasVO p3 = new PlazasVO();
+        AbonadosDAO a1 = new AbonadosDAO();
+        AbonadosVO a2 = new AbonadosVO();
+        try {
+            a2 = a1.findByPk(dni);
+        } catch (SQLException ex) {
+            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            p3 = p1.findByFk(matricula);
+        } catch (SQLException ex) {
+            Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (a2.getMatricula().equalsIgnoreCase(matricula) && a2.getPinAbonados().equalsIgnoreCase(pin) && a2.getDNI().equalsIgnoreCase(dni)) {
+            try {
+                p1.updatePlazas(p3.getCodigoPlaza(), p2);
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
