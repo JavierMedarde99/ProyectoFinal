@@ -153,7 +153,7 @@ public class VehiculoDAO implements IVehiculo{
     @Override
     public int updateVehiculo(String matricula, VehiculoVO nuevosDatos) throws SQLException {
          int numFilas = 0;
-        String sql = "update vehiculos set tipoVehiculo=?"
+        String sql = "update vehiculos set matricula=?, tipoVehiculo=?"
                 + " where matricula=?";
 
         if (findByPk(matricula) == null) {
@@ -165,8 +165,9 @@ public class VehiculoDAO implements IVehiculo{
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(2,nuevosDatos.getMatricula());
-                prest.setInt(1,nuevosDatos.getTipoVehiculo());
+                prest.setString(1,nuevosDatos.getMatricula());
+                prest.setInt(2,nuevosDatos.getTipoVehiculo());
+                prest.setString(3,matricula);
                 
                 numFilas = prest.executeUpdate();
             }
