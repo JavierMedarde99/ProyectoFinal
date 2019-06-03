@@ -114,10 +114,11 @@ private Connection con = null;
                 prest.setString(3, ticket.getPin());
                 prest.setDouble(4,ticket.getPrecioFin());
                 prest.setDouble(5,ticket.getPrecioMin());
-                prest.setTime(6,Time.valueOf(ticket.getTiempoInicio()));
-                prest.setDate(7,Date.valueOf(ticket.getFechaInicio()));
-                prest.setTime(8,Time.valueOf(ticket.getTiempoFin()));
-                prest.setDate(9,Date.valueOf(ticket.getFechaFin()));
+                prest.setDate(6,Date.valueOf(ticket.getFechaInicio()));
+                prest.setTime(7,Time.valueOf(ticket.getTiempoInicio()));
+                prest.setDate(8,Date.valueOf(ticket.getFechaFin()));
+                prest.setTime(9,Time.valueOf(ticket.getTiempoFin()));
+                
 
                 numFilas = prest.executeUpdate();
             }
