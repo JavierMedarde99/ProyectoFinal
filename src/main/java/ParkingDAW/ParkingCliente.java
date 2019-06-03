@@ -131,7 +131,7 @@ public class ParkingCliente {
                                             break;
                                     }
                                 } while (Eleccion3 == 0);
-
+                                break;
                             case 3:
                                 System.out.println("Introduce un DNI: ");
                                 teclado.nextLine();

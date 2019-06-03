@@ -284,21 +284,24 @@ public class MetodosVehiculos {
                     switch (tipo) {
                         case 1:
                             for(int j=101;j<116;j++){
-                                System.out.println(j);
+                                
                             if(plazasArray.get(i).getCodigoPlaza()==j &&plazasArray.get(i).getEstado()==2 && cont==0){
-                                /*try {
-                                    MetodosTickets.crearTicket(matricula, j, tipo);
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-                                }*/
+                                
                         try {
-                            System.out.println(j);
+                            
                             daovehiculo.insertVehiculo(new VehiculoVO(matricula,tipo));
                             daoplaza.updatePlazas(j, plazas);
                             cont++;
                         } catch (SQLException ex) {
                             Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        
+                        try {
+                                    System.out.println("hola");
+                                    daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
                             }
                           break;
