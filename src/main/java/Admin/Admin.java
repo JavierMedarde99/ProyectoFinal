@@ -91,7 +91,7 @@ public class Admin {
         System.out.println("Introduce el día de la primera fecha: ");
         dia1=teclado.nextInt();
                                                 
-        System.out.println("Introduce el més de la primera fecha: ");
+        System.out.println("Introduce el mes de la primera fecha: ");
         mes1=teclado.nextInt();
                                                 
         System.out.println("Introduce el año de la primera fecha: ");
@@ -109,7 +109,7 @@ public class Admin {
         System.out.println("Introduce el día de la segunda fecha: ");
         dia2=teclado.nextInt();
                                                 
-        System.out.println("Introduce el més de la segunda fecha: ");
+        System.out.println("Introduce el mes de la segunda fecha: ");
         mes2=teclado.nextInt();
                                                 
         System.out.println("Introduce el año de la segunda fecha: ");
@@ -169,7 +169,6 @@ public class Admin {
         a1=daoAbonados.findByPk(dni);
         
         v2=v1.findByPk(a1.getMatricula());
-        String matriculaVieja=v2.getMatricula();
         
         String Pin="";
         int numero;
@@ -219,7 +218,15 @@ public class Admin {
             }
         }while(TipoAbonado==0);
         
-        AbonadosVO abonado=new AbonadosVO(dni,Nombre,Apellidos,Pin,Tarjeta,Email,TipoAbonado,a1.getMatricula(),a1.getFechaInicioAbono());
+        System.out.println("Introduce la matrícula de su coche: ");
+        teclado.nextLine();
+        String matricula=teclado.nextLine();
+        
+        VehiculoVO nuevoVehiculo=new VehiculoVO(matricula, v2.getTipoVehiculo());
+        
+        v1.updateVehiculo(v2.getMatricula(), nuevoVehiculo);
+        
+        AbonadosVO abonado=new AbonadosVO(dni,Nombre,Apellidos,Pin,Tarjeta,Email,TipoAbonado,matricula,a1.getFechaInicioAbono());
         try {
             daoAbonados.updateAbonados(dni,abonado);
         } catch (SQLException ex) {
@@ -249,19 +256,19 @@ public class Admin {
                         tipoAbonados = teclado.nextInt();
                         switch (tipoAbonados) {
                             case 1:
-                                a2.getFechaFinAbono().plusMonths(1);
+                                a2.setFechaFinAbono(a2.getFechaFinAbono().plusMonths(1));
                                 break;
 
                             case 2:
-                                a2.getFechaFinAbono().plusMonths(3);
+                                a2.setFechaFinAbono(a2.getFechaFinAbono().plusMonths(3));
                                 break;
 
                             case 3:
-                                a2.getFechaFinAbono().plusMonths(4);
+                                a2.setFechaFinAbono(a2.getFechaFinAbono().plusMonths(6));
                                 break;
 
                             case 4:
-                                a2.getFechaFinAbono().plusYears(1);
+                                a2.setFechaFinAbono(a2.getFechaFinAbono().plusYears(1));
                                 break;
 
                             default:
