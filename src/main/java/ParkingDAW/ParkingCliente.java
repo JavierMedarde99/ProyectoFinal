@@ -122,7 +122,7 @@ break;
                                             teclado.nextLine();
                                             pin = teclado.nextLine();
 
-                                            MetodosVehiculos.retirarVehiculo(dni, codPlaza, pin);
+                                            MetodosVehiculos.retirarVehiculoNoAbonado(dni, codPlaza, pin);
                                             break;
 
                                         default:
@@ -160,6 +160,7 @@ break;
 
                         }
                     } while (Eleccion2 == 0);
+                    break;
                 case 2:
                     do {
                         System.out.println("1. Ver estado del parking");
