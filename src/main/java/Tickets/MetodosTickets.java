@@ -11,6 +11,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
 import java.util.Scanner;
@@ -22,9 +23,9 @@ import vehiculos.VehiculoVO;
  */
 public class MetodosTickets {
     
-    public static final Double TARIFA_TURISMO=0.12;
-    public static final Double TARIFA_MOTOCICLETA=0.08;
-    public static final Double TARIFA_CARAVANA=0.45;
+    public static final double TARIFA_TURISMO=0.12;
+    public static final double TARIFA_MOTOCICLETA=0.08;
+    public static final double TARIFA_CARAVANA=0.45;
     
     public static long retirarTicket(LocalTime tiempoInicio, LocalDate fechaInicio){
         LocalDateTime horaEntrada=LocalDateTime.of(fechaInicio, tiempoInicio);
@@ -45,7 +46,7 @@ public class MetodosTickets {
         return 0.0;  
     }
     
-    public static void crearTicket(String matricula, int plaza, int tipo) throws SQLException{
+    public static TicketsVO crearTicket(String matricula, int plaza, int tipo) throws SQLException{
         Scanner teclado=new Scanner(System.in);
         Random rnd = new Random();
         
@@ -55,23 +56,28 @@ public class MetodosTickets {
             numero=rnd.nextInt(10);
             pin+=numero;
         }
-        
-        Double precioMin=1.0;
-        if(tipo==1){
-            precioMin=TARIFA_TURISMO;
-        }else if(tipo==2){
-            precioMin=TARIFA_MOTOCICLETA;
-        }else if(tipo==3){
-            precioMin=TARIFA_CARAVANA;
-        }
-        
         Date fechaInicio=Date.valueOf(LocalDate.now());
         Time tiempoInicio=Time.valueOf(LocalTime.now());
+       
+        switch (tipo) {
+            case 1:
+                return new TicketsVO(plaza, matricula, pin, 0.0, TARIFA_TURISMO, fechaInicio, tiempoInicio,Date.valueOf(LocalDate.of(1, 1, 1)),Time.valueOf(LocalTime.of(1, 1)));
+               
+            case 2:
+                return new TicketsVO(plaza, matricula, pin, 0.0, TARIFA_MOTOCICLETA, fechaInicio, tiempoInicio,Date.valueOf(LocalDate.of(1, 1, 1)),Time.valueOf(LocalTime.of(1, 1)));
+                
+            case 3:
+                return new TicketsVO(plaza, matricula, pin, 0.0, TARIFA_CARAVANA, fechaInicio, tiempoInicio,Date.valueOf(LocalDate.of(1, 1, 1)),Time.valueOf(LocalTime.of(1, 1)));
+                
+            default:
+                System.out.println("Error");
+                break;
+        }
         
-        TicketsVO t=new TicketsVO(plaza, matricula, pin, 0.0, precioMin, fechaInicio, tiempoInicio,Date.valueOf(LocalDate.MIN),Time.valueOf(LocalTime.MIN));
         
-        TicketsDAO t1=new TicketsDAO();
-        t1.insertTickets(t);
+        return new TicketsVO();
+        
+    } 
     }
     
-}
+
