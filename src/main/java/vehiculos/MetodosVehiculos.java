@@ -276,7 +276,7 @@ public class MetodosVehiculos {
 
     public static void sacarVehiculoAbonado(String dni, String matricula, String pin) {
         PlazasDAO p1 = new PlazasDAO();
-        PlazasVO p2 = new PlazasVO(matricula, 3);
+        PlazasVO p2 = new PlazasVO(matricula, 4);
         PlazasVO p3 = new PlazasVO();
         AbonadosDAO a1 = new AbonadosDAO();
         AbonadosVO a2 = new AbonadosVO();

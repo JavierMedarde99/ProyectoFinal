@@ -35,6 +35,7 @@ public class ParkingCliente {
         Scanner teclado = new Scanner(System.in);
         String opcionfinal;
         do {
+            
             do {
                 System.out.println("1. Cliente");
                 System.out.println("2. Administrador");
@@ -57,6 +58,7 @@ public class ParkingCliente {
 
                                         switch (Eleccion3) {
                                             case 1:
+                                                
                                                 System.out.println("Introduce tu dni: ");
                                                 teclado.nextLine();
                                                 dni = teclado.nextLine();
@@ -72,6 +74,7 @@ public class ParkingCliente {
                                                 break;
 
                                             case 2:
+                                                 Admin.estadoPlazas();
                                                 System.out.println("Introduce una matrícula");
                                                 teclado.nextLine();
                                                 matricula = teclado.nextLine();
@@ -141,17 +144,15 @@ public class ParkingCliente {
                         break;
                     case 2:
                         do {
-                            System.out.println("1. Ver estado del parking");
-                            System.out.println("2. Facturación");
-                            System.out.println("3. Abonos");
-                            System.out.println("4. Copia de seguridad");
+                            
+                            System.out.println("1. Facturación");
+                            System.out.println("2. Abonos");
+                            System.out.println("3. Copia de seguridad");
                             Eleccion2 = teclado.nextInt();
                             switch (Eleccion2) {
-                                case 1:
-                                    Admin.estadoPlazas();
-                                    break;
+                               
 
-                                case 2:
+                                case 1:
                                     do {
                                         System.out.println("Elige un método de facturación: ");
                                         System.out.println("1. Entre fechas");
@@ -171,7 +172,7 @@ public class ParkingCliente {
                                     } while (Eleccion3 == 0);
                                     break;
 
-                                case 3:
+                                case 2:
                                     do {
                                         System.out.println("Elige una opción");
                                         System.out.println("1. Dar de alta un abonado");
@@ -232,7 +233,7 @@ public class ParkingCliente {
                                         }
                                     } while (Eleccion4 == 0);
                                     break;
-                                case 4:
+                                case 3:
 
                                     break;
                                 default:
@@ -249,9 +250,9 @@ public class ParkingCliente {
 
                 }
             } while (Eleccion1 == 0);
-            System.out.println("¿Quiere hacer otra operacion?");
-            teclado.nextLine();
-             opcionfinal=teclado.nextLine();
+            System.out.println("¿Quieropcionfinal=teclado.nextLine();e hacer otra operacion?");
+            opcionfinal=teclado.nextLine();
+             
         } while ("si".equalsIgnoreCase(opcionfinal));
     }
 }
