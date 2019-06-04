@@ -138,7 +138,7 @@ public AbonadosVO() {
 
     @Override
     public String toString() {
-        return  DNI + ":" + nombre + ":" + apellidos + ":" + pinAbonados + ":" + tarjetaCredito + ":" + email + ":" + tipoAbonados + ":" + matricula + ":" + fechaInicioAbono + ":" + fechaFinAbono + "\n";
+        return  DNI + "|" + nombre + "|" + apellidos + "|" + pinAbonados + "|" + tarjetaCredito + "|" + email + "|" + tipoAbonados + "|" + matricula + "|" + fechaInicioAbono + "|" + fechaFinAbono;
     }
     
     
