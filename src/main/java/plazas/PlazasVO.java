@@ -60,7 +60,7 @@ public class PlazasVO {
 
     @Override
     public String toString() {
-        return  codigoPlaza + ":" + matricula + ":" + estado + "\n";
+        return  codigoPlaza + "|" + matricula + "|" + estado;
     }
     
     
