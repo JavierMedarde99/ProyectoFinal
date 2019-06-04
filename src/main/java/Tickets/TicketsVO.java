@@ -119,7 +119,7 @@ public class TicketsVO {
 
     @Override
     public String toString() {
-        return codPlazas + ":" + matricula + ":" + pin + ":" + precioFin + ":" + precioMin + ":" + fechaInicio + ":" + tiempoInicio + ":" + fechaFin + ":" + tiempoFin + "\n";
+        return codPlazas + "|" + matricula + "|" + pin + "|" + precioFin + "|" + precioMin + "|" + fechaInicio + "|" + tiempoInicio + "|" + fechaFin + "|" + tiempoFin ;
     }
 
     public String toStringNormal() {
