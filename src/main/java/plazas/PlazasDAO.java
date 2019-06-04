@@ -109,7 +109,7 @@ public class PlazasDAO implements IPlazas{
         }
     }
     
-   /* @Override
+   @Override
     public int insertPlazas(PlazasVO plazas) throws SQLException {
         int numFilas = 0;
         String sql = "insert into plazas values (?,?,?,?)";
@@ -127,7 +127,7 @@ public class PlazasDAO implements IPlazas{
                 prest.setInt(1,plazas.getCodigoPlaza());
                 prest.setInt(2, 45);
                 prest.setString(3,plazas.getMatricula());
-                prest.setBoolean(4,plazas.getEstado());              
+                prest.setInt(4,plazas.getEstado());              
 
                 numFilas = prest.executeUpdate();
             }
@@ -180,7 +180,7 @@ public class PlazasDAO implements IPlazas{
         // El borrado se realizó con éxito, devolvemos filas afectadas
         return nfilas;
     }
-*/
+    
     @Override
     public int updatePlazas(int codPlazas, PlazasVO nuevosDatos) throws SQLException {
          int numFilas = 0;
