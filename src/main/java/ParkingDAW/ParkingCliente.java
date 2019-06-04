@@ -241,10 +241,28 @@ public class ParkingCliente {
                                     } while (Eleccion4 == 0);
                                     break;
                                 case 3:
-                                    MetodosVehiculos.CopiaSeguridadAbonados(a1.getAll());
-                                    MetodosVehiculos.CopiaSeguridadPlazas(p1.getAll());
-                                    MetodosVehiculos.CopiaSeguridadTickets(t1.getAll());
-                                    MetodosVehiculos.CopiaSeguridadVehiculos(v1.getAll());
+                            {
+                                int EleccionCS;
+                                do{
+                                    System.out.println("Elige una opción");
+                                    System.out.println("1. Hacer la copia de seguridad ahora");
+                                    System.out.println("2. Restablecer la copia de seguridad");
+                                     EleccionCS = teclado.nextInt();
+                                    switch (EleccionCS) {
+                                        case 1:
+                                            MetodosVehiculos.CopiaSeguridadAbonados(a1.getAll());
+                                            MetodosVehiculos.CopiaSeguridadPlazas(p1.getAll());
+                                            MetodosVehiculos.CopiaSeguridadTickets(t1.getAll());
+                                            MetodosVehiculos.CopiaSeguridadVehiculos(v1.getAll());
+                                            break;
+                                        case 2:
+                                            break;
+                                            
+                                        default:
+                                            EleccionCS=0;
+                                    }
+                                }while(EleccionCS==0);
+                            }
                                     break;
                                 default:
                                     System.out.println("Introduce una opción válida");
