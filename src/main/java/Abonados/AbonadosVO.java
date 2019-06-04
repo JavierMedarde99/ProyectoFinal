@@ -138,7 +138,11 @@ public AbonadosVO() {
 
     @Override
     public String toString() {
-        return "AbonadosVO{" + ", DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", pinAbonados=" + pinAbonados + ", tarjetaCredito=" + tarjetaCredito + ", email=" + email + ", tipoAbonados=" + tipoAbonados + ", matricula=" + matricula + ", fechaInicioAbono=" + fechaInicioAbono + ", fechaFinAbono=" + fechaFinAbono + '}';
+        return  DNI + ":" + nombre + ":" + apellidos + ":" + pinAbonados + ":" + tarjetaCredito + ":" + email + ":" + tipoAbonados + ":" + matricula + ":" + fechaInicioAbono + ":" + fechaFinAbono + "\n";
     }
     
+    
+    public String toStringNormal() {
+        return "AbonadosVO{" + ", DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", pinAbonados=" + pinAbonados + ", tarjetaCredito=" + tarjetaCredito + ", email=" + email + ", tipoAbonados=" + tipoAbonados + ", matricula=" + matricula + ", fechaInicioAbono=" + fechaInicioAbono + ", fechaFinAbono=" + fechaFinAbono + '}';
+    }
 }

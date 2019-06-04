@@ -13,12 +13,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-
 /**
  *
  * @author javie
  */
 public class TicketsVO {
+
     private int codPlazas;
     private String matricula;
     private String pin;
@@ -26,10 +26,9 @@ public class TicketsVO {
     private Double precioMin; //Depende del vehiculo
     private LocalDate fechaInicio;
     private LocalTime tiempoInicio;
-     private LocalDate fechaFin;
+    private LocalDate fechaFin;
     private LocalTime tiempoFin;
 
-    
     public TicketsVO(int codPlazas, String matricula, String pin, Double precioFin, Double precioMin, Date fechaInicio, Time tiempoInicio, Date fechaFin, Time tiempoFin) {
         this.codPlazas = codPlazas;
         this.matricula = matricula;
@@ -42,10 +41,8 @@ public class TicketsVO {
         this.tiempoFin = tiempoFin.toLocalTime();
     }
 
-    
-
     public TicketsVO() {
-        
+
     }
 
     public int getCodPlazas() {
@@ -122,9 +119,10 @@ public class TicketsVO {
 
     @Override
     public String toString() {
-        return "TicketsVO{" + "codPlazas=" + codPlazas + ", matricula=" + matricula + ", pin=" + pin + ", precioFin=" + precioFin + ", precioMin=" + precioMin + ", fechaInicio=" + fechaInicio + ", tiempoInicio=" + tiempoInicio + ", fechaFin=" + fechaFin + ", tiempoFin=" + tiempoFin + '}';
+        return codPlazas + ":" + matricula + ":" + pin + ":" + precioFin + ":" + precioMin + ":" + fechaInicio + ":" + tiempoInicio + ":" + fechaFin + ":" + tiempoFin + "\n";
     }
-public String toStringInicial() {
+
+    public String toStringNormal() {
         return "TicketsVO{" + "codPlazas=" + codPlazas + ", matricula=" + matricula + ", pin=" + pin + ", precioMin=" + precioMin + ", fechaInicio=" + fechaInicio + ", tiempoInicio=" + tiempoInicio + '}';
     }
 }

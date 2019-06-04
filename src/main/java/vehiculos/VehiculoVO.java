@@ -49,6 +49,11 @@ public class VehiculoVO {
     //toString
     @Override
     public String toString() {
+        return  matricula + ":" + tipoVehiculo + "\n";
+    }
+    
+  
+    public String toStringNormal() {
         return "VehiculoVO{" + "matricula=" + matricula + ", tipoVehiculo=" + tipoVehiculo + '}';
     }
     

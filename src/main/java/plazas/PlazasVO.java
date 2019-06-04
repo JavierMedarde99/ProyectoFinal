@@ -60,7 +60,12 @@ public class PlazasVO {
 
     @Override
     public String toString() {
-        return "PlazasVO{" + "codigoPlaza=" + codigoPlaza + ", matricula=" + matricula + ", estado=" + estado + '}';
+        return  codigoPlaza + ":" + matricula + ":" + estado + "\n";
+    }
+    
+    
+    public String toStringNormal() {
+       return "PlazasVO{" + "codigoPlaza=" + codigoPlaza + ", matricula=" + matricula + ", estado=" + estado + '}';
     }
     
 }
