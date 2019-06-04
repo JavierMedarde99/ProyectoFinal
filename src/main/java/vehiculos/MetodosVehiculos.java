@@ -115,7 +115,7 @@ public class MetodosVehiculos {
         }
     }
 
-    public static void meterVehiculoNoAbonado(String matricula, int tipo) {
+    public static TicketsVO meterVehiculoNoAbonado(String matricula, int tipo) {
         int cont = 0;
         PlazasVO plazas = new PlazasVO(matricula, 1);
         TicketsDAO daoticket = new TicketsDAO();
@@ -148,6 +148,8 @@ public class MetodosVehiculos {
                             try {
                                 
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
+                                 TicketsVO ticket = daoticket.findByPk(matricula, j);
+                                 return ticket;
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -176,6 +178,8 @@ public class MetodosVehiculos {
                             try {
                                 
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
+                                TicketsVO ticket = daoticket.findByPk(matricula, j);
+                                 return ticket;
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -202,6 +206,8 @@ public class MetodosVehiculos {
                             try {
 
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
+                                TicketsVO ticket = daoticket.findByPk(matricula, j);
+                                 return ticket;
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -213,7 +219,7 @@ public class MetodosVehiculos {
                     System.out.println("no hay plazas disponibles");
             }
         }
-
+return new TicketsVO();
     }
 
     public static void retirarVehiculoNoAbonado(String matricula, int plaza, String pin) {

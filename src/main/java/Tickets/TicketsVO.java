@@ -124,5 +124,7 @@ public class TicketsVO {
     public String toString() {
         return "TicketsVO{" + "codPlazas=" + codPlazas + ", matricula=" + matricula + ", pin=" + pin + ", precioFin=" + precioFin + ", precioMin=" + precioMin + ", fechaInicio=" + fechaInicio + ", tiempoInicio=" + tiempoInicio + ", fechaFin=" + fechaFin + ", tiempoFin=" + tiempoFin + '}';
     }
-
+public String toStringInicial() {
+        return "TicketsVO{" + "codPlazas=" + codPlazas + ", matricula=" + matricula + ", pin=" + pin + ", precioMin=" + precioMin + ", fechaInicio=" + fechaInicio + ", tiempoInicio=" + tiempoInicio + '}';
+    }
 }

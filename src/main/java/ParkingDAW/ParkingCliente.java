@@ -16,6 +16,7 @@ import vehiculos.MetodosVehiculos;
 import vehiculos.VehiculoDAO;
 import vehiculos.VehiculoVO;
 import Admin.Admin;
+import Tickets.TicketsVO;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
@@ -68,7 +69,7 @@ public class ParkingCliente {
                                                     matricula = teclado.nextLine();
                                                     System.out.println("Introduce el pin para retirar el vehículo: ");
                                                     pin = teclado.nextLine();
-                                                    MetodosVehiculos.meterVehiculoAbonado(dni, matricula, pin);
+                                                     MetodosVehiculos.meterVehiculoAbonado(dni, matricula, pin);
                                                 }
 
                                                 break;
@@ -83,7 +84,8 @@ public class ParkingCliente {
                                                 System.out.println("2. Motocicleta");
                                                 System.out.println("3. Caravana");
                                                 tipo = teclado.nextInt();
-                                                MetodosVehiculos.meterVehiculoNoAbonado(matricula, tipo);
+                                                TicketsVO mostrarTicket =MetodosVehiculos.meterVehiculoNoAbonado(matricula, tipo);
+                                                System.out.println(mostrarTicket.toStringInicial());
                                                 break;
 
                                             default:
