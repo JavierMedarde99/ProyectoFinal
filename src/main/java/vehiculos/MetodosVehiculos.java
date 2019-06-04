@@ -12,6 +12,7 @@ import Tickets.TicketsDAO;
 import Tickets.TicketsVO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -27,6 +28,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TimeZone;
@@ -307,7 +309,7 @@ public class MetodosVehiculos {
         }
     }
 
-    public static void CopiaSeguridadAbonados(ArrayList<AbonadosVO> abonado) {
+    public static void CopiaSeguridadAbonados(ArrayList<AbonadosVO> abonado) throws SQLException {
         //Creamos el directorio
         Path directory = Paths.get("./backup");
         try {
@@ -316,7 +318,7 @@ public class MetodosVehiculos {
             System.out.println("Problema creando el directorio pinAbonados.");
             System.out.println(e.toString());
         }
-        Path directory2 = Paths.get("./backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond());
+        Path directory2 = Paths.get("./backup/" + LocalDate.now() + LocalTime.now().getHour() + "_" + LocalTime.now().getMinute() + "_" + LocalTime.now().getSecond());
         try {
             Files.createDirectory(directory2);
         } catch (IOException e) {
@@ -324,52 +326,64 @@ public class MetodosVehiculos {
             System.out.println(e.toString());
         }
         // Fichero a crear. Ruta relativa a la carpeta raíz del proyecto
-        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond() + "/Abonados.txt";
+        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + "_" + LocalTime.now().getMinute() + "_" + LocalTime.now().getSecond() + "/Abonados.txt";
 
+        AbonadosDAO a1 = new AbonadosDAO();
+        ArrayList<AbonadosVO> listaAbonados = new ArrayList<>();
+
+        listaAbonados = a1.getAll();
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))) {
-            
-                flujo.write(abonado.toString() + "\n");
-                flujo.flush();
-            
-            
+            for (AbonadosVO tmp : listaAbonados) {
+                flujo.write(tmp.toString());
+                flujo.newLine();
+            }
+            flujo.flush();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
-    public static void CopiaSeguridadVehiculos(ArrayList<VehiculoVO> vehiculo) {
+    public static void CopiaSeguridadVehiculos(ArrayList<VehiculoVO> vehiculo) throws SQLException {
+        VehiculoDAO v1 = new VehiculoDAO();
+        ArrayList<VehiculoVO> listaVehiculos = new ArrayList<>();
 
-        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond() + "/Vehiculos.txt";
+        listaVehiculos = v1.getAll();
+        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + "_" + LocalTime.now().getMinute() + "_" + LocalTime.now().getSecond() + "/Vehiculos.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))) {
-            
-                flujo.write(vehiculo.toString() + "\n"); 
-                flujo.flush();
-            
-           
+            for (VehiculoVO tmp : listaVehiculos) {
+                flujo.write(tmp.toString());
+                flujo.newLine();
+            }
+            flujo.flush();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
-    public static void CopiaSeguridadPlazas(ArrayList<PlazasVO> plaza) {
-
-        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond() + "/Plazas.txt";
+    public static void CopiaSeguridadPlazas(ArrayList<PlazasVO> plaza) throws SQLException {
+        PlazasDAO p1 = new PlazasDAO();
+        ArrayList<PlazasVO> listaPlazas = new ArrayList<>();
+        listaPlazas = p1.getAll();
+        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + "_" + LocalTime.now().getMinute() + "_" + LocalTime.now().getSecond() + "/Plazas.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))) {
-            
-                flujo.write(plaza.toString() + "\n");
-                flujo.flush();
-            
-            
+            for (PlazasVO tmp : listaPlazas) {
+                flujo.write(tmp.toString());
+                flujo.newLine();
+            }
+            flujo.flush();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -377,19 +391,143 @@ public class MetodosVehiculos {
     }
 
     public static void CopiaSeguridadTickets(ArrayList<TicketsVO> ticket) {
-
-        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond()+ "/Tickets.txt";
+        TicketsDAO t1 = new TicketsDAO();
+        ArrayList<TicketsVO> listaTickets = new ArrayList<>();
+        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + "_" + LocalTime.now().getMinute() + "_" + LocalTime.now().getSecond() + "/Tickets.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))) {
-            
-                flujo.write(ticket.toString() + "\n");
-                flujo.flush();
-            
-            
+            for (TicketsVO tmp : listaTickets) {
+                flujo.write(ticket.toString());
+                flujo.newLine();
+            }
+            flujo.flush();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+
+    }
+
+    public static void restaurarCopia() throws SQLException {
+        Scanner teclado = new Scanner(System.in);
+        AbonadosDAO a1 = new AbonadosDAO();
+        VehiculoDAO v1 = new VehiculoDAO();
+        TicketsDAO t1 = new TicketsDAO();
+        PlazasDAO p1 = new PlazasDAO();
+        String nombre = "";
+
+        //Imprimimos el fichero
+        File f = new File("./backup");
+        String[] lista = f.list();
+        if (f.exists()) {
+            File[] ficheros = f.listFiles();
+
+            System.out.println("Copias de seguridad: ");
+            for (File file2 : ficheros) {
+                System.out.println(file2.getName());
+            }
+
+            System.out.println("Introduce la copia de seguridad que quiere restaurar: ");
+            nombre = teclado.nextLine();
+            for (String tmp : lista) {
+                if (nombre.equalsIgnoreCase(tmp)) {
+                    v1.deleteVehiculo();
+                    a1.deleteAbonados();
+                    p1.deletePlazas();
+                    t1.deleteTickets();
+
+                    ArrayList<VehiculoVO> listaVehiculos = new ArrayList<>();
+                    try (Scanner datosFichero = new Scanner(new FileInputStream("./backup/" + nombre + "/Vehiculos.txt"), "ISO-8859-1")) {
+                        String[] tokens;
+                        String linea;
+
+                        while (datosFichero.hasNextLine()) {
+                            linea = datosFichero.nextLine();
+                            tokens = linea.split("|");
+                            System.out.println(tokens[0]);
+                            System.out.println(tokens[1]);
+                            listaVehiculos.add(new VehiculoVO(tokens[0], Integer.valueOf(tokens[1])));
+                        }
+                    } catch (FileNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    v1.insertVehiculo(listaVehiculos);
+
+                    ArrayList<PlazasVO> listaPlazas = new ArrayList<>();
+                    try (Scanner datosFichero = new Scanner(new FileInputStream("./backup/" + nombre + "/Plazas.txt"), "ISO-8859-1")) {
+                        String[] tokens;
+                        String linea;
+
+                        while (datosFichero.hasNextLine()) {
+                            linea = datosFichero.nextLine();
+                            tokens = linea.split("|");
+                            listaPlazas.add(new PlazasVO(tokens[0], Integer.valueOf(tokens[1])));
+                        }
+                    } catch (FileNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    p1.insertPlazas(listaPlazas);
+
+                    ArrayList<AbonadosVO> listaAbonados = new ArrayList<>();
+                    try (Scanner datosFichero = new Scanner(new FileInputStream("./backup/" + nombre + "/Abonados.txt"), "ISO-8859-1")) {
+                        String[] tokens;
+                        String linea;
+
+                        while (datosFichero.hasNextLine()) {
+                            linea = datosFichero.nextLine();
+                            tokens = linea.split("|");
+
+                            String separar = tokens[8].trim();
+                            String[] fecha = separar.split("-");
+                            LocalDate aux = LocalDate.of(Integer.valueOf(fecha[0]), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[2]));
+                            listaAbonados.add(new AbonadosVO(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], Integer.valueOf(tokens[6]), tokens[7], aux));
+                        }
+                    } catch (FileNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    a1.insertAbonados(listaAbonados);
+
+                    ArrayList<TicketsVO> listaTickets = new ArrayList<>();
+                    try (Scanner datosFichero = new Scanner(new FileInputStream("./backup/" + nombre + "/Tickets.txt"), "ISO-8859-1")) {
+                        String[] tokens;
+                        String linea;
+
+                        while (datosFichero.hasNextLine()) {
+                            linea = datosFichero.nextLine();
+                            tokens = linea.split("|");
+
+                            String separar1 = tokens[5].trim();
+                            String[] fecha1 = separar1.split("-");
+                            LocalDate tmp1 = LocalDate.of(Integer.valueOf(fecha1[0]), Integer.valueOf(fecha1[1]), Integer.valueOf(fecha1[2]));
+
+                            String separar2 = tokens[6].trim();
+                            String[] fecha2 = separar2.split("-");
+                            LocalDate tmp2 = LocalDate.of(Integer.valueOf(fecha2[0]), Integer.valueOf(fecha2[1]), Integer.valueOf(fecha2[2]));
+
+                            String separar3 = tokens[7].trim();
+                            String[] hora1 = separar3.split(":");
+                            LocalTime tmp3 = LocalTime.of(Integer.valueOf(hora1[0]), Integer.valueOf(hora1[1]), Integer.valueOf(hora1[2]));
+
+                            String separar4 = tokens[7].trim();
+                            String[] hora2 = separar4.split(":");
+                            LocalTime tmp4 = LocalTime.of(Integer.valueOf(hora2[0]), Integer.valueOf(hora2[1]), Integer.valueOf(hora2[2]));
+                            listaTickets.add(new TicketsVO(Integer.valueOf(tokens[0]), tokens[1], tokens[2], Double.valueOf(tokens[3]), Double.valueOf(tokens[4]), Date.valueOf(tmp1), Time.valueOf(tmp3), Date.valueOf(tmp2), Time.valueOf(tmp4)));
+                        }
+                    } catch (FileNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    t1.insertTickets(listaTickets);
+                }
+            }
+
+        } else {
+            System.out.println("El directorio a listar no existe");
         }
 
     }
