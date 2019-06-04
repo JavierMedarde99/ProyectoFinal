@@ -126,7 +126,8 @@ public class ParkingCliente {
                                                 teclado.nextLine();
                                                 pin = teclado.nextLine();
 
-                                                MetodosVehiculos.retirarVehiculoNoAbonado(dni, codPlaza, pin);
+                                                TicketsVO retirar = MetodosVehiculos.retirarVehiculoNoAbonado(dni, codPlaza, pin);
+                                                System.out.println(retirar.toString());
                                                 break;
 
                                             default:

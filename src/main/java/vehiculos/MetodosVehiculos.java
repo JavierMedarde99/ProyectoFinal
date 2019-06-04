@@ -222,7 +222,7 @@ public class MetodosVehiculos {
 return new TicketsVO();
     }
 
-    public static void retirarVehiculoNoAbonado(String matricula, int plaza, String pin) {
+    public static TicketsVO retirarVehiculoNoAbonado(String matricula, int plaza, String pin) {
         PlazasDAO p1 = new PlazasDAO();
         PlazasVO p2 = new PlazasVO(null, 2);
         TicketsDAO t1 = new TicketsDAO();
@@ -249,10 +249,12 @@ return new TicketsVO();
             TicketsVO modificado = new TicketsVO(t2.getCodPlazas(), t2.getMatricula(), t2.getPin(), precioFin, t2.getPrecioMin(), Date.valueOf(t2.getFechaInicio()), Time.valueOf(t2.getTiempoInicio()), fechaFin, tiempoFin);
             try {
                 t1.updateTickets(plaza, matricula, modificado);
+                return modificado;
             } catch (SQLException ex) {
                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        return new TicketsVO();
     }
 
     public static void meterVehiculoAbonado(String dni, String matricula, String pin) {
