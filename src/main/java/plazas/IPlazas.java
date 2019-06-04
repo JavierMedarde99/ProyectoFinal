@@ -17,17 +17,17 @@ public interface IPlazas {
     
     ArrayList<PlazasVO> getAll() throws SQLException;
     
-    // int insertPlazas(PlazasVO plaza) throws SQLException;
+    int insertPlazas(PlazasVO plaza) throws SQLException;
     
     PlazasVO findByPk(int codPlazas) throws SQLException;
     
     PlazasVO findByFk(String matricula) throws SQLException;
     
-    // int insertPlazas(List<PlazasVO> lista) throws SQLException;
+    int insertPlazas(List<PlazasVO> lista) throws SQLException;
     
-    // int deletePlazas(PlazasVO plaza) throws SQLException;
+    int deletePlazas(PlazasVO plaza) throws SQLException;
     
-    // int deletePlazas() throws SQLException;
+    int deletePlazas() throws SQLException;
     
     int updatePlazas(int codPlazas, PlazasVO nuevosDatos) throws SQLException;
     
