@@ -255,7 +255,7 @@ public class ParkingCliente {
                                                 MetodosVehiculos.CopiaSeguridadTickets(t1.getAll());
                                                 MetodosVehiculos.CopiaSeguridadVehiculos(v1.getAll());
                                                 break;
-                                            case 2:
+                                            case 2:                                                
                                                 break;
 
                                             default:
