@@ -35,11 +35,14 @@ public class Admin {
     public static void PrecioEntreDosFechas(LocalDate fecha1 ,LocalDate fecha2,LocalTime tiempo1,LocalTime tiempo2) throws SQLException{
         TicketsDAO p1=new TicketsDAO();
         ArrayList<TicketsVO> listaTickets=new ArrayList<>();
+        LocalDateTime fechaInicio=LocalDateTime.of(fecha1, tiempo1);
+        LocalDateTime fechaFin=LocalDateTime.of(fecha2, tiempo2);
         Double precio=0.0;
         int contador=0;
         listaTickets=p1.getAll();
         for (TicketsVO tmp : listaTickets) {
-            if(tmp.getFechaInicio().isAfter(fecha1) && tmp.getFechaFin().isAfter(fecha2) && tmp.getTiempoInicio().isBefore(tiempo1) && tmp.getTiempoFin().isAfter(tiempo2)){
+            LocalDateTime fechaIngreso=LocalDateTime.of(tmp.getFechaInicio(), tmp.getTiempoInicio());
+            if(fechaInicio.isBefore(fechaIngreso) && fechaFin.isAfter(fechaIngreso)){
                 contador++;
                 precio+=tmp.getPrecioFin();
             }
