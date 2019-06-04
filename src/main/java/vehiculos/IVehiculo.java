@@ -6,6 +6,7 @@
 package vehiculos;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import plazas.PlazasVO;
 
@@ -15,7 +16,7 @@ import plazas.PlazasVO;
  */
 public interface IVehiculo {
     
-    List<VehiculoVO> getAll() throws SQLException;
+    ArrayList<VehiculoVO> getAll() throws SQLException;
     
     int insertVehiculo(VehiculoVO vehiculo) throws SQLException;
     

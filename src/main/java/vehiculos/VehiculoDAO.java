@@ -28,8 +28,8 @@ public class VehiculoDAO implements IVehiculo{
         con = Conexion.getInstance();
     }
     @Override
-    public List<VehiculoVO> getAll() throws SQLException {
-        List<VehiculoVO> lista = new ArrayList<>();
+    public ArrayList<VehiculoVO> getAll() throws SQLException {
+        ArrayList<VehiculoVO> lista = new ArrayList<>();
 
         // Preparamos la consulta de datos mediante un objeto Statement
         // ya que no necesitamos parametrizar la sentencia SQL
