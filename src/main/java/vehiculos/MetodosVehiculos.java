@@ -316,7 +316,7 @@ public class MetodosVehiculos {
             System.out.println("Problema creando el directorio pinAbonados.");
             System.out.println(e.toString());
         }
-        Path directory2 = Paths.get("./backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute());
+        Path directory2 = Paths.get("./backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond());
         try {
             Files.createDirectory(directory2);
         } catch (IOException e) {
@@ -324,7 +324,7 @@ public class MetodosVehiculos {
             System.out.println(e.toString());
         }
         // Fichero a crear. Ruta relativa a la carpeta raíz del proyecto
-        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Abonados.txt";
+        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond() + "/Abonados.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
@@ -342,7 +342,7 @@ public class MetodosVehiculos {
 
     public static void CopiaSeguridadVehiculos(ArrayList<VehiculoVO> vehiculo) {
 
-        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Vehiculos.txt";
+        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond() + "/Vehiculos.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
@@ -360,7 +360,7 @@ public class MetodosVehiculos {
 
     public static void CopiaSeguridadPlazas(ArrayList<PlazasVO> plaza) {
 
-        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Plazas.txt";
+        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond() + "/Plazas.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
@@ -378,7 +378,7 @@ public class MetodosVehiculos {
 
     public static void CopiaSeguridadTickets(ArrayList<TicketsVO> ticket) {
 
-        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Tickets.txt";
+        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond()+ "/Tickets.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones

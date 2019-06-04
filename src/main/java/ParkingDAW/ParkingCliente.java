@@ -89,7 +89,7 @@ public class ParkingCliente {
                                                 System.out.println("3. Caravana");
                                                 tipo = teclado.nextInt();
                                                 TicketsVO mostrarTicket = MetodosVehiculos.meterVehiculoNoAbonado(matricula, tipo);
-                                                System.out.println(mostrarTicket.toStringInicial());
+                                                System.out.println(mostrarTicket.toStringNormal());
                                                 break;
 
                                             default:
@@ -131,7 +131,7 @@ public class ParkingCliente {
                                                 pin = teclado.nextLine();
 
                                                 TicketsVO retirar = MetodosVehiculos.retirarVehiculoNoAbonado(dni, codPlaza, pin);
-                                                System.out.println(retirar.toString());
+                                                System.out.println(retirar.toStringNormal());
                                                 break;
 
                                             default:
@@ -241,7 +241,7 @@ public class ParkingCliente {
                                         }
                                     } while (Eleccion4 == 0);
                                     break;
-                                case 3: {
+                                case 3: 
                                     int EleccionCS;
                                     do {
                                         System.out.println("Elige una opción");
@@ -263,7 +263,8 @@ public class ParkingCliente {
                                         }
 
                                     } while (EleccionCS == 0);
-                                }
+                                
+                                break;
                                 case 4:
                                     Admin.estadoPlazas();
                                     break;
