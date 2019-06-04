@@ -34,7 +34,7 @@ public class MetodosAbonados {
         return false;
     }
     
-    public static void insertarDatos() {
+    public static AbonadosVO insertarDatos() {
         AbonadosDAO daoAbonados = new AbonadosDAO();
         MetodosVehiculos.datosVehiculos();
         
@@ -108,7 +108,7 @@ public class MetodosAbonados {
         } catch (SQLException ex) {
             Logger.getLogger(MetodosAbonados.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        return abonado;
         
     }
     

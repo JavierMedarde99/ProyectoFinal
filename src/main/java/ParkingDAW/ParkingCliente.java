@@ -183,7 +183,8 @@ public class ParkingCliente {
 
                                         switch (Eleccion4) {
                                             case 1:
-                                                MetodosAbonados.insertarDatos();
+                                                AbonadosVO fichero = MetodosAbonados.insertarDatos();
+                                                MetodosVehiculos.escribirFicheroPin(fichero);
                                                 break;
 
                                             case 2:
