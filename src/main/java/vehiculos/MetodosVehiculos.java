@@ -146,10 +146,10 @@ public class MetodosVehiculos {
                             }
 
                             try {
-                                
+
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
-                                 TicketsVO ticket = daoticket.findByPk(matricula, j);
-                                 return ticket;
+                                TicketsVO ticket = daoticket.findByPk(matricula, j);
+                                return ticket;
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -176,10 +176,10 @@ public class MetodosVehiculos {
                             }
 
                             try {
-                                
+
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
                                 TicketsVO ticket = daoticket.findByPk(matricula, j);
-                                 return ticket;
+                                return ticket;
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -207,7 +207,7 @@ public class MetodosVehiculos {
 
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
                                 TicketsVO ticket = daoticket.findByPk(matricula, j);
-                                 return ticket;
+                                return ticket;
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -219,7 +219,7 @@ public class MetodosVehiculos {
                     System.out.println("no hay plazas disponibles");
             }
         }
-return new TicketsVO();
+        return new TicketsVO();
     }
 
     public static TicketsVO retirarVehiculoNoAbonado(String matricula, int plaza, String pin) {
@@ -306,8 +306,8 @@ return new TicketsVO();
             }
         }
     }
-    
-     public static void CopiaSeguridadAbonados(ArrayList<AbonadosVO> abonado) {
+
+    public static void CopiaSeguridadAbonados(ArrayList<AbonadosVO> abonado) {
         //Creamos el directorio
         Path directory = Paths.get("./backup");
         try {
@@ -316,7 +316,7 @@ return new TicketsVO();
             System.out.println("Problema creando el directorio pinAbonados.");
             System.out.println(e.toString());
         }
-        Path directory2 = Paths.get("./backup/"+ LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute());
+        Path directory2 = Paths.get("./backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute());
         try {
             Files.createDirectory(directory2);
         } catch (IOException e) {
@@ -324,73 +324,73 @@ return new TicketsVO();
             System.out.println(e.toString());
         }
         // Fichero a crear. Ruta relativa a la carpeta raíz del proyecto
-        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Abonados.txt";
+        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Abonados.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))) {
-            for (int i=0; i<abonado.size();i++) {
-                flujo.write(abonado.toString());
-            flujo.newLine();
-            }
-            flujo.flush();
+            
+                flujo.write(abonado.toString() + "\n");
+                flujo.flush();
+            
+            
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
-     
-     public static void CopiaSeguridadVehiculos(ArrayList<VehiculoVO> vehiculo) {
-        
-        String fichero = "backup/" +LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Vehiculos.txt";
+
+    public static void CopiaSeguridadVehiculos(ArrayList<VehiculoVO> vehiculo) {
+
+        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Vehiculos.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))) {
-            for (int i=0; i<vehiculo.size();i++) {
-                flujo.write(vehiculo.toString());
-            flujo.newLine();
-            }
-            flujo.flush();
+            
+                flujo.write(vehiculo.toString() + "\n"); 
+                flujo.flush();
+            
+           
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
-     
-     public static void CopiaSeguridadPlazas(ArrayList<PlazasVO> plaza) {
-        
+
+    public static void CopiaSeguridadPlazas(ArrayList<PlazasVO> plaza) {
+
         String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Plazas.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))) {
-            for (int i=0; i<plaza.size();i++) {
-                flujo.write(plaza.toString());
-            flujo.newLine();
-            }
-            flujo.flush();
+            
+                flujo.write(plaza.toString() + "\n");
+                flujo.flush();
+            
+            
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
-     
-     public static void CopiaSeguridadTickets(ArrayList<TicketsVO> ticket) {
-        
-        String fichero = "backup/" +  LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Tickets.txt";
+
+    public static void CopiaSeguridadTickets(ArrayList<TicketsVO> ticket) {
+
+        String fichero = "backup/" + LocalDate.now() + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "/Tickets.txt";
 
         // Estructura try-with-resources. Instancia el objeto con el fichero a escribir
         // y se encarga de cerrar el recurso "flujo" una vez finalizadas las operaciones
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(fichero))) {
-            for (int i=0; i<ticket.size();i++) {
-                flujo.write(ticket.toString());
-            flujo.newLine();
-            }
-            flujo.flush();
+            
+                flujo.write(ticket.toString() + "\n");
+                flujo.flush();
+            
+            
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
 }
