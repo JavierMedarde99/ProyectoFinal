@@ -155,6 +155,7 @@ public class ParkingCliente {
                             System.out.println("1. Facturación");
                             System.out.println("2. Abonos");
                             System.out.println("3. Copia de seguridad");
+                            System.out.println("4. Estado parking");
                             Eleccion2 = teclado.nextInt();
                             switch (Eleccion2) {
                                 
@@ -261,8 +262,11 @@ public class ParkingCliente {
                                         default:
                                             EleccionCS=0;
                                     }
+                                    
                                 }while(EleccionCS==0);
                             }
+                                case 4:
+                                    Admin.estadoPlazas();
                                     break;
                                 default:
                                     System.out.println("Introduce una opción válida");
