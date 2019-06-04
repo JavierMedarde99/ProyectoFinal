@@ -146,7 +146,7 @@ public class MetodosVehiculos {
                             }
 
                             try {
-                                System.out.println("hola");
+                                
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,7 +174,7 @@ public class MetodosVehiculos {
                             }
 
                             try {
-                                System.out.println("hola");
+                                
                                 daoticket.insertTickets(MetodosTickets.crearTicket(matricula, j, tipo));
                             } catch (SQLException ex) {
                                 Logger.getLogger(MetodosVehiculos.class.getName()).log(Level.SEVERE, null, ex);

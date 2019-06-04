@@ -250,8 +250,8 @@ public class ParkingCliente {
 
                 }
             } while (Eleccion1 == 0);
-            System.out.println("¿Quieropcionfinal=teclado.nextLine();e hacer otra operacion?");
-            opcionfinal=teclado.nextLine();
+            System.out.println("¿Quiere hacer otra operacion?");
+            opcionfinal=teclado.next();
              
         } while ("si".equalsIgnoreCase(opcionfinal));
     }
